@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Projeto1.dir/Code/Main.cpp.o CMakeFiles/Projeto1.dir/Code/Dijkstra.cpp.o CMakeFiles/Projeto1.dir/Code/Menu.cpp.o -o Projeto1 

@@ -11,12 +11,16 @@ include_directories(Code)
 
 set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE_TMP})
 
-add_executable(Projeto1
+add_executable(Project
         data_structures/MutablePriorityQueue.h
         Code/Main.cpp
         Code/Dijkstra.cpp
         Code/Menu.cpp
 )
+
+#add_executable(Main
+        #Code/Main.cpp
+        #Code/Menu.cpp)
 
 #add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
 #set(CMAKE_CXX_FLAGS_DEBUG "/MDd")  # Para Debug

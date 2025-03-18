@@ -1,0 +1,3 @@
+/home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/build/CMakeFiles/Project.dir
+/home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/build/CMakeFiles/edit_cache.dir
+/home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/build/CMakeFiles/rebuild_cache.dir
