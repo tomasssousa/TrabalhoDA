@@ -41,50 +41,50 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target Projeto1
+# Object build statements for EXECUTABLE target Project
 
 
 #############################################
-# Order-only phony target for Projeto1
+# Order-only phony target for Project
 
-build cmake_object_order_depends_target_Projeto1: phony || .
+build cmake_object_order_depends_target_Project: phony || .
 
-build CMakeFiles/Projeto1.dir/Code/Main.cpp.o: CXX_COMPILER__Projeto1_unscanned_Debug /home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/Code/Main.cpp || cmake_object_order_depends_target_Projeto1
-  DEP_FILE = CMakeFiles/Projeto1.dir/Code/Main.cpp.o.d
+build CMakeFiles/Project.dir/Code/Main.cpp.o: CXX_COMPILER__Project_unscanned_Debug /home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/Code/Main.cpp || cmake_object_order_depends_target_Project
+  DEP_FILE = CMakeFiles/Project.dir/Code/Main.cpp.o.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
   INCLUDES = -I/home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/Code
-  OBJECT_DIR = CMakeFiles/Projeto1.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projeto1.dir/Code
+  OBJECT_DIR = CMakeFiles/Project.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project.dir/Code
 
-build CMakeFiles/Projeto1.dir/Code/Dijkstra.cpp.o: CXX_COMPILER__Projeto1_unscanned_Debug /home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/Code/Dijkstra.cpp || cmake_object_order_depends_target_Projeto1
-  DEP_FILE = CMakeFiles/Projeto1.dir/Code/Dijkstra.cpp.o.d
+build CMakeFiles/Project.dir/Code/Dijkstra.cpp.o: CXX_COMPILER__Project_unscanned_Debug /home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/Code/Dijkstra.cpp || cmake_object_order_depends_target_Project
+  DEP_FILE = CMakeFiles/Project.dir/Code/Dijkstra.cpp.o.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
   INCLUDES = -I/home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/Code
-  OBJECT_DIR = CMakeFiles/Projeto1.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projeto1.dir/Code
+  OBJECT_DIR = CMakeFiles/Project.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project.dir/Code
 
-build CMakeFiles/Projeto1.dir/Code/Menu.cpp.o: CXX_COMPILER__Projeto1_unscanned_Debug /home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/Code/Menu.cpp || cmake_object_order_depends_target_Projeto1
-  DEP_FILE = CMakeFiles/Projeto1.dir/Code/Menu.cpp.o.d
+build CMakeFiles/Project.dir/Code/Menu.cpp.o: CXX_COMPILER__Project_unscanned_Debug /home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/Code/Menu.cpp || cmake_object_order_depends_target_Project
+  DEP_FILE = CMakeFiles/Project.dir/Code/Menu.cpp.o.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
   INCLUDES = -I/home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/Code
-  OBJECT_DIR = CMakeFiles/Projeto1.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projeto1.dir/Code
+  OBJECT_DIR = CMakeFiles/Project.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project.dir/Code
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target Projeto1
+# Link build statements for EXECUTABLE target Project
 
 
 #############################################
-# Link the executable Projeto1
+# Link the executable Project
 
-build Projeto1: CXX_EXECUTABLE_LINKER__Projeto1_Debug CMakeFiles/Projeto1.dir/Code/Main.cpp.o CMakeFiles/Projeto1.dir/Code/Dijkstra.cpp.o CMakeFiles/Projeto1.dir/Code/Menu.cpp.o
+build Project: CXX_EXECUTABLE_LINKER__Project_Debug CMakeFiles/Project.dir/Code/Main.cpp.o CMakeFiles/Project.dir/Code/Dijkstra.cpp.o CMakeFiles/Project.dir/Code/Menu.cpp.o
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/Projeto1.dir
+  OBJECT_DIR = CMakeFiles/Project.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = Projeto1
-  TARGET_PDB = Projeto1.dbg
+  TARGET_FILE = Project
+  TARGET_PDB = Project.dbg
 
 
 #############################################
@@ -120,7 +120,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/gustavo-louren-o/Desktop/FEUP/2ano/DA/Projeto1/cmake-build-debug
 
-build all: phony Projeto1
+build all: phony Project
 
 # =============================================================================
 # Built-in targets

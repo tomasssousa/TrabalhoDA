@@ -26,7 +26,8 @@ public:
     bool isVisited() const;
     bool isProcessing() const;
     unsigned int getIndegree() const;
-    double getDist() const;
+    double getDrivingDist() const;
+    double getWalkingDist() const;
     Edge<T> *getPath() const;
     std::vector<Edge<T> *> getIncoming() const;
 
@@ -56,7 +57,10 @@ protected:
     bool processing = false; // used by isDAG (in addition to the visited attribute)
     int low = -1, num = -1; // used by SCC Tarjan
     unsigned int indegree; // used by topsort
-    double dist = 0;
+    struct dist {
+        double driving;
+        double walking;
+    }; dist dist;
     Edge<T> *path = nullptr;
 
     std::vector<Edge<T> *> incoming; // incoming edges
@@ -71,10 +75,11 @@ protected:
 template <class T>
 class Edge {
 public:
-    Edge(Vertex<T> *orig, Vertex<T> *dest, double w);
+    Edge(Vertex<T> *orig, Vertex<T> *dest, double walking, double driving);
 
     Vertex<T> * getDest() const;
-    double getWeight() const;
+    double getWalkingWeight() const;
+    double getDrivingWeight() const;
     bool isSelected() const;
     Vertex<T> * getOrig() const;
     Edge<T> *getReverse() const;
@@ -85,7 +90,13 @@ public:
     void setFlow(double flow);
 protected:
     Vertex<T> * dest; // destination vertex
-    double weight; // edge weight, can also be used for capacity
+
+    struct weight {
+        double driving;
+        double walking;
+
+        weight(double driving,double walking) : driving(driving), walking(walking) {}
+    }; weight weight;// edge weight, can also be used for capacity
 
     // auxiliary fields
     bool selected = false;
@@ -252,9 +263,15 @@ unsigned int Vertex<T>::getIndegree() const {
 }
 
 template <class T>
-double Vertex<T>::getDist() const {
-    return this->dist;
+double Vertex<T>::getWalkingDist() const {
+    return this->dist.walking;
 }
+
+template<class T>
+double Vertex<T>::getDrivingDist() const {
+    return this->dist.driving;
+}
+
 
 template <class T>
 Edge<T> *Vertex<T>::getPath() const {
@@ -315,7 +332,7 @@ void Vertex<T>::deleteEdge(Edge<T> *edge) {
 /********************** Edge  ****************************/
 
 template <class T>
-Edge<T>::Edge(Vertex<T> *orig, Vertex<T> *dest, double w): orig(orig), dest(dest), weight(w) {}
+Edge<T>::Edge(Vertex<T> *orig, Vertex<T> *dest, double walking, double driving): orig(orig), dest(dest), weight(walking,driving) {}
 
 template <class T>
 Vertex<T> * Edge<T>::getDest() const {
@@ -323,9 +340,15 @@ Vertex<T> * Edge<T>::getDest() const {
 }
 
 template <class T>
-double Edge<T>::getWeight() const {
-    return this->weight;
+double Edge<T>::getWalkingWeight() const {
+    return this->weight.walking;
 }
+
+template<class T>
+double Edge<T>::getDrivingWeight() const {
+    return this->weight.driving;
+}
+
 
 template <class T>
 Vertex<T> * Edge<T>::getOrig() const {
