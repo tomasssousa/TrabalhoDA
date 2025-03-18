@@ -7,13 +7,17 @@ set(CMAKE_BUILD_TYPE "Release")
 #add_subdirectory(lib/googletest)
 #include_directories(lib/googletest/googletest/include)
 #include_directories(lib/googletest/googlemock/include)
-#include_directories(Code)
+include_directories(Code)
 
 set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE_TMP})
 
 add_executable(Projeto1
         data_structures/MutablePriorityQueue.h
+        Code/Main.cpp
+        Code/Dijkstra.cpp
+        Code/Menu.cpp
 )
+
 #add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
 #set(CMAKE_CXX_FLAGS_DEBUG "/MDd")  # Para Debug
 #set(CMAKE_CXX_FLAGS_RELEASE "/MD") # Para Release
