@@ -1,0 +1,16 @@
+4.2 Route Planning Functionalities (driving only):
+
+	Simple Dijkstra where the used distance and edge weights is only the driving ones.
+
+
+Independent Route Planning:
+
+	With the current code, in the case where not all nodes are reachable, there will need to be a condition that checks and see if the node taken from the MPQ has distance = INF, in which case, the cycle will break and if, in the end, the Destination node has Dist=INF, it means there is no possible path.
+	If we choose to use the Dijkstra implementation used in class the cycle will end normally without adding any condition. That is the only difference I am thinking of.
+	For the alternate route with simply start the algorithm by marking has visited the intermediate nodes from the best route.
+
+
+Restricted Route Planning:
+
+	When excluding nodes from the graph, it is only needed to mark it as visited in the beginning of the algorithm.
+	When we try to exclude a specific segment, we will try to either drop the edge from the graph (debatable), or place the edge weight at INF, since the edge will always be bigger or equal to the distance of the node, this edge will never be added, even if the is no other possible path.
