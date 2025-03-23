@@ -14,3 +14,26 @@ Restricted Route Planning:
 
 	When excluding nodes from the graph, it is only needed to mark it as visited in the beginning of the algorithm.
 	When we try to exclude a specific segment, we will try to either drop the edge from the graph (debatable), or place the edge weight at INF, since the edge will always be bigger or equal to the distance of the node, this edge will never be added, even if the is no other possible path.
+	The combination is, well, the combination...
+	Including a single specific node that we must cross just means that we get two Dijkstra's algorithms for the price of one. One from the source to the stop, and one from the stop to the destination.
+	
+
+
+4.3 Environmentally-Friendly Route Planning (driving and walking):
+
+	I believe the way to do this is to do a Dijkstra starting from the final node, using the walking edges. We then check which of the nodes with the parking attribute have a distance equal to or lesser than the MAX_WALKING_TIME and we save those weights and the path for the next iteration. In the next iteration we start with a normal Dijkstra going from the source using the driving edges (realistically speaking, either the forward D or the Backwards D can be made first). The optimal solution for both walking and driving, if there is one, will be the one that has the parking node with the minimal sum of its two weights (driving and walking).
+	
+
+Best route for driving and walking:
+
+	Add the fact that if the total final weight is equal for two paths, we choose the one with the highest amount of walking time.
+	The restrictions work the same way that in the previous examples.
+	When checking the conditions of the backwards D, we will need to check both of them and, identify the two cases if there is no possible path. We may have no parking nodes, in which case we say "absence of parking". We can have that all walking distances in the parking nodes are superior to the MAX, in which case we say "walking time exceeds predefined maximum limit". We can, somehow have both a absence of parking and a time exceeded... (HELP IS REQUIRED IN THIS FINAL CASE. BRAIN TO DUMB).
+	
+
+Approximate Solution:
+
+	In this eggxample (Do NOT remove the joke), since the driving and walking requirements are forced, the two best possible routes, that are approximate user requirements are, in my opinion, the ones of the two parking nodes that have the smallest walking weight out of the remaining ones. I believe this is subject to change upon more information and ideas of what this is "representing the best feasible alternative routes that approximate user requirements". For me that means raising the MAX_WALKING_TIME to the nearest available values but, for someone else, that might mean finding the shortest path globally, even if that means even more walking time. It is debatable.
+	
+	
+I Believe there are no more implementations...
