@@ -19,12 +19,13 @@ class Edge;
 template <class T>
 class Vertex {
 public:
-    Vertex(int id, std::string location);
+    Vertex(int id, std::string location, int parking);
     bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
 
     //T getInfo() const;
     int getId() const;
     std::string getLocation() const;
+    int getParking() const;
     std::vector<Edge<T> *> getAdj() const;
     bool isVisited() const;
     bool isProcessing() const;
@@ -37,6 +38,7 @@ public:
     //void setInfo(T info);
     void setId(int id);
     void setLocation(std::string location);
+    void setParking(int parking);
     void setVisited(bool visited);
     void setProcessing(bool processing);
 
@@ -46,7 +48,8 @@ public:
     void setNum(int value);
 
     void setIndegree(unsigned int indegree);
-    void setDist(double dist);
+    void setDrivingDist(double driving);
+    void setWalkingDist(double walking);
     void setPath(Edge<T> *path);
     Edge<T> * addEdge(Vertex<T> *dest, double w);
     bool removeEdge(int id);
@@ -57,6 +60,7 @@ protected:
     //T info;// info node
     int id;
     std::string locationName;
+    int parking;
     std::vector<Edge<T> *> adj;  // outgoing edges
 
     // auxiliary fields
@@ -82,7 +86,7 @@ protected:
 template <class T>
 class Edge {
 public:
-    Edge(Vertex<T> *orig, Vertex<T> *dest, double walking, double driving);
+    Edge(Vertex<T> *orig, Vertex<T> *dest, double walking, double driving = INF);
 
     Vertex<T> * getDest() const;
     double getWalkingWeight() const;
@@ -169,7 +173,7 @@ void deleteMatrix(double **m, int n);
 /************************* Vertex  **************************/
 
 template <class T>
-Vertex<T>::Vertex(int id, std::string location): id(id), locationName(location) {}
+Vertex<T>::Vertex(int id, std::string location, int parking): id(id), locationName(location), parking(parking) {}
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
@@ -233,12 +237,17 @@ T Vertex<T>::getInfo() const {
 
 template<class T>
 int Vertex<T>::getId() const {
-    return id;
+    return this->id;
 }
 
 template<class T>
 std::string Vertex<T>::getLocation() const {
-    return locationName;
+    return this->locationName;
+}
+
+template<class T>
+int Vertex<T>::getParking() const {
+    return this->parking;
 }
 
 
@@ -320,6 +329,12 @@ void Vertex<T>::setLocation(std::string location) {
     this->locationName = location;
 }
 
+template<class T>
+void Vertex<T>::setParking(int parking) {
+    this->parking = parking;
+}
+
+
 
 
 template <class T>
@@ -338,9 +353,15 @@ void Vertex<T>::setIndegree(unsigned int indegree) {
 }
 
 template <class T>
-void Vertex<T>::setDist(double dist) {
-    this->dist = dist;
+void Vertex<T>::setDrivingDist(double driving) {
+    this->dist.driving = driving;
 }
+
+template<class T>
+void Vertex<T>::setWalkingDist(double walking) {
+    this->dist.walking = walking;
+}
+
 
 template <class T>
 void Vertex<T>::setPath(Edge<T> *path) {
@@ -437,7 +458,7 @@ std::vector<Vertex<T> *> Graph<T>::getVertexSet() const {
 template <class T>
 Vertex<T> * Graph<T>::findVertex(const T &in) const {
     for (auto v : vertexSet)
-        if (v->getInfo() == in)
+        if (v->getId() == in)
             return v;
     return nullptr;
 }
@@ -448,7 +469,7 @@ Vertex<T> * Graph<T>::findVertex(const T &in) const {
 template <class T>
 int Graph<T>::findVertexIdx(const T &in) const {
     for (unsigned i = 0; i < vertexSet.size(); i++)
-        if (vertexSet[i]->getInfo() == in)
+        if (vertexSet[i]->getId() == in)
             return i;
     return -1;
 }
@@ -472,11 +493,11 @@ bool Graph<T>::addVertex(const T &in) {
 template <class T>
 bool Graph<T>::removeVertex(const T &in) {
     for (auto it = vertexSet.begin(); it != vertexSet.end(); it++) {
-        if ((*it)->getInfo() == in) {
+        if ((*it)->getId() == in) {
             auto v = *it;
             v->removeOutgoingEdges();
             for (auto u : vertexSet) {
-                u->removeEdge(v->getInfo());
+                u->removeEdge(v->getId());
             }
             vertexSet.erase(it);
             delete v;

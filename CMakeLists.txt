@@ -16,6 +16,7 @@ add_executable(Project
         Code/Main.cpp
         Code/Dijkstra.cpp
         Code/Menu.cpp
+        Code/Driving_only.h
 )
 
 #add_executable(Main
