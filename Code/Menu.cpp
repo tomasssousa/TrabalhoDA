@@ -1,8 +1,39 @@
 #include <iostream>
 #include "Menu.h"
+#include "Batch_Mode_read.h"
+#include <string>
+#include <vector>
 
 
-void Menu_intro() {
+//use enums for easier control of choices
+enum MainMenuChoices {
+    LOAD_AND_PARSE = 1,
+    DISPLAY_INFO,
+    PLAN_ROUTE,
+    EXECUTE_BATCH_MODE,
+    ABOUT,
+    EXIT
+};
+
+enum RouteMenuChoices {
+    INDEPENDENT_ROUTE = 1,
+    RESTRICTED_ROUTE,
+    ENVIRONMENTALLY_FRIENDLY_ROUTE,
+    ROUTE_BACK_TO_MAIN
+};
+
+enum AboutMenuChoices {
+    ABOUT_BACK_TO_MAIN = 1
+};
+
+enum BatchMenuChoices {
+    READ_NORMAL = 1,
+    READ_RESTRICTED,
+    READ_RESTRICTED_MAX_WALK,
+    BATCH_BACK_TO_MAIN
+};
+
+void displayIntroMenu() {
     std::cout << "----------------------------------------" << std::endl;
     std::cout<<"          Welcome to our project!     "<<std::endl;
     std::cout<< "----------------------------------------" << std::endl;
@@ -13,18 +44,9 @@ void Menu_intro() {
     std::cout<<"5. About"<<std::endl;
     std::cout<<"6. Exit"<<std::endl;
     std::cout<< "----------------------------------------" << std::endl;
-
-    int choice;
-    std::cout<<"What is your choice (choose a number between 1-6)? ";
-    std::cin >> choice;
-    if (choice == 3) {
-        Menu_routes();
-    } else if (choice == 6) {
-        exit(0);
-    }
 }
 
-void Menu_routes() {
+void displayRouteMenu() {
     std::cout << "----------------------------------------" << std::endl;
     std::cout<<"          Welcome to the Routes Menu!     "<<std::endl;
     std::cout << "----------------------------------------" << std::endl;
@@ -33,26 +55,128 @@ void Menu_routes() {
     std::cout << "3. Environmentally-Friendly Route Planning (driving and walking)" <<std::endl;
     std::cout << "4. Go back to Main Menu" <<std::endl;
     std::cout<< "----------------------------------------" << std::endl;
-    int choice;
-    std::cout<<"What is your choice (choose a number between 1-4)? ";
-    std::cin >> choice;
-    if (choice == 4) {
-        Menu_intro();
-    }
-
 }
 
-void Menu_about() {
+void displayAboutMenu() {
     std::cout << "----------------------------------------" << std::endl;
     std::cout<<"          Welcome to the About Menu!     "<<std::endl;
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "1. Go back to Main Menu"<<std::endl;
-    int choice;
-    std::cout<<"What is your choice? ";
-    std::cin>>choice;
-    if (choice == 1) {
-        Menu_intro();
-    }
+    std::cout << "----------------------------------------" << std::endl;
+}
 
+void displayBatchMenu() {
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout<<"          Welcome to the Batch Mode Menu!     "<<std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "1. Read Normal Input File"<<std::endl;
+    std::cout << "2. Read Restricted Input File"<<std::endl;
+    std::cout << "3. Read Restricted Input File with MaxWalkTime"<<std::endl;
+    std::cout << "4. Go back to Main Menu" <<std::endl;
+    std::cout << "----------------------------------------" << std::endl;
+}
+
+void handleMainMenuChoice(const int choice) {
+    switch (choice) {
+        case LOAD_AND_PARSE: //not yet done
+            break;
+        case DISPLAY_INFO: //not yet done
+            break;
+        case PLAN_ROUTE:
+            while (true) {
+                displayRouteMenu();
+                int routeChoice;
+                std::cin >> routeChoice;
+                if (routeChoice == ROUTE_BACK_TO_MAIN) break;
+            }
+            break;
+        case EXECUTE_BATCH_MODE:
+            while (true) {
+                displayBatchMenu();
+                int batchChoice;
+                std::cin >> batchChoice;
+                if (batchChoice == BATCH_BACK_TO_MAIN) break;
+                else if (batchChoice == READ_NORMAL) {
+                    std::string mode;
+                    int source;
+                    int destination;
+                    readBatchModeNormal("../File/input.txt",mode,source,destination);
+                    std::cout << "----------------------------------------" << std::endl;
+                    std::cout << "Mode: " << mode << "\n";
+                    std::cout << "Source: " << source << "\n";
+                    std::cout << "Destination: " << destination << "\n";
+                    std::cout << "----------------------------------------" << std::endl;
+                }
+                else if (batchChoice == READ_RESTRICTED) {
+                    std::string mode;
+                    int source;
+                    int destination;
+                    std::vector<int> avoidable_nodes;
+                    std::vector<std::pair<int,int>> avoidable_segments;
+                    int included_node;
+                    readBatchModeComplex("../Files/input.txt",mode,source,destination,avoidable_nodes,avoidable_segments,included_node);
+                    std::cout << "----------------------------------------" << std::endl;
+                    std::cout << "Mode: " << mode << "\n";
+                    std::cout << "Source: " << source << "\n";
+                    std::cout << "Destination: " << destination << "\n";
+
+                    std::cout << "Avoidable Nodes: ";
+                    for (const int &node : avoidable_nodes) {
+                        std::cout << node << " ";
+                    }
+                    std::cout << "\n";
+
+                    std::cout << "Avoidable Segments: ";
+                    for (const auto &segment : avoidable_segments) {
+                        std::cout << "(" << segment.first << "," << segment.second << ")";
+                    }
+                    std::cout << "\n";
+
+                    std::cout << "Included Node: " << included_node << "\n";
+                    std::cout << "----------------------------------------" << std::endl;
+                }
+                else if (batchChoice == READ_RESTRICTED_MAX_WALK) {
+                    std::string mode;
+                    int source;
+                    int destination;
+                    int MaxWalkTime;
+                    std::vector<int> avoidable_nodes;
+                    std::vector<std::pair<int,int>> avoidable_segments;
+                    int included_node;
+                    readBatchModeComplexWalkTime("../Files/input.txt",mode,source,destination,MaxWalkTime,avoidable_nodes,avoidable_segments,included_node);
+                    std::cout << "----------------------------------------" << std::endl;
+                    std::cout << "Mode: " << mode << "\n";
+                    std::cout << "Source: " << source << "\n";
+                    std::cout << "Destination: " << destination << "\n";
+                    std::cout << "MaxWalkTime: " << MaxWalkTime << "\n";
+
+                    std::cout << "Avoidable Nodes: ";
+                    for (const int &node : avoidable_nodes) {
+                        std::cout << node << " ";
+                    }
+                    std::cout << "\n";
+
+                    std::cout << "Avoidable Segments: ";
+                    for (const auto &segment : avoidable_segments) {
+                        std::cout << "(" << segment.first << "," << segment.second << ")";
+                    }
+                    std::cout << "\n";
+
+                    std::cout << "Included Node: " << included_node << "\n";
+                    std::cout << "----------------------------------------" << std::endl;
+                }
+            }
+            break;
+        case ABOUT:
+            displayAboutMenu();
+            int aboutChoice;
+            std::cin >> aboutChoice;
+            if (aboutChoice == 1) break;
+            break;
+        case EXIT:
+            std::exit(0);
+        default:
+            std::cout << "Invalid Choice. Try again."<<std::endl;
+    }
 }
 
