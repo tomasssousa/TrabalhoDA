@@ -17,6 +17,7 @@ add_executable(Project
         Code/Dijkstra.cpp
         Code/Menu.cpp
         Code/Driving_only.h
+        Code/Batch_Mode_read.h
 )
 
 #add_executable(Main
