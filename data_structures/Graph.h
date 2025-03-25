@@ -6,6 +6,7 @@
 #include <queue>
 #include <limits>
 #include <algorithm>
+#include <string>
 #include "../data_structures/MutablePriorityQueue.h"
 
 template <class T>
@@ -18,10 +19,12 @@ class Edge;
 template <class T>
 class Vertex {
 public:
-    Vertex(T in);
+    Vertex(int id, std::string location);
     bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
 
-    T getInfo() const;
+    //T getInfo() const;
+    int getId() const;
+    std::string getLocation() const;
     std::vector<Edge<T> *> getAdj() const;
     bool isVisited() const;
     bool isProcessing() const;
@@ -31,7 +34,9 @@ public:
     Edge<T> *getPath() const;
     std::vector<Edge<T> *> getIncoming() const;
 
-    void setInfo(T info);
+    //void setInfo(T info);
+    void setId(int id);
+    void setLocation(std::string location);
     void setVisited(bool visited);
     void setProcessing(bool processing);
 
@@ -44,12 +49,14 @@ public:
     void setDist(double dist);
     void setPath(Edge<T> *path);
     Edge<T> * addEdge(Vertex<T> *dest, double w);
-    bool removeEdge(T in);
+    bool removeEdge(int id);
     void removeOutgoingEdges();
 
     friend class MutablePriorityQueue<Vertex>;
 protected:
-    T info;                // info node
+    //T info;// info node
+    int id;
+    std::string locationName;
     std::vector<Edge<T> *> adj;  // outgoing edges
 
     // auxiliary fields
@@ -162,7 +169,7 @@ void deleteMatrix(double **m, int n);
 /************************* Vertex  **************************/
 
 template <class T>
-Vertex<T>::Vertex(T in): info(in) {}
+Vertex<T>::Vertex(int id, std::string location): id(id), locationName(location) {}
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
@@ -181,13 +188,13 @@ Edge<T> * Vertex<T>::addEdge(Vertex<T> *d, double w) {
  * Returns true if successful, and false if such edge does not exist.
  */
 template <class T>
-bool Vertex<T>::removeEdge(T in) {
+bool Vertex<T>::removeEdge(int id) {
     bool removedEdge = false;
     auto it = adj.begin();
     while (it != adj.end()) {
         Edge<T> *edge = *it;
         Vertex<T> *dest = edge->getDest();
-        if (dest->getInfo() == in) {
+        if (dest->getId() == id) {
             it = adj.erase(it);
             deleteEdge(edge);
             removedEdge = true; // allows for multiple edges to connect the same pair of vertices (multigraph)
@@ -217,10 +224,23 @@ bool Vertex<T>::operator<(Vertex<T> & vertex) const {
     return this->dist < vertex.dist;
 }
 
+/*
 template <class T>
 T Vertex<T>::getInfo() const {
     return this->info;
 }
+*/
+
+template<class T>
+int Vertex<T>::getId() const {
+    return id;
+}
+
+template<class T>
+std::string Vertex<T>::getLocation() const {
+    return locationName;
+}
+
 
 template <class T>
 int Vertex<T>::getLow() const {
@@ -283,10 +303,24 @@ std::vector<Edge<T> *> Vertex<T>::getIncoming() const {
     return this->incoming;
 }
 
+/*
 template <class T>
 void Vertex<T>::setInfo(T in) {
     this->info = in;
 }
+*/
+
+template<class T>
+void Vertex<T>::setId(int id) {
+    this->id = id;
+}
+
+template<class T>
+void Vertex<T>::setLocation(std::string location) {
+    this->locationName = location;
+}
+
+
 
 template <class T>
 void Vertex<T>::setVisited(bool visited) {
@@ -319,7 +353,7 @@ void Vertex<T>::deleteEdge(Edge<T> *edge) {
     // Remove the corresponding edge from the incoming list
     auto it = dest->incoming.begin();
     while (it != dest->incoming.end()) {
-        if ((*it)->getOrig()->getInfo() == info) {
+        if ((*it)->getOrig()->getId() == id) { //before it was ==info
             it = dest->incoming.erase(it);
         }
         else {
