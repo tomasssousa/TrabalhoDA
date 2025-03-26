@@ -11,6 +11,11 @@ inline void readBatchModeNormal(const std::string &filename, std::string &mode, 
     std::ifstream file(filename); //open the file
     std::string line;
 
+    if (!file.is_open()) {
+        std::cout << "Error with opening the file!" << std::endl;
+        exit(0);
+    }
+
     while (std::getline(file,line)){ //while we are able to read each line of the file
         std::istringstream iss(line); //will receive the line as a input string
         std::string leading,value; //the leading strings before the ':' and value is what comes after
