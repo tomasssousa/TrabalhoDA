@@ -19,7 +19,7 @@ class Edge;
 template <class T>
 class Vertex {
 public:
-    Vertex(int id, std::string location, int parking);
+    Vertex(int id, std::string location, bool parking);
     bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
 
     //T getInfo() const;
@@ -38,7 +38,7 @@ public:
     //void setInfo(T info);
     void setId(int id);
     void setLocation(std::string location);
-    void setParking(int parking);
+    void setParking(bool parking);
     void setVisited(bool visited);
     void setProcessing(bool processing);
 
@@ -60,7 +60,7 @@ protected:
     //T info;// info node
     int id;
     std::string locationName;
-    int parking;
+    bool parking;
     std::vector<Edge<T> *> adj;  // outgoing edges
 
     // auxiliary fields
@@ -133,7 +133,7 @@ public:
      *  Adds a vertex with a given content or info (in) to a graph (this).
      *  Returns true if successful, and false if a vertex with that content already exists.
      */
-    bool addVertex(const T &in);
+    bool addVertex(const T &in,const std::string &location, bool parking);
     bool removeVertex(const T &in);
 
     /*
@@ -148,6 +148,7 @@ public:
     int getNumVertex() const;
 
     std::vector<Vertex<T> *> getVertexSet() const;
+    void clear();
 
 
 protected:
@@ -173,7 +174,7 @@ void deleteMatrix(double **m, int n);
 /************************* Vertex  **************************/
 
 template <class T>
-Vertex<T>::Vertex(int id, std::string location, int parking): id(id), locationName(location), parking(parking) {}
+Vertex<T>::Vertex(int id, std::string location, bool parking): id(id), locationName(location), parking(parking) {}
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
@@ -330,7 +331,7 @@ void Vertex<T>::setLocation(std::string location) {
 }
 
 template<class T>
-void Vertex<T>::setParking(int parking) {
+void Vertex<T>::setParking(bool parking) {
     this->parking = parking;
 }
 
@@ -478,10 +479,10 @@ int Graph<T>::findVertexIdx(const T &in) const {
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
 template <class T>
-bool Graph<T>::addVertex(const T &in) {
+bool Graph<T>::addVertex(const T &in,const std::string &location, bool parking) {
     if (findVertex(in) != nullptr)
         return false;
-    vertexSet.push_back(new Vertex<T>(in));
+    vertexSet.push_back(new Vertex<T>(in,location,parking));
     return true;
 }
 
@@ -566,6 +567,25 @@ inline void deleteMatrix(double **m, int n) {
         delete [] m;
     }
 }
+
+//!Created and implemented a new fucntion to delete a graph once we are done processing it
+//!First we remove all outgoing edges from all vertexes, and delete that vertex
+//!then we clear the vector of vertexes
+//!then delete both distmarixes and pathmatrixes
+
+template<class T>
+void Graph<T>::clear() {
+    for (auto vertex : vertexSet) {
+        vertex->removeOutgoingEdges();
+        delete vertex;
+    }
+    vertexSet.clear();
+    deleteMatrix(distMatrix, vertexSet.size()); //!deallocate memory
+    deleteMatrix(pathMatrix, vertexSet.size());
+    distMatrix = nullptr;
+    pathMatrix = nullptr;
+}
+
 
 template <class T>
 Graph<T>::~Graph() {

@@ -3,6 +3,8 @@
 #include "Batch_Mode_read.h"
 #include <string>
 #include <vector>
+#include "../data_structures/Graph.h"
+#include "readCSV.h"
 
 
 //use enums for easier control of choices
@@ -76,9 +78,19 @@ void displayBatchMenu() {
     std::cout << "----------------------------------------" << std::endl;
 }
 
+
+auto graph = new Graph<int>();
+
+void handle_csv() { //!method to build the argument graph
+    loadLocations(graph,"../CSV_Files/Location.csv");
+    loadDistances(graph,"../CSV_Files/Distances.csv");
+}
+
+
 void handleMainMenuChoice(const int choice) {
     switch (choice) {
         case LOAD_AND_PARSE: //not yet done
+            handle_csv();
             break;
         case DISPLAY_INFO: //not yet done
             break;
@@ -174,6 +186,7 @@ void handleMainMenuChoice(const int choice) {
             if (aboutChoice == 1) break;
             break;
         case EXIT:
+            graph->clear();
             std::exit(0);
         default:
             std::cout << "Invalid Choice. Try again."<<std::endl;

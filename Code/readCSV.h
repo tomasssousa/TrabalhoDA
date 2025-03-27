@@ -1,12 +1,14 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "../data_structures/Graph.h"
+//#include "../data_structures/Graph.h"
+
 
 using namespace std;
 
 template<class T>
-void loadLocations(Graph<T> * graph, const string& filename) {
+inline void loadLocations(Graph<T> *graph,const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) { // verificar se o ficheiro fornecido como argumento é válido
         cerr << "Error opening file: " << filename << endl;
@@ -23,7 +25,7 @@ void loadLocations(Graph<T> * graph, const string& filename) {
         getline(temp, id, ',');
         getline(temp, code, ',');
         getline(temp, parking, ',');
-        graph.addVertex(code, stoi(parking)); // basta adicionar ao vértice o código e a possibilidade ou não de estacionar
+        graph->addVertex(stoi(code),location, stoi(parking)); // basta adicionar ao vértice o código e a possibilidade ou não de estacionar
         // é preciso alterar esta parte e a função addVertex para que consiga aceitar um boolean que corresponda à possibilidade ou não de estacionar
     }
 
@@ -31,7 +33,7 @@ void loadLocations(Graph<T> * graph, const string& filename) {
 }
 
 template<class T>
-void loadDistances(Graph<T> * graph, const string& filename) {
+inline void loadDistances(Graph<T> *graph,const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) { // verificar se o ficheiro fornecido como argumento é válido
         cerr << "Error opening file: " << filename << endl;
@@ -48,19 +50,10 @@ void loadDistances(Graph<T> * graph, const string& filename) {
         getline(temp, location2, ',');
         getline(temp, driving, ',');
         getline(temp, walking, ',');
-        graph.addEdge(location1, location2, stoi(driving)); // adicionar a aresta com a distância a conduzir
-        graph.addEdge(location1, location2, stoi(walking)); // adicionar a aresta com a distância a andar a pé
+        graph->addEdge(stoi(location1), stoi(location2), stoi(driving)); // adicionar a aresta com a distância a conduzir
+        graph->addEdge(stoi(location1), stoi(location2), stoi(walking)); // adicionar a aresta com a distância a andar a pé
         // é preciso alterar o metodo addEdge para que as arestas de conduzir e andar a pé sejam distinguidas
     }
-
     file.close();
 }
 
-int main() {
-    Graph<T> graph;
-
-    readLocations(graph, "Location.csv");
-    readDistances(graph, "Distances.csv");
-
-    return graph;
-}

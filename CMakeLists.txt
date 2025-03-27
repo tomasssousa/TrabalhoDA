@@ -19,6 +19,7 @@ add_executable(Project
         Code/Driving_only.h
         Code/Batch_Mode_read.h
         Code/Batch_Mode_write.h
+        Code/readCSV.h
 )
 
 #add_executable(Main

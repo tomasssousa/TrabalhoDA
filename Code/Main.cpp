@@ -4,6 +4,11 @@
 #include "Batch_Mode_read.h"
 #include <vector>
 
+#include "../data_structures/Graph.h"
+
+template<class T>
+extern Graph<int> graph;
+
 int main() {
     while (true) {
         displayIntroMenu();
