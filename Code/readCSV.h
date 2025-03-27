@@ -25,10 +25,9 @@ inline void loadLocations(Graph<T> *graph,const string& filename) {
         getline(temp, id, ',');
         getline(temp, code, ',');
         getline(temp, parking, ',');
-        graph->addVertex(stoi(code),location, stoi(parking)); // basta adicionar ao vértice o código e a possibilidade ou não de estacionar
+        graph->addVertex(stoi(id),location, stoi(parking)); // basta adicionar ao vértice o código e a possibilidade ou não de estacionar
         // é preciso alterar esta parte e a função addVertex para que consiga aceitar um boolean que corresponda à possibilidade ou não de estacionar
     }
-
     file.close();
 }
 
