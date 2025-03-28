@@ -77,7 +77,7 @@ static std::vector<T> getPath(Graph<T> * g, const int &origin, const int &dest) 
     if(res.empty() || res[0] != origin) {
         //std::cout << "Origin not found!!" << std::endl;
         //return empty vector
-        return vector<T> empty;
+        return std::vector<T>();
     }
     return res;
 }
@@ -85,7 +85,7 @@ static std::vector<T> getPath(Graph<T> * g, const int &origin, const int &dest) 
 // Main function when using the driving only method
 // If a vector is returned empty, it means there is no possible path for that specification
 template <class T>
-std::vector<vector<T>> Driving_only(Graph<T> * g, const int &origin, cont int &destination, vector<int> *rn ,vector<pair<int,int>> *re, const int $stop) {
+std::vector<vector<T>> Driving_only(Graph<T> * g, const int &origin, const int &destination, vector<int> *rn ,vector<pair<int,int>> *re, const int &stop) {
     vector<vector<T>> res;
     vector<T> Optimal_route;
     vector<T> Alternate_route;
@@ -129,7 +129,7 @@ std::vector<vector<T>> Driving_only(Graph<T> * g, const int &origin, cont int &d
           continue;
         }
         else{
-          rn.push_back(v);
+          rn->push_back(v);
         }
     }
     //Alternate_route path

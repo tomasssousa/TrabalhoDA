@@ -5,6 +5,7 @@
 #include <vector>
 #include "../data_structures/Graph.h"
 #include "readCSV.h"
+#include "Driving_only.h"
 
 
 //use enums for easier control of choices
@@ -101,6 +102,8 @@ void displayUrbanInfo(Graph<T> *graph){
             std::cout << v->getLocation() << " - " << w->getLocation() << " with weights as: " << e->getDrivingWeight() << "(driving) and " << e->getWalkingWeight() << "(walking) " << std::endl;
         }
     }
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "Press 6 To Exit!" << std::endl;
 }
 
 auto graph = new Graph<int>();
@@ -111,14 +114,20 @@ void handle_csv() { //!method to build the argument graph
 }
 
 
-
-
 void handleMainMenuChoice(const int choice) {
     switch (choice) {
-        case LOAD_AND_PARSE: //not yet done
+        case LOAD_AND_PARSE: //will build the graph
             handle_csv();
             break;
-        case DISPLAY_INFO: //not yet done
+        case DISPLAY_INFO: //display
+            while (true) {
+                displayUrbanInfo(graph);
+                int infoChoice;
+                std::cin >> infoChoice;
+                if (infoChoice == 6) {
+                    break;
+                }
+            }
             break;
         case PLAN_ROUTE:
             while (true) {
@@ -139,11 +148,13 @@ void handleMainMenuChoice(const int choice) {
                     int source;
                     int destination;
                     readBatchModeNormal("../File/input.txt",mode,source,destination);
+                    /*
                     std::cout << "----------------------------------------" << std::endl;
                     std::cout << "Mode: " << mode << "\n";
                     std::cout << "Source: " << source << "\n";
                     std::cout << "Destination: " << destination << "\n";
                     std::cout << "----------------------------------------" << std::endl;
+                    */
                 }
                 else if (batchChoice == READ_RESTRICTED) {
                     std::string mode;
