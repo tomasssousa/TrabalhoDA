@@ -78,6 +78,30 @@ void displayBatchMenu() {
     std::cout << "----------------------------------------" << std::endl;
 }
 
+template <class T>
+void displayUrbanInfo(Graph<T> *graph){
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout<<"          Welcome to the Urban Map Info Menu!     "<<std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "                   Vertexes                    "<<std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "This graph has Vertexes: ";
+    for (auto v : graph->getVertexSet()) {
+        std::cout << " " << v->getLocation() << ",";
+    }
+    std::cout << "." << std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "                    Edges                    " << std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "This graph has Edges:";
+    for (auto v : graph->getVertexSet()) {
+        for (auto e : v->adj) {
+            auto w = e->dest;
+            std::cout << v->getLocation() << " - " << w->getLocation() << " with weights as: " << e->getDrivingWeight() << "(driving) and " << e->getWalkingWeight() << "(walking) " << std::endl;
+        }
+    }
+}
 
 auto graph = new Graph<int>();
 
@@ -85,6 +109,8 @@ void handle_csv() { //!method to build the argument graph
     loadLocations(graph,"../CSV_Files/Location.csv");
     loadDistances(graph,"../CSV_Files/Distances.csv");
 }
+
+
 
 
 void handleMainMenuChoice(const int choice) {
