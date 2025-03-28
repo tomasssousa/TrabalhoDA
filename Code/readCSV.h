@@ -49,9 +49,7 @@ inline void loadDistances(Graph<T> *graph,const string& filename) {
         getline(temp, location2, ',');
         getline(temp, driving, ',');
         getline(temp, walking, ',');
-        graph->addEdge(stoi(location1), stoi(location2), stoi(driving)); // adicionar a aresta com a distância a conduzir
-        graph->addEdge(stoi(location1), stoi(location2), stoi(walking)); // adicionar a aresta com a distância a andar a pé
-        // é preciso alterar o metodo addEdge para que as arestas de conduzir e andar a pé sejam distinguidas
+        graph->addEdge(stoi(location1), stoi(location2), stoi(driving), stoi(walking)); // adicionar a aresta com as duas distâncias
     }
     file.close();
 }
