@@ -38,12 +38,12 @@ void dijkstra(Graph<T> * g, const int &origin, vector<int> *rn ,vector<pair<int,
         v->setVisited(false);
     }
     ///remove nodes from the iteration. If the vector is empty it does nothing.
-    for(auto n : rn){
+    for(int n : rn){
         auto v = g->findVertex(n);
         v->setVisited(true);
     }
     ///remove edges from the iteration. If the vector is empty it does nothing.
-    for(auto en : re){
+    for(pair<int,int> en : re){
         auto v = g->findVertex(en.first);
         for(auto e : v->getAdj()){
             if(e->getDest()==g->findVertex(en.second)){
