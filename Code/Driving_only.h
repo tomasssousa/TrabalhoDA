@@ -95,7 +95,8 @@ static std::vector<T> getPath(Graph<T> * g, const int &origin, const int &dest) 
     if(res.empty() || res[0] != origin) {
         //std::cout << "Origin not found!!" << std::endl;
         //return empty vector
-        return vector<T> empty;
+        std::vector<T> empty;
+        return empty;
     }
     return res;
 }
@@ -112,7 +113,7 @@ static std::vector<T> getPath(Graph<T> * g, const int &origin, const int &dest) 
 * @return The Vectors with the Optimal path and the alterante route, respectively. If a vector is returned empty, it means there is no possible path for that .
 */
 template <class T>
-std::vector<vector<T>> Driving_only(Graph<T> * g, const int &origin, cont int &destination, vector<int> *rn ,vector<pair<int,int>> *re, const int $stop) {
+std::vector<vector<T>> Driving_only(Graph<T> * g, const int &origin, const int &destination, vector<int> *rn ,vector<pair<int,int>> *re, const int &stop) {
     vector<vector<T>> res; ///< Vector that will have the Optimal and Alternate routes.
     vector<T> Optimal_route;
     vector<T> Alternate_route;
@@ -153,11 +154,9 @@ std::vector<vector<T>> Driving_only(Graph<T> * g, const int &origin, cont int &d
     ///Alternate_route preparation.
     i = Optimal_route.size()-1;
     for(auto v : Optimal_route){
-        if(i==0 || i==Optimal_route.size()-1){
-          continue;
-        }
+        if(i==0 || i==Optimal_route.size()-1){}
         else{
-          rn.push_back(v); /// Prepare the alternate route adding the used nodes grom the optimal route to the vector of nodes to ignore.
+          rn->push_back(v); /// Prepare the alternate route adding the used nodes grom the optimal route to the vector of nodes to ignore.
         }
         i--;
     }
