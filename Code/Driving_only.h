@@ -7,6 +7,8 @@
 
 using namespace std;
 
+
+/*
 template <class T>
 bool relax(Edge<T> *edge) { // d[u] + w(u,v) < d[v]
     if (edge->getOrig()->getDrivingDist() + edge->getDrivingWeight() < edge->getDest()->getDrivingDist()) { // we have found a better way to reach v
@@ -164,7 +166,7 @@ std::vector<vector<T>> Driving_only(Graph<T> * g, const int &origin, const int &
 
     return res;
 }
-
+*/
 
 
 #endif //DRIVING_ONLY_H

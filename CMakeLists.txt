@@ -20,6 +20,7 @@ add_executable(Project
         Code/Batch_Mode_read.h
         Code/Batch_Mode_write.h
         Code/readCSV.h
+        Code/Menu_Input_Handler.h
 )
 
 #add_executable(Main
