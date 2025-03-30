@@ -6,6 +6,15 @@
 #include <fstream>
 #include <vector>
 
+/**
+ *driving only input.txt
+ * @brief This function will read from input.txt in the case where only the source, destination and mode are defined
+ * @param filename, the name of the file to read from
+ * @param mode, the mode (driving or driving-walking)
+ * @param source, the source node
+ * @param destination, the destination node
+ */
+
 //this first function is used to read normal inputs, inputs which don't avoid nodes or edges
 inline void readBatchModeNormal(const std::string &filename, std::string &mode, int &source, int &destination) {
     std::ifstream file(filename); //open the file
@@ -37,6 +46,18 @@ inline void readBatchModeNormal(const std::string &filename, std::string &mode, 
     }
     file.close();
 }
+
+/**
+ *driving only input.txt
+ * @brief This function will read from input.txt in the case where only the source, destination and mode are defined
+ * @param filename, the name of the file to read from
+ * @param mode, the mode (driving or driving-walking)
+ * @param source, the source node
+ * @param destination, the destination node
+ * @param avoidable_nodes, which nodes to avoid
+ * @param  avoidable_segments, which segments to avoid
+ * @param included_node, this node needs to be in the path
+ */
 
 inline void readBatchModeComplex(const std::string &filename, std::string &mode, int &source, int &destination,
                                  std::vector<int> &avoidable_nodes,
@@ -95,9 +116,21 @@ inline void readBatchModeComplex(const std::string &filename, std::string &mode,
     file.close();
 }
 
+/**
+ *driving-walking in input.txt
+ * @brief This function will read from input.txt in the case where only the source, destination and mode are defined
+ * @param filename, the name of the file to read from
+ * @param mode, the mode (driving or driving-walking)
+ * @param source, the source node
+ * @param destination, the destination node
+ * @param avoidable_nodes, which nodes to avoid
+ * @param  avoidable_segments, which segments to avoid
+ * @param MaxWalkTime, max walking time
+ */
+
 inline void readBatchModeComplexWalkTime(const std::string &filename, std::string &mode, int &source, int &destination,
                                          int &MaxWalkTime, std::vector<int> &avoidable_nodes,
-                                         std::vector<std::pair<int, int> > &avoidable_segments, int &included_node) {
+                                         std::vector<std::pair<int, int> > &avoidable_segments) {
     std::ifstream file(filename);
     std::string line;
     //same logic as the basic readBatch
@@ -142,8 +175,6 @@ inline void readBatchModeComplexWalkTime(const std::string &filename, std::strin
                     segmentStream >> id1 >> id2;
                     avoidable_segments.emplace_back(id1, id2);
                 }
-            } else if (leading == "IncludeNode") {
-                included_node = std::stoi(value);
             }
         }
     }

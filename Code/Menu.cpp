@@ -315,7 +315,7 @@ void handleMainMenuChoice(const int choice) {
                     */
                 } else if (batchChoice == READ_RESTRICTED_MAX_WALK) {
                     readBatchModeComplexWalkTime("../Files/input.txt", mode, source, dest, Max_Walk_Time,
-                                                 avoidable_nodes, avoidable_segments, included_node);
+                                                 avoidable_nodes, avoidable_segments);
                     /*
                     std::cout << "----------------------------------------" << std::endl;
                     std::cout << "Mode: " << mode << "\n";
