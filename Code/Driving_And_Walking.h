@@ -175,6 +175,8 @@ vector<vector<T> > DrivingWalking(Graph<T> *g, int &origin, int &destination, in
         */
     }
 
+    int bestDrivingTime = INT_INF;
+    int bestWalkingTime = INT_INF;
     int bestTotalTime = INT_INF;
     vector<T> bestDrivingRoute, bestWalkingRoute;
     int bestParkingNode = -1;
@@ -188,9 +190,13 @@ vector<vector<T> > DrivingWalking(Graph<T> *g, int &origin, int &destination, in
 
         if (walkingRoute.empty() || g->findVertex(destination)->getWalkingDist() > maxWalkTime) continue;
 
-        int totalTime = g->findVertex(parkingNode)->getDrivingDist() + g->findVertex(destination)->getWalkingDist();
+        int drivingTime = g->findVertex(parkingNode)->getDrivingDist();
+        int walkingTime = g->findVertex(destination)->getWalkingDist();
+        int totalTime = drivingTime + walkingTime;
         if (totalTime < bestTotalTime || (totalTime == bestTotalTime && walkingRoute.size() < bestWalkingRoute.
                                           size())) {
+            bestDrivingTime = drivingTime;
+            bestWalkingTime = walkingTime;
             bestTotalTime = totalTime;
             bestDrivingRoute = drivingRoutes[0];
             bestWalkingRoute = walkingRoute;
