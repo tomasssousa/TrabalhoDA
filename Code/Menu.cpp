@@ -173,6 +173,13 @@ void getAvoidSegments(std::vector<std::pair<int, int> > &avoid_segments) {
 
 
 void handleMainMenuChoice(const int choice) {
+    std::string mode;
+    int source;
+    int dest;
+    std::vector<int> avoidable_nodes;
+    std::vector<std::pair<int, int> > avoidable_segments;
+    int included_node;
+    int Max_Walk_Time;
     switch (choice) {
         case LOAD_AND_PARSE: //will build the graph
             handle_csv();
@@ -192,6 +199,12 @@ void handleMainMenuChoice(const int choice) {
                 displayRouteMenu();
                 int routeChoice;
                 std::cin >> routeChoice;
+                if (routeChoice == INDEPENDENT_ROUTE) {
+                    //!driving only without restrictions
+                    Driving_only(graph, source, dest);
+                    break;
+                }
+
                 if (routeChoice == ROUTE_BACK_TO_MAIN) break;
             }
             break;
@@ -204,58 +217,59 @@ void handleMainMenuChoice(const int choice) {
                 if (inputChoice == INPUT_BATCH_BACK_TO_MAIN) break;
                 else if (inputChoice == INPUT_READ_NORMAL) {
                     int destination;
-                    int source;
-                    string mode;
+                    int source2;
+                    std::string mode2;
 
                     std::cout << "Mode? " << std::endl;
-                    std::cin >> mode;
+                    std::cin >> mode2;
                     std::cout << "Source? " << std::endl;
-                    std::cin >> source;
+                    std::cin >> source2;
                     std::cout << "Destination? " << std::endl;
                     std::cin >> destination;
                     Write_Normal_Route("../Files/input.txt", mode, source, destination);
                 } else if (inputChoice == INPUT_READ_RESTRICTED) {
-                    std::string mode;
-                    int source;
+                    std::string mode2;
+                    int source2;
                     int destination;
-                    std::vector<int> avoid_nodes;
-                    std::vector<pair<int, int> > avoid_segments;
-                    int includeNode;
+                    std::vector<int> avoid_nodes2;
+                    std::vector<pair<int, int> > avoid_segments2;
+                    int includeNode2;
                     std::cout << "Mode? " << std::endl;
-                    std::cin >> mode;
+                    std::cin >> mode2;
                     std::cout << "Source? " << std::endl;
-                    std::cin >> source;
+                    std::cin >> source2;
                     std::cout << "Destination? " << std::endl;
                     std::cin >> destination;
-                    getAvoidNodes(avoid_nodes);
+                    getAvoidNodes(avoid_nodes2);
                     std::cout << endl;
-                    getAvoidSegments(avoid_segments);
+                    getAvoidSegments(avoid_segments2);
                     std::cout << endl;
                     std::cout << "IncludeNode? " << std::endl;
-                    std::cin >> includeNode;
-                    Write_Avoidable_Route("../Files/input.txt", mode, source, destination, avoid_nodes, avoid_segments,
-                                          includeNode);
+                    std::cin >> includeNode2;
+                    Write_Avoidable_Route("../Files/input.txt", mode2, source2, destination, avoid_nodes2,
+                                          avoid_segments2,
+                                          includeNode2);
                 } else if (inputChoice == INPUT_READ_RESTRICTED_MAX_WALK) {
-                    std::string mode;
-                    int source;
+                    std::string mode2;
+                    int source2;
                     int destination;
-                    int MaxWalkTime;
-                    std::vector<int> avoid_nodes;
-                    std::vector<pair<int, int> > avoid_segments;
+                    int MaxWalkTime2;
+                    std::vector<int> avoid_nodes2;
+                    std::vector<pair<int, int> > avoid_segments2;
                     std::cout << "Mode? " << std::endl;
-                    std::cin >> mode;
+                    std::cin >> mode2;
                     std::cout << "Source? " << std::endl;
-                    std::cin >> source;
+                    std::cin >> source2;
                     std::cout << "Destination? " << std::endl;
                     std::cin >> destination;
                     std::cout << "MaxWalkTime? " << std::endl;
-                    std::cin >> MaxWalkTime;
-                    getAvoidNodes(avoid_nodes);
+                    std::cin >> MaxWalkTime2;
+                    getAvoidNodes(avoid_nodes2);
                     std::cout << endl;
-                    getAvoidSegments(avoid_segments);
+                    getAvoidSegments(avoid_segments2);
                     std::cout << endl;
-                    Write_Avoidable_MaxWalk_Route("../Files/input.txt", mode, source, destination, MaxWalkTime,
-                                                  avoid_nodes, avoid_segments);
+                    Write_Avoidable_MaxWalk_Route("../Files/input.txt", mode2, source2, destination, MaxWalkTime2,
+                                                  avoid_nodes2, avoid_segments2);
                 }
             }
             break;
@@ -266,10 +280,7 @@ void handleMainMenuChoice(const int choice) {
                 std::cin >> batchChoice;
                 if (batchChoice == BATCH_BACK_TO_MAIN) break;
                 else if (batchChoice == READ_NORMAL) {
-                    std::string mode;
-                    int source;
-                    int destination;
-                    readBatchModeNormal("../File/input.txt", mode, source, destination);
+                    readBatchModeNormal("../Files/input.txt", mode, source, dest);
                     /*
                     std::cout << "----------------------------------------" << std::endl;
                     std::cout << "Mode: " << mode << "\n";
@@ -278,14 +289,10 @@ void handleMainMenuChoice(const int choice) {
                     std::cout << "----------------------------------------" << std::endl;
                     */
                 } else if (batchChoice == READ_RESTRICTED) {
-                    std::string mode;
-                    int source;
-                    int destination;
-                    std::vector<int> avoidable_nodes;
-                    std::vector<std::pair<int, int> > avoidable_segments;
-                    int included_node;
-                    readBatchModeComplex("../Files/input.txt", mode, source, destination, avoidable_nodes,
+                    readBatchModeComplex("../Files/input.txt", mode, source, dest, avoidable_nodes,
                                          avoidable_segments, included_node);
+
+                    /*
                     std::cout << "----------------------------------------" << std::endl;
                     std::cout << "Mode: " << mode << "\n";
                     std::cout << "Source: " << source << "\n";
@@ -305,16 +312,11 @@ void handleMainMenuChoice(const int choice) {
 
                     std::cout << "Included Node: " << included_node << "\n";
                     std::cout << "----------------------------------------" << std::endl;
+                    */
                 } else if (batchChoice == READ_RESTRICTED_MAX_WALK) {
-                    std::string mode;
-                    int source;
-                    int destination;
-                    int MaxWalkTime;
-                    std::vector<int> avoidable_nodes;
-                    std::vector<std::pair<int, int> > avoidable_segments;
-                    int included_node;
-                    readBatchModeComplexWalkTime("../Files/input.txt", mode, source, destination, MaxWalkTime,
+                    readBatchModeComplexWalkTime("../Files/input.txt", mode, source, dest, Max_Walk_Time,
                                                  avoidable_nodes, avoidable_segments, included_node);
+                    /*
                     std::cout << "----------------------------------------" << std::endl;
                     std::cout << "Mode: " << mode << "\n";
                     std::cout << "Source: " << source << "\n";
@@ -335,6 +337,7 @@ void handleMainMenuChoice(const int choice) {
 
                     std::cout << "Included Node: " << included_node << "\n";
                     std::cout << "----------------------------------------" << std::endl;
+                    */
                 }
             }
             break;

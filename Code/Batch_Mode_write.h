@@ -10,6 +10,8 @@
 //Some forms of output
 /*
 *
+*
+--For Driving Only
 Source:<id>
 Destination:<id>
 BestDrivingRoute:<id>,<id>,<id>(<int>)
@@ -19,6 +21,8 @@ Source:<id>
 Destination:<id>
 RestrictedDrivingRoute:<id>,<id>,<id>(<int>)
 ------------------------------------------------------
+
+---For driving and walking---
 Source:<id>
 Destination:<id>
 DrivingRoute:<id>,<id>,<id>(<int>)
@@ -41,20 +45,23 @@ TotalTime2:<int>
 
 //Similar logic to reading from the input.txt
 
-inline void writeBatchModeNormal(const std::string &filename,const int source,const int dest, const std::vector<int>& BestDrivingRoute, const std::vector<int>& AlternativeDrivingRoute) {
+inline void writeBatchModeNormal(const std::string &filename, const int source, const int dest,
+                                 const std::vector<int> &BestDrivingRoute,
+                                 const std::vector<int> &AlternativeDrivingRoute) {
     std::ofstream file(filename); //declare file as a output file
     if (!file.is_open() || file.fail()) {
-   std::cout << "Error opening the file!" << std::endl;
-      exit(0);
+        std::cout << "Error opening the file!" << std::endl;
+        exit(0);
     }
 
     file << "Source:" << source << std::endl;
     file << "Destination:" << dest << std::endl;
     file << "BestDrivingRoute:";
-    if (BestDrivingRoute.empty()) { //no path obtained
+    if (BestDrivingRoute.empty()) {
+        //no path obtained
         file << "none" << std::endl;
     } else {
-        for (const int i : BestDrivingRoute) {
+        for (const int i: BestDrivingRoute) {
             file << i << ",";
         }
     }
@@ -64,7 +71,7 @@ inline void writeBatchModeNormal(const std::string &filename,const int source,co
     if (AlternativeDrivingRoute.empty()) {
         file << "none" << std::endl;
     } else {
-        for (const int i : AlternativeDrivingRoute) {
+        for (const int i: AlternativeDrivingRoute) {
             file << i << ",";
         }
     }
@@ -73,7 +80,8 @@ inline void writeBatchModeNormal(const std::string &filename,const int source,co
     file.close();
 }
 
-inline void writeBatchModeNormalRestricted(const std::string &filename,const int source,const int dest, const std::vector<int>& RestrictedDrivingRoyte) {
+inline void writeBatchModeNormalRestricted(const std::string &filename, const int source, const int dest,
+                                           const std::vector<int> &RestrictedDrivingRoyte) {
     std::ofstream file(filename); //declare file as a output file
     if (!file.is_open() || file.fail()) {
         std::cout << "Error opening the file!" << std::endl;
@@ -83,10 +91,11 @@ inline void writeBatchModeNormalRestricted(const std::string &filename,const int
     file << "Source:" << source << std::endl;
     file << "Destination:" << dest << std::endl;
     file << "RestrictedDrivingRoute:";
-    if (RestrictedDrivingRoyte.empty()) { //no path obtained
+    if (RestrictedDrivingRoyte.empty()) {
+        //no path obtained
         file << "none" << std::endl;
     } else {
-        for (const int i : RestrictedDrivingRoyte) {
+        for (const int i: RestrictedDrivingRoyte) {
             file << i << ",";
         }
     }
@@ -94,7 +103,9 @@ inline void writeBatchModeNormalRestricted(const std::string &filename,const int
     file.close();
 }
 
-inline void writeBatchModeDrivingWalking(const std::string &filename,const int source,const int dest, const std::vector<int>& DrivingRoute, const int ParkingNode, const std::vector<int>& WalkingRoute,int TotalTime) {
+inline void writeBatchModeDrivingWalking(const std::string &filename, const int source, const int dest,
+                                         const std::vector<int> &DrivingRoute, const int ParkingNode,
+                                         const std::vector<int> &WalkingRoute, int TotalTime) {
     std::ofstream file(filename); //declare file as a output file
     if (!file.is_open() || file.fail()) {
         std::cout << "Error opening the file!" << std::endl;
@@ -104,10 +115,11 @@ inline void writeBatchModeDrivingWalking(const std::string &filename,const int s
     file << "Source:" << source << std::endl;
     file << "Destination:" << dest << std::endl;
     file << "DrivingRoute:";
-    if (DrivingRoute.empty()) { //no path obtained
+    if (DrivingRoute.empty()) {
+        //no path obtained
         file << "none" << std::endl;
     } else {
-        for (const int i : DrivingRoute) {
+        for (const int i: DrivingRoute) {
             file << i << ",";
         }
     }
@@ -119,7 +131,7 @@ inline void writeBatchModeDrivingWalking(const std::string &filename,const int s
     if (WalkingRoute.empty()) {
         file << "none" << std::endl;
     } else {
-        for (const int i : WalkingRoute) {
+        for (const int i: WalkingRoute) {
             file << i << ",";
         }
     }
@@ -129,7 +141,8 @@ inline void writeBatchModeDrivingWalking(const std::string &filename,const int s
     file.close();
 }
 
-inline void writeBatchModeDrivingWalkingImpossible(const std::string &filename,const int source, const int dest, std::string message) {
+inline void writeBatchModeDrivingWalkingImpossible(const std::string &filename, const int source, const int dest,
+                                                   std::string message) {
     std::ofstream file(filename); //declare file as a output file
     if (!file.is_open() || file.fail()) {
         std::cout << "Error opening the file!" << std::endl;
@@ -147,7 +160,11 @@ inline void writeBatchModeDrivingWalkingImpossible(const std::string &filename,c
     file.close();
 }
 
-inline void writeBatchModeDrivingWalkingApproximate(const std::string &filename,const int source,const int dest, const std::vector<int>& DrivingRoute1, const int ParkingNode1, const std::vector<int>& WalkingRoute1,int TotalTime1,const std::vector<int>& DrivingRoute2,const int ParkingNode2,const std::vector<int>& WalkingRoute2,const int TotalTime2){
+inline void writeBatchModeDrivingWalkingApproximate(const std::string &filename, const int source, const int dest,
+                                                    const std::vector<int> &DrivingRoute1, const int ParkingNode1,
+                                                    const std::vector<int> &WalkingRoute1, int TotalTime1,
+                                                    const std::vector<int> &DrivingRoute2, const int ParkingNode2,
+                                                    const std::vector<int> &WalkingRoute2, const int TotalTime2) {
     std::ofstream file(filename); //declare file as a output file
     if (!file.is_open() || file.fail()) {
         std::cout << "Error opening the file!" << std::endl;
@@ -157,10 +174,11 @@ inline void writeBatchModeDrivingWalkingApproximate(const std::string &filename,
     file << "Source:" << source << std::endl;
     file << "Destination:" << dest << std::endl;
     file << "DrivingRoute1:";
-    if (DrivingRoute1.empty()) { //no path obtained
+    if (DrivingRoute1.empty()) {
+        //no path obtained
         file << "none" << std::endl;
     } else {
-        for (const int i : DrivingRoute1) {
+        for (const int i: DrivingRoute1) {
             file << i << ",";
         }
     }
@@ -172,7 +190,7 @@ inline void writeBatchModeDrivingWalkingApproximate(const std::string &filename,
     if (WalkingRoute1.empty()) {
         file << "none" << std::endl;
     } else {
-        for (const int i : WalkingRoute1) {
+        for (const int i: WalkingRoute1) {
             file << i << ",";
         }
     }
@@ -181,10 +199,11 @@ inline void writeBatchModeDrivingWalkingApproximate(const std::string &filename,
     file << "TotalTime1:" << TotalTime1 << std::endl;
 
     file << "DrivingRoute2:";
-    if (DrivingRoute2.empty()) { //no path obtained
+    if (DrivingRoute2.empty()) {
+        //no path obtained
         file << "none" << std::endl;
     } else {
-        for (const int i : DrivingRoute2) {
+        for (const int i: DrivingRoute2) {
             file << i << ",";
         }
     }
@@ -196,7 +215,7 @@ inline void writeBatchModeDrivingWalkingApproximate(const std::string &filename,
     if (WalkingRoute2.empty()) {
         file << "none" << std::endl;
     } else {
-        for (const int i : WalkingRoute2) {
+        for (const int i: WalkingRoute2) {
             file << i << ",";
         }
     }
@@ -206,9 +225,6 @@ inline void writeBatchModeDrivingWalkingApproximate(const std::string &filename,
 
     file.close();
 }
-
-
-
 
 
 #endif //BATCH_MODE_WRITE_H

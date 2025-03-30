@@ -138,6 +138,10 @@ public:
 
     void setFlow(double flow);
 
+    void setWalkingWeight(double walking);
+
+    void setDrivingWeight(double driving);
+
 protected:
     Vertex<T> *dest; // destination vertex
 
@@ -278,7 +282,8 @@ void Vertex<T>::removeOutgoingEdges() {
 
 template<class T>
 bool Vertex<T>::operator<(Vertex<T> &vertex) const {
-    return this->dist < vertex.dist;
+    return this->dist.driving < vertex.dist.driving || (
+               this->dist.driving == vertex.dist.driving && this->dist.walking < vertex.dist.walking);
 }
 
 /*
@@ -497,6 +502,17 @@ template<class T>
 void Edge<T>::setFlow(double flow) {
     this->flow = flow;
 }
+
+template<class T>
+void Edge<T>::setDrivingWeight(double driving) {
+    this->weight.driving = driving;
+}
+
+template<class T>
+void Edge<T>::setWalkingWeight(double walking) {
+    this->weight.walking = walking;
+}
+
 
 /********************** Graph  ****************************/
 
