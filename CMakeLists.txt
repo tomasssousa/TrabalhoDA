@@ -8,6 +8,9 @@ set(CMAKE_BUILD_TYPE "Release")
 #include_directories(lib/googletest/googletest/include)
 #include_directories(lib/googletest/googlemock/include)
 include_directories(Code)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -fsanitize=address -fno-omit-frame-pointer")
+set(CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fsanitize=address")
+
 
 set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE_TMP})
 

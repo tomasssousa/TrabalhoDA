@@ -226,7 +226,7 @@ void handleMainMenuChoice(const int choice) {
                     std::cin >> source2;
                     std::cout << "Destination? " << std::endl;
                     std::cin >> destination;
-                    Write_Normal_Route("../Files/input.txt", mode, source, destination);
+                    Write_Normal_Route("../Files/input.txt", mode2, source2, destination);
                 } else if (inputChoice == INPUT_READ_RESTRICTED) {
                     std::string mode2;
                     int source2;
