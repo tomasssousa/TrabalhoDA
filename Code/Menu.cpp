@@ -74,6 +74,11 @@ void displayAboutMenu() {
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "          Welcome to the About Menu!     " << std::endl;
     std::cout << "----------------------------------------" << std::endl;
+    std::cout << "This project was done by:" << std::endl;
+    std::cout << "  Gustavo Lourenço 202306578" << std::endl;
+    std::cout << "  Tomás Sousa 202303524" << std::endl;
+    std::cout << "  Gonçalo França 202305533" << std::endl;
+    std::cout << "----------------------------------------" << std::endl;
     std::cout << "1. Go back to Main Menu" << std::endl;
     std::cout << "----------------------------------------" << std::endl;
 }
