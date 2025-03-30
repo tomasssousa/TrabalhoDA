@@ -105,7 +105,7 @@ inline void writeBatchModeNormalRestricted(const std::string &filename, const in
 
 inline void writeBatchModeDrivingWalking(const std::string &filename, const int source, const int dest,
                                          const std::vector<int> &DrivingRoute, const int ParkingNode,
-                                         const std::vector<int> &WalkingRoute, int TotalTime) {
+                                         const std::vector<int> &WalkingRoute, const int TotalTime) {
     std::ofstream file(filename); //declare file as a output file
     if (!file.is_open() || file.fail()) {
         std::cout << "Error opening the file!" << std::endl;
@@ -142,7 +142,7 @@ inline void writeBatchModeDrivingWalking(const std::string &filename, const int 
 }
 
 inline void writeBatchModeDrivingWalkingImpossible(const std::string &filename, const int source, const int dest,
-                                                   std::string message) {
+                                                   const std::string &message) {
     std::ofstream file(filename); //declare file as a output file
     if (!file.is_open() || file.fail()) {
         std::cout << "Error opening the file!" << std::endl;
@@ -155,7 +155,7 @@ inline void writeBatchModeDrivingWalkingImpossible(const std::string &filename, 
     file << "ParkingNode:none" << std::endl;
     file << "WalkingRoute:none" << std::endl;
     file << "TotalTime:none" << std::endl;
-    file << message << std::endl;
+    file << "Message:" << message << std::endl;
 
     file.close();
 }
