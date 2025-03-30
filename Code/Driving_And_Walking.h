@@ -214,7 +214,7 @@ vector<vector<T> > DrivingWalking(Graph<T> *g, int &origin, int &destination, in
     }
 
     writeBatchModeDrivingWalking("../Files/output.txt", origin, destination, bestDrivingRoute, bestParkingNode,
-                                 bestWalkingRoute, bestTotalTime);
+                                 bestWalkingRoute, bestTotalTime, bestDrivingTime, bestWalkingTime);
     return {};
     /*
     return {bestDrivingRoute, {bestParkingNode}, bestWalkingRoute, {to_string(bestTotalTime)}};
