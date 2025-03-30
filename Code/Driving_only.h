@@ -137,6 +137,8 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
     vector<T> Optimal_route;
     vector<T> Alternate_route;
     int i; ///< Value to be used for counting.
+    bool mode = false;
+    if(rn!=nullptr||re!=nullptr||stop!=0) { mode=true;}
     ///Optimal_driving path.
     dijkstra(g, origin, rn, re);
     if (stop == 0) {
@@ -211,7 +213,12 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         }
     }
     res.push_back(Alternate_route);
-    writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route);
+    if(mode==false){
+        writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route);
+    }
+    else{
+        writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route);
+    }
     return res;
 }
 
