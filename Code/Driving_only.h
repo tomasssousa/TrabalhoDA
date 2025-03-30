@@ -43,20 +43,31 @@ void dijkstra(Graph<T> *g, const int &origin, vector<int> *rn, vector<pair<int, 
         v->setVisited(false);
     }
     ///remove nodes from the iteration. If the vector is empty it does nothing.
-    for (int n: *rn) {
-        auto v = g->findVertex(n);
-        v->setVisited(true);
+    if (rn != nullptr) {
+        for (int n: *rn) {
+            auto v = g->findVertex(n);
+            if (v != nullptr) {
+                v->setVisited(true);
+            }
+        }
     }
     ///remove edges from the iteration. If the vector is empty it does nothing.
-    for (pair<int, int> en: *re) {
-        auto v = g->findVertex(en.first);
-        for (auto e: v->getAdj()) {
-            if (e->getDest() == g->findVertex(en.second)) {
-                e->setDrivingWeight(INF);
+    if (re != nullptr) {
+        for (pair<int, int> en: *re) {
+            auto v = g->findVertex(en.first);
+            if (v != nullptr) {
+                for (auto e: v->getAdj()) {
+                    if (e->getDest() == g->findVertex(en.second)) {
+                        e->setDrivingWeight(INF);
+                    }
+                }
             }
         }
     }
     auto s = g->findVertex(origin); ///< The node from which to start the algorithm.
+    if (s == nullptr) {
+        return;
+    }
     s->setDrivingDist(0);
 
     MutablePriorityQueue<Vertex<T> > q; ///< PriorityQueue to be used during the algorithm.

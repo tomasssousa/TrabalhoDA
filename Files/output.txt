@@ -1,0 +1,7 @@
+Source:1
+Destination:6
+DrivingRoute:none
+ParkingNode:none
+WalkingRoute:none
+TotalTime:none
+Message:There aren't any parkingNodes or the maxWalkTime was exceeded
