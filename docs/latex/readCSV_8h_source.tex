@@ -10,17 +10,18 @@
 \DoxyCodeLine{00006\ }
 \DoxyCodeLine{00007\ }
 \DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }std;}
-\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{readCSV_8h_a3101bc0142a49d9d11ad3f8cac766a2d}{trim}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&str)\ \{}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ strBegin\ =\ str.find\_first\_not\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t\(\backslash\)r\(\backslash\)n,"{}});}
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (strBegin\ ==\ string::npos)}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ strEnd\ =\ str.find\_last\_not\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t\(\backslash\)r\(\backslash\)n,"{}});}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ strRange\ =\ strEnd\ -\/\ strBegin\ +\ 1;}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ str.substr(strBegin,\ strRange);}
-\DoxyCodeLine{00024\ \}}
-\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{readCSV_8h_a3101bc0142a49d9d11ad3f8cac766a2d}{trim}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&str)\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ strBegin\ =\ str.find\_first\_not\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t\(\backslash\)r\(\backslash\)n,"{}});}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{if}\ (strBegin\ ==\ string::npos)}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ strEnd\ =\ str.find\_last\_not\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t\(\backslash\)r\(\backslash\)n,"{}});}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ strRange\ =\ strEnd\ -\/\ strBegin\ +\ 1;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{return}\ str.substr(strBegin,\ strRange);}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
 \DoxyCodeLine{00026\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
 \DoxyCodeLine{00027\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{readCSV_8h_aa854ccbf26fba4d17fc162ad620d617e}{loadLocations}}(Graph<T>\ *\mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}},\ \textcolor{keyword}{const}\ std::string\ \&filename)\ \{}
 \DoxyCodeLine{00028\ \ \ \ \ std::ifstream\ file(filename);}
@@ -109,24 +110,41 @@
 \DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
 \DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id1\ =\ \mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}}-\/>getVertexIdByCode(loc1);}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id2\ =\ \mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}}-\/>getVertexIdByCode(loc2);}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ drive\ =\ std::stoi(driving);}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ walk\ =\ std::stoi(walking);}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[INFO]\ Parsed:\ "{}}\ <<\ loc1\ <<\ \textcolor{stringliteral}{"{}\ →\ "{}}\ <<\ loc2}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Driving:\ "{}}\ <<\ drive\ <<\ \textcolor{stringliteral}{"{},\ Walking:\ "{}}\ <<\ walk\ <<\ std::endl;}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}}-\/>addEdge(id1,\ id2,\ drive,\ walk);}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\ \&e)\ \{}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//in\ case\ the\ conversion\ fails}}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ Conversion\ failed:\ "{}}\ <<\ line\ <<\ \textcolor{stringliteral}{"{}\ →\ "{}}\ <<\ e.what()\ <<\ std::endl;}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00133\ \ \ \ \ \}}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \ \ \ \ file.close();}
-\DoxyCodeLine{00136\ \}}
-\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//verify\ if\ id\ and\ parking\ are\ digits}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (driving\ !=\ \textcolor{stringliteral}{"{}X"{}}\ \&\&\ !std::all\_of(driving.begin(),\ driving.end(),\ ::isdigit)\ ||}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ !std::all\_of(walking.begin(),\ walking.end(),\ ::isdigit))\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ Non-\/numeric\ field(s):\ DRIVING='"{}}\ <<\ driving\ <<\ \textcolor{stringliteral}{"{}',\ WALKING='"{}}\ <<\ walking\ <<\ \textcolor{stringliteral}{"{}'\(\backslash\)n"{}};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id1\ =\ \mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}}-\/>getVertexIdByCode(loc1);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id2\ =\ \mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}}-\/>getVertexIdByCode(loc2);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ drive;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (driving\ ==\ \textcolor{stringliteral}{"{}X"{}}\ ||\ driving\ ==\ \textcolor{stringliteral}{"{}x"{}})\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drive\ =\ INF;\ \textcolor{comment}{//set\ the\ driving\ distance\ to\ INF}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (std::all\_of(driving.begin(),\ driving.end(),\ ::isdigit))\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drive\ =\ std::stoi(driving);\ \textcolor{comment}{//if\ the\ drive\ is\ a\ digit}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ Invalid\ driving\ field:\ '"{}}\ <<\ driving\ <<\ \textcolor{stringliteral}{"{}'\(\backslash\)n"{}};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ walk\ =\ std::stoi(walking);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[INFO]\ Parsed:\ "{}}\ <<\ loc1\ <<\ \textcolor{stringliteral}{"{}\ →\ "{}}\ <<\ loc2}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Driving:\ "{}}\ <<\ drive\ <<\ \textcolor{stringliteral}{"{},\ Walking:\ "{}}\ <<\ walk\ <<\ std::endl;}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}}-\/>addEdge(id1,\ id2,\ drive,\ walk);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\ \&e)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//in\ case\ the\ conversion\ fails}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ Conversion\ failed:\ "{}}\ <<\ line\ <<\ \textcolor{stringliteral}{"{}\ →\ "{}}\ <<\ e.what()\ <<\ std::endl;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ file.close();}
+\DoxyCodeLine{00153\ \}}
+\DoxyCodeLine{00154\ }
 
 \end{DoxyCode}

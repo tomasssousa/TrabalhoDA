@@ -60,7 +60,7 @@ TotalTime2:<int>
 inline void writeBatchModeNormal(const std::string &filename, const int source, const int dest,
                                  const std::vector<int> &BestDrivingRoute,
                                  const std::vector<int> &AlternativeDrivingRoute, const int best_time,
-                                 const int alternative_time) {
+                                 const int alternative_time = 0) {
     std::ofstream file(filename); //declare file as a output file
     if (!file.is_open() || file.fail()) {
         std::cout << "Error opening the file!" << std::endl;

@@ -48,10 +48,10 @@
 \DoxyCodeLine{00044\ }
 \DoxyCodeLine{00045\ \textcolor{comment}{//Similar\ logic\ to\ reading\ from\ the\ input.txt}}
 \DoxyCodeLine{00046\ }
-\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Batch__Mode__write_8h_abdd74b73cba0a2f483d1819b4b037ad8}{writeBatchModeNormal}}(\textcolor{keyword}{const}\ std::string\ \&filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dest,}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Batch__Mode__write_8h_a412f71465adb885f4266ee3eb89e4af8}{writeBatchModeNormal}}(\textcolor{keyword}{const}\ std::string\ \&filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dest,}
 \DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&BestDrivingRoute,}
 \DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&AlternativeDrivingRoute,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ best\_time,}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ alternative\_time)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ alternative\_time\ =\ 0)\ \{}
 \DoxyCodeLine{00064\ \ \ \ \ std::ofstream\ file(filename);\ \textcolor{comment}{//declare\ file\ as\ a\ output\ file}}
 \DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open()\ ||\ file.fail())\ \{}
 \DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ the\ file!"{}}\ <<\ std::endl;}

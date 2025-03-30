@@ -36,15 +36,21 @@ inline void Write_Avoidable_Route(const std::string &file_name, const std::strin
     file << "Source:" << source << std::endl;
     file << "Destination:" << destination << std::endl;
 
-    file << "AvoidNodes:" << avoid_nodes[0];
-    for (int i = 1; i < avoid_nodes.size(); i++) {
-        file << "," << avoid_nodes[i];
+    file << "AvoidNodes:";
+    if (!avoid_nodes.empty()) {
+        file << avoid_nodes[0];
+        for (size_t i = 1; i < avoid_nodes.size(); i++) {
+            file << "," << avoid_nodes[i];
+        }
     }
     file << std::endl;
 
-    file << "AvoidSegments:" << "(" << avoid_segments[0].first << "," << avoid_segments[0].second << ")";
-    for (int i = 1; i < avoid_segments.size(); i++) {
-        file << "," << "(" << avoid_segments[i].first << "," << avoid_segments[i].second << ")";
+    file << "AvoidSegments:";
+    if (!avoid_segments.empty()) {
+        file << "(" << avoid_segments[0].first << "," << avoid_segments[0].second << ")";
+        for (size_t i = 1; i < avoid_segments.size(); i++) {
+            file << "," << "(" << avoid_segments[i].first << "," << avoid_segments[i].second << ")";
+        }
     }
     file << std::endl;
 
@@ -68,15 +74,21 @@ inline void Write_Avoidable_MaxWalk_Route(const std::string &file_name, const st
     file << "Destination:" << destination << std::endl;
     file << "MaxWalkTime:" << MaxWalk << std::endl;
 
-    file << "AvoidNodes:" << avoid_nodes[0];
-    for (int i = 1; i < avoid_nodes.size(); i++) {
-        file << "," << avoid_nodes[i];
+    file << "AvoidNodes:";
+    if (!avoid_nodes.empty()) {
+        file << avoid_nodes[0];
+        for (size_t i = 1; i < avoid_nodes.size(); i++) {
+            file << "," << avoid_nodes[i];
+        }
     }
     file << std::endl;
 
-    file << "AvoidSegments:" << "(" << avoid_segments[0].first << "," << avoid_segments[0].second << ")";
-    for (int i = 1; i < avoid_segments.size(); i++) {
-        file << "," << "(" << avoid_segments[i].first << "," << avoid_segments[i].second << ")";
+    file << "AvoidSegments:";
+    if (!avoid_segments.empty()) {
+        file << "(" << avoid_segments[0].first << "," << avoid_segments[0].second << ")";
+        for (size_t i = 1; i < avoid_segments.size(); i++) {
+            file << "," << "(" << avoid_segments[i].first << "," << avoid_segments[i].second << ")";
+        }
     }
     file << std::endl;
     file.close();

@@ -104,81 +104,147 @@
 \DoxyCodeLine{00136\ \ \ \ \ vector<vector<T>\ >\ res;\ }
 \DoxyCodeLine{00137\ \ \ \ \ vector<T>\ Optimal\_route;}
 \DoxyCodeLine{00138\ \ \ \ \ vector<T>\ Alternate\_route;}
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{int}\ i;\ }
-\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ origin,\ rn,\ re);}
-\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{if}\ (stop\ ==\ 0)\ \{}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ Optimal\_route\ =\ getPath<T>(g,\ origin,\ destination);\ }
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Optimal\_route.empty())\ \{}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00150\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ Optimal\_route\ =\ getPath<T>(g,\ origin,\ stop);\ }
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Optimal\_route.empty())\ \{}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ stop,\ rn,\ re);}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ vector<T>\ fpath\ =\ getPath<T>(g,\ stop,\ destination);\ }
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fpath.empty())\ \{}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(fpath);}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(fpath);}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ i\ =\ 0;}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ fpath)\ \{}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0)\ \{}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ =\ 1;}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Optimal\_route.push\_back(v);\ }
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00172\ \ \ \ \ \}}
-\DoxyCodeLine{00173\ \ \ \ \ res.push\_back(Optimal\_route);\ }
-\DoxyCodeLine{00175\ \ \ \ \ i\ =\ Optimal\_route.size()\ -\/\ 1;}
-\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ Optimal\_route)\ \{}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0\ ||\ i\ ==\ Optimal\_route.size()\ -\/\ 1)\ \{}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ rn-\/>push\_back(v);}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ i-\/-\/;}
-\DoxyCodeLine{00183\ \ \ \ \ \}}
-\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ origin,\ rn,\ re);}
-\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{if}\ (stop\ ==\ 0)\ \{}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ Alternate\_route\ =\ getPath<T>(g,\ origin,\ destination);}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Alternate\_route.empty())\ \{}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Alternate\_route);}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00192\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ Alternate\_route\ =\ getPath<T>(g,\ origin,\ stop);}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Alternate\_route.empty())\ \{}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Alternate\_route);}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ stop,\ rn,\ re);}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ vector<T>\ spath\ =\ getPath<T>(g,\ stop,\ destination);}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (spath.empty())\ \{}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(spath);}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ i\ =\ 0;}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ spath)\ \{}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0)\ \{}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ =\ 1;}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Alternate\_route.push\_back(v);}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00212\ \ \ \ \ \}}
-\DoxyCodeLine{00213\ \ \ \ \ res.push\_back(Alternate\_route);}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
-\DoxyCodeLine{00216\ \}}
-\DoxyCodeLine{00217\ }
-\DoxyCodeLine{00218\ }
-\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DRIVING\_ONLY\_H}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{int}\ OptimalTime\ =\ 0;}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{int}\ AlternateTime\ =\ 0;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{int}\ i;\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{bool}\ mode\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (rn\ !=\ \textcolor{keyword}{nullptr}\ ||\ re\ !=\ \textcolor{keyword}{nullptr}\ ||\ stop\ !=\ 0)\ \{\ mode\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ origin,\ rn,\ re);}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{if}\ (stop\ ==\ 0)\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ Optimal\_route\ =\ getPath<T>(g,\ origin,\ destination);\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Optimal\_route.empty())\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a412f71465adb885f4266ee3eb89e4af8}{writeBatchModeNormal}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ Alternate\_route,}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OptimalTime,}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AlternateTime);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}{writeBatchModeNormalRestricted}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ OptimalTime);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ s\ =\ g-\/>findVertex(destination);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ OptimalTime\ =\ s-\/>getDrivingDist();}
+\DoxyCodeLine{00163\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ Optimal\_route\ =\ getPath<T>(g,\ origin,\ stop);\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Optimal\_route.empty())\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a412f71465adb885f4266ee3eb89e4af8}{writeBatchModeNormal}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ Alternate\_route,}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OptimalTime,}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AlternateTime);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}{writeBatchModeNormalRestricted}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ OptimalTime);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ s\ =\ g-\/>findVertex(stop);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ OptimalTime\ =\ s-\/>getDrivingDist();}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ stop,\ rn,\ re);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ vector<T>\ fpath\ =\ getPath<T>(g,\ stop,\ destination);\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fpath.empty())\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(fpath);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(fpath);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a412f71465adb885f4266ee3eb89e4af8}{writeBatchModeNormal}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ Alternate\_route,}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OptimalTime,}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AlternateTime);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}{writeBatchModeNormalRestricted}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ OptimalTime);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ u\ =\ g-\/>findVertex(destination);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ OptimalTime\ +=\ u-\/>getDrivingDist();}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ i\ =\ 0;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ fpath)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0)\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ =\ 1;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Optimal\_route.push\_back(v);\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ res.push\_back(Optimal\_route);\ }
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00207\ \ \ \ \ i\ =\ Optimal\_route.size()\ -\/\ 1;}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ Optimal\_route)\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0\ ||\ i\ ==\ Optimal\_route.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rn\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rn-\/>push\_back(v);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ i-\/-\/;}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ origin,\ rn,\ re);}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{if}\ (stop\ ==\ 0)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ Alternate\_route\ =\ getPath<T>(g,\ origin,\ destination);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Alternate\_route.empty())\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Alternate\_route);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a412f71465adb885f4266ee3eb89e4af8}{writeBatchModeNormal}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ Alternate\_route,}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OptimalTime,}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AlternateTime);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}{writeBatchModeNormalRestricted}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ OptimalTime);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ s\ =\ g-\/>findVertex(destination);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ AlternateTime\ =\ s-\/>getDrivingDist();}
+\DoxyCodeLine{00235\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ Alternate\_route\ =\ getPath<T>(g,\ origin,\ stop);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Alternate\_route.empty())\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Alternate\_route);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a412f71465adb885f4266ee3eb89e4af8}{writeBatchModeNormal}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ Alternate\_route,}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OptimalTime,}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AlternateTime);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}{writeBatchModeNormalRestricted}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ OptimalTime);}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ s\ =\ g-\/>findVertex(stop);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ AlternateTime\ =\ s-\/>getDrivingDist();}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ stop,\ rn,\ re);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ vector<T>\ spath\ =\ getPath<T>(g,\ stop,\ destination);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (spath.empty())\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(spath);}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a412f71465adb885f4266ee3eb89e4af8}{writeBatchModeNormal}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ Alternate\_route,}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OptimalTime,}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AlternateTime);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}{writeBatchModeNormalRestricted}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ OptimalTime);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ st\ =\ g-\/>findVertex(destination);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ AlternateTime\ +=\ st-\/>getDrivingDist();}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ i\ =\ 0;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ spath)\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0)\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ =\ 1;}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Alternate\_route.push\_back(v);}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ res.push\_back(Alternate\_route);}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a412f71465adb885f4266ee3eb89e4af8}{writeBatchModeNormal}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ Alternate\_route,\ OptimalTime,}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AlternateTime);}
+\DoxyCodeLine{00278\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}{writeBatchModeNormalRestricted}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ Optimal\_route,\ OptimalTime);}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00282\ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DRIVING\_ONLY\_H}}
 
 \end{DoxyCode}

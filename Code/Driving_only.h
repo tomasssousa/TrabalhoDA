@@ -140,7 +140,7 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
     int AlternateTime = 0;
     int i; ///< Value to be used for counting.
     bool mode = false;
-    if(rn!=nullptr||re!=nullptr||stop!=0) { mode=true;}
+    if (rn != nullptr || re != nullptr || stop != 0) { mode = true; }
     ///Optimal_driving path.
     dijkstra(g, origin, rn, re);
     if (stop == 0) {
@@ -149,6 +149,13 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         if (Optimal_route.empty()) {
             res.push_back(Optimal_route);
             res.push_back(Optimal_route);
+            if (mode == false) {
+                writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route,
+                                     OptimalTime,
+                                     AlternateTime);
+            } else {
+                writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route, OptimalTime);
+            }
             return res;
         }
         auto s = g->findVertex(destination);
@@ -158,6 +165,13 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         if (Optimal_route.empty()) {
             res.push_back(Optimal_route);
             res.push_back(Optimal_route);
+            if (mode == false) {
+                writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route,
+                                     OptimalTime,
+                                     AlternateTime);
+            } else {
+                writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route, OptimalTime);
+            }
             return res;
         }
         auto s = g->findVertex(stop);
@@ -167,10 +181,17 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         if (fpath.empty()) {
             res.push_back(fpath);
             res.push_back(fpath);
+            if (mode == false) {
+                writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route,
+                                     OptimalTime,
+                                     AlternateTime);
+            } else {
+                writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route, OptimalTime);
+            }
             return res;
         }
         auto u = g->findVertex(destination);
-        OptimalTime += s->getDrivingDist();
+        OptimalTime += u->getDrivingDist();
         i = 0;
         for (auto v: fpath) {
             if (i == 0) {
@@ -187,7 +208,9 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
     for (auto v: Optimal_route) {
         if (i == 0 || i == Optimal_route.size() - 1) {
         } else {
-            rn->push_back(v);
+            if (rn != nullptr) {
+                rn->push_back(v);
+            }
             /// Prepare the alternate route adding the used nodes grom the optimal route to the vector of nodes to ignore.
         }
         i--;
@@ -198,6 +221,13 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         Alternate_route = getPath<T>(g, origin, destination);
         if (Alternate_route.empty()) {
             res.push_back(Alternate_route);
+            if (mode == false) {
+                writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route,
+                                     OptimalTime,
+                                     AlternateTime);
+            } else {
+                writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route, OptimalTime);
+            }
             return res;
         }
         auto s = g->findVertex(destination);
@@ -206,6 +236,13 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         Alternate_route = getPath<T>(g, origin, stop);
         if (Alternate_route.empty()) {
             res.push_back(Alternate_route);
+            if (mode == false) {
+                writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route,
+                                     OptimalTime,
+                                     AlternateTime);
+            } else {
+                writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route, OptimalTime);
+            }
             return res;
         }
         auto s = g->findVertex(stop);
@@ -214,10 +251,17 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         vector<T> spath = getPath<T>(g, stop, destination);
         if (spath.empty()) {
             res.push_back(spath);
+            if (mode == false) {
+                writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route,
+                                     OptimalTime,
+                                     AlternateTime);
+            } else {
+                writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route, OptimalTime);
+            }
             return res;
         }
-        auto s = g->findVertex(destination);
-        AlternateTime += s->getDrivingDist();
+        auto st = g->findVertex(destination);
+        AlternateTime += st->getDrivingDist();
         i = 0;
         for (auto v: spath) {
             if (i == 0) {
@@ -228,11 +272,11 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         }
     }
     res.push_back(Alternate_route);
-    if(mode==false){
-        writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route, OptimalTime, AlternateTime);
-    }
-    else{
-        writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route,  OptimalTime);
+    if (mode == false) {
+        writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route, OptimalTime,
+                             AlternateTime);
+    } else {
+        writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route, OptimalTime);
     }
     return res;
 }

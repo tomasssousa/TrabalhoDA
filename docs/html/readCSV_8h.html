@@ -111,10 +111,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a3101bc0142a49d9d11ad3f8cac766a2d" id="r_a3101bc0142a49d9d11ad3f8cac766a2d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="readCSV_8h.html#a3101bc0142a49d9d11ad3f8cac766a2d">trim</a> (const string &amp;str)</td></tr>
-<tr class="memdesc:a3101bc0142a49d9d11ad3f8cac766a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to load Locations from a Locations.csv file!  <br /></td></tr>
 <tr class="separator:a3101bc0142a49d9d11ad3f8cac766a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa854ccbf26fba4d17fc162ad620d617e" id="r_aa854ccbf26fba4d17fc162ad620d617e"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aa854ccbf26fba4d17fc162ad620d617e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="readCSV_8h.html#aa854ccbf26fba4d17fc162ad620d617e">loadLocations</a> (Graph&lt; T &gt; *<a class="el" href="Main_8cpp.html#a9647b52a82c13a3dad2105feb3efc8d8">graph</a>, const std::string &amp;filename)</td></tr>
+<tr class="memdesc:aa854ccbf26fba4d17fc162ad620d617e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to load Locations from a Locations.csv file!  <br /></td></tr>
 <tr class="separator:aa854ccbf26fba4d17fc162ad620d617e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2ae2ac8326f95fdd3482b429efe6b6d" id="r_ac2ae2ac8326f95fdd3482b429efe6b6d"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:ac2ae2ac8326f95fdd3482b429efe6b6d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="readCSV_8h.html#ac2ae2ac8326f95fdd3482b429efe6b6d">loadDistances</a> (Graph&lt; T &gt; *<a class="el" href="Main_8cpp.html#a9647b52a82c13a3dad2105feb3efc8d8">graph</a>, const std::string &amp;filename)</td></tr>
@@ -161,8 +161,8 @@ template&lt;class T &gt; </div>
 <p>Function to load Distances from a Distances.csv file! </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">graph,the</td><td>graph which will be used to save the edges </td></tr>
-    <tr><td class="paramname">filename,the</td><td>file which we will fetch the data </td></tr>
+    <tr><td class="paramname">graph</td><td>graph which will be used to save the edges </td></tr>
+    <tr><td class="paramname">filename</td><td>file which we will fetch the data </td></tr>
   </table>
   </dd>
 </dl>
@@ -205,6 +205,15 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Function to load Locations from a Locations.csv file! </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">graph</td><td>graph which will be used to save the vertexes </td></tr>
+    <tr><td class="paramname">filename</td><td>file which we will fetch the data </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a3101bc0142a49d9d11ad3f8cac766a2d" name="a3101bc0142a49d9d11ad3f8cac766a2d"></a>
@@ -230,15 +239,6 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Function to load Locations from a Locations.csv file! </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">graph,the</td><td>graph which will be used to save the vertexes </td></tr>
-    <tr><td class="paramname">filename,the</td><td>file which we will fetch the data </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

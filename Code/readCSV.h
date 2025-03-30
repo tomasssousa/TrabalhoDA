@@ -6,11 +6,6 @@
 
 
 using namespace std;
-/**
-* @brief Function to load Locations from a Locations.csv file!
-* @param graph, the graph which will be used to save the vertexes
-* @param filename, the file which we will fetch the data
-*/
 
 inline string trim(const string &str) {
     const auto strBegin = str.find_first_not_of(" \t\r\n,");
@@ -23,6 +18,11 @@ inline string trim(const string &str) {
     return str.substr(strBegin, strRange);
 }
 
+/**
+* @brief Function to load Locations from a Locations.csv file!
+* @param graph graph which will be used to save the vertexes
+* @param filename file which we will fetch the data
+*/
 template<class T>
 inline void loadLocations(Graph<T> *graph, const std::string &filename) {
     std::ifstream file(filename);
@@ -81,8 +81,8 @@ inline void loadLocations(Graph<T> *graph, const std::string &filename) {
 
 /**
 * @brief Function to load Distances from a Distances.csv file!
-* @param graph, the graph which will be used to save the edges
-* @param filename, the file which we will fetch the data
+* @param graph graph which will be used to save the edges
+* @param filename file which we will fetch the data
 */
 template<class T>
 inline void loadDistances(Graph<T> *graph, const std::string &filename) {
