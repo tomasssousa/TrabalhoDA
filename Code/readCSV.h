@@ -116,11 +116,28 @@ inline void loadDistances(Graph<T> *graph, const std::string &filename) {
             continue;
         }
 
+        //verify if id and parking are digits
+        if (driving != "X" && !std::all_of(driving.begin(), driving.end(), ::isdigit) ||
+            !std::all_of(walking.begin(), walking.end(), ::isdigit)) {
+            std::cerr << "[ERROR] Non-numeric field(s): DRIVING='" << driving << "', WALKING='" << walking << "'\n";
+            continue;
+        }
+
         try {
             int id1 = graph->getVertexIdByCode(loc1);
             int id2 = graph->getVertexIdByCode(loc2);
-            int drive = std::stoi(driving);
-            int walk = std::stoi(walking);
+
+            double drive;
+            if (driving == "X" || driving == "x") {
+                drive = INF; //set the driving distance to INF
+            } else if (std::all_of(driving.begin(), driving.end(), ::isdigit)) {
+                drive = std::stoi(driving); //if the drive is a digit
+            } else {
+                std::cerr << "[ERROR] Invalid driving field: '" << driving << "'\n";
+                continue;
+            }
+
+            double walk = std::stoi(walking);
 
             std::cout << "[INFO] Parsed: " << loc1 << " → " << loc2
                     << " | Driving: " << drive << ", Walking: " << walk << std::endl;
