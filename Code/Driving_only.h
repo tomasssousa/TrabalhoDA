@@ -136,6 +136,8 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
     vector<vector<T> > res; ///< Vector that will have the Optimal and Alternate routes.
     vector<T> Optimal_route;
     vector<T> Alternate_route;
+    int OptimalTime = 0;
+    int AlternateTime = 0;
     int i; ///< Value to be used for counting.
     bool mode = false;
     if(rn!=nullptr||re!=nullptr||stop!=0) { mode=true;}
@@ -149,6 +151,8 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
             res.push_back(Optimal_route);
             return res;
         }
+        auto s = g->findVertex(destination);
+        OptimalTime = s->getDrivingDist();
     } else {
         Optimal_route = getPath<T>(g, origin, stop); /// Get the path to the stop.
         if (Optimal_route.empty()) {
@@ -156,6 +160,8 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
             res.push_back(Optimal_route);
             return res;
         }
+        auto s = g->findVertex(stop);
+        OptimalTime = s->getDrivingDist();
         dijkstra(g, stop, rn, re);
         vector<T> fpath = getPath<T>(g, stop, destination); /// Get the path from the stop to the destination.
         if (fpath.empty()) {
@@ -163,6 +169,8 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
             res.push_back(fpath);
             return res;
         }
+        auto u = g->findVertex(destination);
+        OptimalTime += s->getDrivingDist();
         i = 0;
         for (auto v: fpath) {
             if (i == 0) {
@@ -173,6 +181,7 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         }
     }
     res.push_back(Optimal_route); ///Store the path.
+
     ///Alternate_route preparation.
     i = Optimal_route.size() - 1;
     for (auto v: Optimal_route) {
@@ -191,18 +200,24 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
             res.push_back(Alternate_route);
             return res;
         }
+        auto s = g->findVertex(destination);
+        AlternateTime = s->getDrivingDist();
     } else {
         Alternate_route = getPath<T>(g, origin, stop);
         if (Alternate_route.empty()) {
             res.push_back(Alternate_route);
             return res;
         }
+        auto s = g->findVertex(stop);
+        AlternateTime = s->getDrivingDist();
         dijkstra(g, stop, rn, re);
         vector<T> spath = getPath<T>(g, stop, destination);
         if (spath.empty()) {
             res.push_back(spath);
             return res;
         }
+        auto s = g->findVertex(destination);
+        AlternateTime += s->getDrivingDist();
         i = 0;
         for (auto v: spath) {
             if (i == 0) {
@@ -214,10 +229,10 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
     }
     res.push_back(Alternate_route);
     if(mode==false){
-        writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route);
+        writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route, OptimalTime, AlternateTime);
     }
     else{
-        writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route);
+        writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route,  OptimalTime);
     }
     return res;
 }
