@@ -662,13 +662,18 @@ inline void deleteMatrix(double **m, int n) {
 
 template<class T>
 void Graph<T>::clear() {
-    for (auto vertex: vertexSet) {
+    const size_t n = getVertexSet().size();
+    for (auto vertex: getVertexSet()) {
         vertex->removeOutgoingEdges();
         delete vertex;
     }
-    vertexSet.clear();
-    deleteMatrix(distMatrix, vertexSet.size()); //!deallocate memory
-    deleteMatrix(pathMatrix, vertexSet.size());
+    getVertexSet().clear();
+
+
+    deleteMatrix(distMatrix, n); //!deallocate memory
+    deleteMatrix(pathMatrix, n);
+
+
     distMatrix = nullptr;
     pathMatrix = nullptr;
 }

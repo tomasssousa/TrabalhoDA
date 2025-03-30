@@ -66,10 +66,10 @@ inline void loadLocations(Graph<T> *graph, const std::string &filename) {
             int parsedId = stoi(id);
             int parsedParking = stoi(parking);
 
-            /*
-            std::cerr << "[INFO] Parsed: ID='" << parsedId << "', Location='" << location
+
+            std::cout << "[INFO] Parsed: ID='" << parsedId << "', Location='" << location
                     << "', Code='" << code << "', Parking='" << parsedParking << "'\n";
-            */
+
             graph->addVertex(parsedId, location, code, parsedParking);
         } catch (const std::exception &e) {
             std::cerr << "[FATAL] Error converting line: " << line << " -> " << e.what() << std::endl;
@@ -122,10 +122,9 @@ inline void loadDistances(Graph<T> *graph, const std::string &filename) {
             int drive = std::stoi(driving);
             int walk = std::stoi(walking);
 
-            /* Some leftover code used for debugging
-            std::cerr << "[INFO] Parsed: " << id1 << " → " << id2
+            std::cout << "[INFO] Parsed: " << loc1 << " → " << loc2
                     << " | Driving: " << drive << ", Walking: " << walk << std::endl;
-            */
+
             graph->addEdge(id1, id2, drive, walk);
         } catch (const std::exception &e) {
             //in case the conversion fails
