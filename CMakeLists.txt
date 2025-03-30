@@ -21,11 +21,12 @@ add_executable(Project
         Code/Batch_Mode_write.h
         Code/readCSV.h
         Code/Menu_Input_Handler.h
+        Code/Driving_And_Walking.h
 )
 
 #add_executable(Main
-        #Code/Main.cpp
-        #Code/Menu.cpp)
+#Code/Main.cpp
+#Code/Menu.cpp)
 
 #add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
 #set(CMAKE_CXX_FLAGS_DEBUG "/MDd")  # Para Debug

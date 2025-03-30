@@ -136,7 +136,7 @@ auto graph = new Graph<int>();
 
 void handle_csv() {
     //!method to build the argument graph
-    loadLocations(graph, "../CSV_Files/Location.csv");
+    loadLocations(graph, "../CSV_Files/Locations.csv");
     loadDistances(graph, "../CSV_Files/Distances.csv");
 }
 

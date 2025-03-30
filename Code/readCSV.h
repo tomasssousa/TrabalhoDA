@@ -6,51 +6,133 @@
 
 
 using namespace std;
+/**
+* @brief Function to load Locations from a Locations.csv file!
+* @param graph, the graph which will be used to save the vertexes
+* @param filename, the file which we will fetch the data
+*/
 
-template<class T>
-inline void loadLocations(Graph<T> *graph,const string& filename) {
-    ifstream file(filename);
-    if (!file.is_open()) { // verificar se o ficheiro fornecido como argumento é válido
-        cerr << "Error opening file: " << filename << endl;
-        return;
-    }
+inline string trim(const string &str) {
+    const auto strBegin = str.find_first_not_of(" \t\r\n,");
+    if (strBegin == string::npos)
+        return "";
 
-    string line;
-    getline(file, line); // Saltar a primeira linha (cabeçalho)
+    const auto strEnd = str.find_last_not_of(" \t\r\n,");
+    const auto strRange = strEnd - strBegin + 1;
 
-    while (getline(file, line)) {
-        stringstream temp(line);
-        string location, id, code, parking;
-        getline(temp, location, ',');
-        getline(temp, id, ',');
-        getline(temp, code, ',');
-        getline(temp, parking, ',');
-        graph->addVertex(stoi(id),location, stoi(parking)); // basta adicionar ao vértice o código e a possibilidade ou não de estacionar
-        // é preciso alterar esta parte e a função addVertex para que consiga aceitar um boolean que corresponda à possibilidade ou não de estacionar
-    }
-    file.close();
+    return str.substr(strBegin, strRange);
 }
 
 template<class T>
-inline void loadDistances(Graph<T> *graph,const string& filename) {
-    ifstream file(filename);
-    if (!file.is_open()) { // verificar se o ficheiro fornecido como argumento é válido
-        cerr << "Error opening file: " << filename << endl;
+inline void loadLocations(Graph<T> *graph, const std::string &filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << filename << std::endl;
         return;
     }
 
-    string line;
-    getline(file, line); // Saltar a primeira linha (cabeçalho)
+    std::string line;
+    std::getline(file, line); // Skip header
 
-    while (getline(file, line)) {
-        stringstream temp(line);
-        string location1, location2, driving, walking;
-        getline(temp, location1, ',');
-        getline(temp, location2, ',');
-        getline(temp, driving, ',');
-        getline(temp, walking, ',');
-        graph->addEdge(stoi(location1), stoi(location2), stoi(driving), stoi(walking)); // adicionar a aresta com as duas distâncias
+    while (std::getline(file, line)) {
+        if (line.empty()) continue;
+
+        std::stringstream temp(line);
+        std::string location, id, code, parking;
+        std::getline(temp, location, ',');
+        std::getline(temp, id, ',');
+        std::getline(temp, code, ',');
+        std::getline(temp, parking);
+
+        location = trim(location);
+        id = trim(id);
+        code = trim(code);
+        parking = trim(parking);
+
+        //verify if the string is empty
+        if (id.empty() || parking.empty()) {
+            std::cerr << "[ERROR] Invalid line skipped (missing ID or parking): " << line << std::endl;
+            continue;
+        }
+
+        //verify if id and parking are digits
+        if (!std::all_of(id.begin(), id.end(), ::isdigit) ||
+            !std::all_of(parking.begin(), parking.end(), ::isdigit)) {
+            std::cerr << "[ERROR] Non-numeric field(s): ID='" << id << "', Parking='" << parking << "'\n";
+            continue;
+        }
+
+        try {
+            int parsedId = stoi(id);
+            int parsedParking = stoi(parking);
+
+            /*
+            std::cerr << "[INFO] Parsed: ID='" << parsedId << "', Location='" << location
+                    << "', Code='" << code << "', Parking='" << parsedParking << "'\n";
+            */
+            graph->addVertex(parsedId, location, code, parsedParking);
+        } catch (const std::exception &e) {
+            std::cerr << "[FATAL] Error converting line: " << line << " -> " << e.what() << std::endl;
+        }
     }
+
+    file.close();
+}
+
+/**
+* @brief Function to load Distances from a Distances.csv file!
+* @param graph, the graph which will be used to save the edges
+* @param filename, the file which we will fetch the data
+*/
+template<class T>
+inline void loadDistances(Graph<T> *graph, const std::string &filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "[FATAL] Error opening file: " << filename << std::endl;
+        return;
+    }
+
+    std::string line;
+    std::getline(file, line); // Skip header
+
+    while (std::getline(file, line)) {
+        if (line.empty()) continue;
+
+        std::stringstream temp(line);
+        std::string loc1, loc2, driving, walking;
+        std::getline(temp, loc1, ',');
+        std::getline(temp, loc2, ',');
+        std::getline(temp, driving, ',');
+        std::getline(temp, walking);
+
+        //trim the strings
+        loc1 = trim(loc1);
+        loc2 = trim(loc2);
+        driving = trim(driving);
+        walking = trim(walking);
+
+        if (loc1.empty() || loc2.empty() || driving.empty() || walking.empty()) {
+            std::cerr << "[ERROR] Empty field on line: " << line << std::endl;
+            continue;
+        }
+
+        try {
+            int id1 = graph->getVertexIdByCode(loc1);
+            int id2 = graph->getVertexIdByCode(loc2);
+            int drive = std::stoi(driving);
+            int walk = std::stoi(walking);
+
+            /* Some leftover code used for debugging
+            std::cerr << "[INFO] Parsed: " << id1 << " → " << id2
+                    << " | Driving: " << drive << ", Walking: " << walk << std::endl;
+            */
+            graph->addEdge(id1, id2, drive, walk);
+        } catch (const std::exception &e) {
+            //in case the conversion fails
+            std::cerr << "[ERROR] Conversion failed: " << line << " → " << e.what() << std::endl;
+        }
+    }
+
     file.close();
 }
 
