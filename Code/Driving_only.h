@@ -217,7 +217,7 @@ std::vector<vector<T> > Driving_only(Graph<T> *g, const int &origin, const int &
         writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route, Alternate_route);
     }
     else{
-        writeBatchModeNormal("../Files/output.txt", origin, destination, Optimal_route);
+        writeBatchModeNormalRestricted("../Files/output.txt", origin, destination, Optimal_route);
     }
     return res;
 }
