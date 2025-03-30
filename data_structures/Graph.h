@@ -13,6 +13,7 @@ template<class T>
 class Edge;
 
 #define INF std::numeric_limits<double>::max()
+#define INT_INF std::numeric_limits<int>::max()
 
 /************************* Vertex  **************************/
 

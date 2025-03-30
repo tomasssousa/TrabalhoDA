@@ -6,6 +6,7 @@
 #include "../data_structures/Graph.h"
 #include "readCSV.h"
 #include "Driving_only.h"
+#include "Driving_And_Walking.h"
 #include "Menu_Input_Handler.h"
 
 
@@ -21,8 +22,8 @@ enum MainMenuChoices {
 };
 
 enum RouteMenuChoices {
-    INDEPENDENT_ROUTE = 1,
-    RESTRICTED_ROUTE,
+    DRIVING_ONLY_INDEPENDENT_ROUTE = 1,
+    DRIVING_ONLY_RESTRICTED_ROUTE,
     ENVIRONMENTALLY_FRIENDLY_ROUTE,
     ROUTE_BACK_TO_MAIN
 };
@@ -63,9 +64,9 @@ void displayRouteMenu() {
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "          Welcome to the Routes Menu!     " << std::endl;
     std::cout << "----------------------------------------" << std::endl;
-    std::cout << "1. Independent Route Planning" << std::endl;
-    std::cout << "2. Restricted Route Planning" << std::endl;
-    std::cout << "3. Environmentally-Friendly Route Planning (driving and walking)" << std::endl;
+    std::cout << "1. Driving Only Independent Route Planning" << std::endl;
+    std::cout << "2. Driving Only Restricted Route Planning" << std::endl;
+    std::cout << "3. Environmentally-Friendly Route Planning (driving and walking) with restrictions" << std::endl;
     std::cout << "4. Go back to Main Menu" << std::endl;
     std::cout << "----------------------------------------" << std::endl;
 }
@@ -204,13 +205,17 @@ void handleMainMenuChoice(const int choice) {
                 displayRouteMenu();
                 int routeChoice;
                 std::cin >> routeChoice;
-                if (routeChoice == INDEPENDENT_ROUTE) {
+                if (routeChoice == DRIVING_ONLY_INDEPENDENT_ROUTE) {
                     //!driving only without restrictions
                     Driving_only(graph, source, dest);
                     break;
-                }
-
-                if (routeChoice == ROUTE_BACK_TO_MAIN) break;
+                } else if (routeChoice == DRIVING_ONLY_RESTRICTED_ROUTE) {
+                    Driving_only(graph, source, dest, &avoidable_nodes, &avoidable_segments, included_node);
+                    break;
+                } else if (routeChoice == ENVIRONMENTALLY_FRIENDLY_ROUTE) {
+                    DrivingWalking(graph, source, dest, Max_Walk_Time, avoidable_nodes, avoidable_segments);
+                    break;
+                } else if (routeChoice == ROUTE_BACK_TO_MAIN) break;
             }
             break;
         case MENU_INPUT:
