@@ -1,0 +1,251 @@
+\doxysection{Batch\+\_\+\+Mode\+\_\+write.\+h}
+\hypertarget{Batch__Mode__write_8h_source}{}\label{Batch__Mode__write_8h_source}\index{Code/Batch\_Mode\_write.h@{Code/Batch\_Mode\_write.h}}
+\mbox{\hyperlink{Batch__Mode__write_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ BATCH\_MODE\_WRITE\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ BATCH\_MODE\_WRITE\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//Some\ forms\ of\ output}}
+\DoxyCodeLine{00010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00011\ \textcolor{comment}{*}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*}}
+\DoxyCodeLine{00013\ \textcolor{comment}{-\/-\/For\ Driving\ Only}}
+\DoxyCodeLine{00014\ \textcolor{comment}{Source:<id>}}
+\DoxyCodeLine{00015\ \textcolor{comment}{Destination:<id>}}
+\DoxyCodeLine{00016\ \textcolor{comment}{BestDrivingRoute:<id>,<id>,<id>(<int>)}}
+\DoxyCodeLine{00017\ \textcolor{comment}{AlternativeDrivingRoute:<id>,<id>,<id>(<int>)}}
+\DoxyCodeLine{00018\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00019\ \textcolor{comment}{Source:<id>}}
+\DoxyCodeLine{00020\ \textcolor{comment}{Destination:<id>}}
+\DoxyCodeLine{00021\ \textcolor{comment}{RestrictedDrivingRoute:<id>,<id>,<id>(<int>)}}
+\DoxyCodeLine{00022\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{-\/-\/-\/For\ driving\ and\ walking-\/-\/-\/}}
+\DoxyCodeLine{00025\ \textcolor{comment}{Source:<id>}}
+\DoxyCodeLine{00026\ \textcolor{comment}{Destination:<id>}}
+\DoxyCodeLine{00027\ \textcolor{comment}{DrivingRoute:<id>,<id>,<id>(<int>)}}
+\DoxyCodeLine{00028\ \textcolor{comment}{ParkingNode:<id>}}
+\DoxyCodeLine{00029\ \textcolor{comment}{WalkingRoute:<id>,<id>,<id>(<int>)}}
+\DoxyCodeLine{00030\ \textcolor{comment}{TotalTime:<int>}}
+\DoxyCodeLine{00031\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00032\ \textcolor{comment}{Source<id>}}
+\DoxyCodeLine{00033\ \textcolor{comment}{Destination:<id>}}
+\DoxyCodeLine{00034\ \textcolor{comment}{DrivingRoute1:<id>,<id>,<id>(<int>)}}
+\DoxyCodeLine{00035\ \textcolor{comment}{ParkingNode1:<id>}}
+\DoxyCodeLine{00036\ \textcolor{comment}{WalkingRoute1:<id>,<id>,<id>(<int>)}}
+\DoxyCodeLine{00037\ \textcolor{comment}{TotalTime1:<int>}}
+\DoxyCodeLine{00038\ \textcolor{comment}{DrivingRoute2:<id>,<id>,<id>(<int>)}}
+\DoxyCodeLine{00039\ \textcolor{comment}{ParkingNode2:<id>}}
+\DoxyCodeLine{00040\ \textcolor{comment}{WalkingRoute2:<id>,<id>,<id>(<int>)}}
+\DoxyCodeLine{00041\ \textcolor{comment}{TotalTime2:<int>}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//Similar\ logic\ to\ reading\ from\ the\ input.txt}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Batch__Mode__write_8h_abdd74b73cba0a2f483d1819b4b037ad8}{writeBatchModeNormal}}(\textcolor{keyword}{const}\ std::string\ \&filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dest,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&BestDrivingRoute,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&AlternativeDrivingRoute,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ best\_time,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ alternative\_time)\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ std::ofstream\ file(filename);\ \textcolor{comment}{//declare\ file\ as\ a\ output\ file}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open()\ ||\ file.fail())\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ the\ file!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{00071\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ dest\ <<\ std::endl;}
+\DoxyCodeLine{00072\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}BestDrivingRoute:"{}};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (BestDrivingRoute.empty())\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//no\ path\ obtained}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00076\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i:\ BestDrivingRoute)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ best\_time\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00082\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}AlternativeDrivingRoute:"{}};}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}\ (AlternativeDrivingRoute.empty())\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00087\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i:\ AlternativeDrivingRoute)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ alternative\_time\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ file.close();}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}{writeBatchModeNormalRestricted}}(\textcolor{keyword}{const}\ std::string\ \&filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dest,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&RestrictedDrivingRoute,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ restricted\_time)\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ std::ofstream\ file(filename);\ \textcolor{comment}{//declare\ file\ as\ a\ output\ file}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open()\ ||\ file.fail())\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ the\ file!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{00118\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ dest\ <<\ std::endl;}
+\DoxyCodeLine{00119\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}RestrictedDrivingRoute:"{}};}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (RestrictedDrivingRoute.empty())\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//no\ path\ obtained}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00123\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i:\ RestrictedDrivingRoute)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ restricted\_time\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00130\ \ \ \ \ file.close();}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Batch__Mode__write_8h_a77f0dee7b4b90c7e45ce0a453fcb1807}{writeBatchModeDrivingWalking}}(\textcolor{keyword}{const}\ std::string\ \&filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dest,}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&DrivingRoute,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ driving\_time,}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ParkingNode,}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&WalkingRoute,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ walking\_time,}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ TotalTime)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ std::ofstream\ file(filename);\ \textcolor{comment}{//declare\ file\ as\ a\ output\ file}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open()\ ||\ file.fail())\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ the\ file!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{00159\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ dest\ <<\ std::endl;}
+\DoxyCodeLine{00160\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}DrivingRoute:"{}};}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{if}\ (DrivingRoute.empty())\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{//no\ path\ obtained}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00164\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i:\ DrivingRoute)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ driving\_time\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}ParkingNode:"{}}\ <<\ ParkingNode\ <<\ std::endl;}
+\DoxyCodeLine{00173\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}WalkingRoute:"{}};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{if}\ (WalkingRoute.empty())\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00177\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i:\ WalkingRoute)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ walking\_time\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}TotalTime:"{}}\ <<\ TotalTime\ <<\ std::endl;}
+\DoxyCodeLine{00186\ \ \ \ \ file.close();}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Batch__Mode__write_8h_a5d63282af0fd284eb152e9bf7a9733ce}{writeBatchModeDrivingWalkingImpossible}}(\textcolor{keyword}{const}\ std::string\ \&filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dest,}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&message)\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ std::ofstream\ file(filename);\ \textcolor{comment}{//declare\ file\ as\ a\ output\ file}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open()\ ||\ file.fail())\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ the\ file!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{00207\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ dest\ <<\ std::endl;}
+\DoxyCodeLine{00208\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}DrivingRoute:none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00209\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}ParkingNode:none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00210\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}WalkingRoute:none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00211\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}TotalTime:none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00212\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Message:"{}}\ <<\ message\ <<\ std::endl;}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ file.close();}
+\DoxyCodeLine{00215\ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00239\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Batch__Mode__write_8h_a8ddd3140d2fa75cbb8aa452b2cd9a03c}{writeBatchModeDrivingWalkingApproximate}}(\textcolor{keyword}{const}\ std::string\ \&filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dest,}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&DrivingRoute1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ driving\_time1,}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ParkingNode1,}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&WalkingRoute1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ walking\_time\_1,}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ TotalTime1,}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&DrivingRoute2,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ driving\_time2,}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ParkingNode2,}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&WalkingRoute2,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ walking\_time\_2,}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ TotalTime2)\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ std::ofstream\ file(filename);\ \textcolor{comment}{//declare\ file\ as\ a\ output\ file}}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open()\ ||\ file.fail())\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ the\ file!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{00255\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ dest\ <<\ std::endl;}
+\DoxyCodeLine{00256\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}DrivingRoute1:"{}};}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{if}\ (DrivingRoute1.empty())\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{comment}{//no\ path\ obtained}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00260\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i:\ DrivingRoute1)\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ driving\_time1\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00265\ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}ParkingNode1:"{}}\ <<\ ParkingNode1\ <<\ std::endl;}
+\DoxyCodeLine{00269\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}WalkingRoute1:"{}};}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{if}\ (WalkingRoute1.empty())\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00273\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i:\ WalkingRoute1)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ walking\_time\_1\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}TotalTime1:"{}}\ <<\ TotalTime1\ <<\ std::endl;}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}DrivingRoute2:"{}};}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{if}\ (DrivingRoute2.empty())\ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{comment}{//no\ path\ obtained}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00287\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i:\ DrivingRoute2)\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ driving\_time2\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}ParkingNode2:"{}}\ <<\ ParkingNode2\ <<\ std::endl;}
+\DoxyCodeLine{00296\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}WalkingRoute2:"{}};}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{if}\ (WalkingRoute2.empty())\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00300\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i:\ WalkingRoute2)\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ walking\_time\_2\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00305\ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}TotalTime2:"{}}\ <<\ TotalTime2\ <<\ std::endl;}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ file.close();}
+\DoxyCodeLine{00311\ \}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//BATCH\_MODE\_WRITE\_H}}
+
+\end{DoxyCode}

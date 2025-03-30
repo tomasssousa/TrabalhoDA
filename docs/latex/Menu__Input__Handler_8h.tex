@@ -1,0 +1,81 @@
+\doxysection{Code/\+Menu\+\_\+\+Input\+\_\+\+Handler.h File Reference}
+\hypertarget{Menu__Input__Handler_8h}{}\label{Menu__Input__Handler_8h}\index{Code/Menu\_Input\_Handler.h@{Code/Menu\_Input\_Handler.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+Include dependency graph for Menu\+\_\+\+Input\+\_\+\+Handler.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Menu__Input__Handler_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{Menu__Input__Handler_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{Menu__Input__Handler_8h_abebb93bf5a5eefb41906b3c034d19e20}{MENU\+\_\+\+INPUT\+\_\+\+HANDLER\+\_\+H}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::vector$<$ pair$<$ int, int $>$ $>$ \mbox{\hyperlink{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}{Pair\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Menu__Input__Handler_8h_a9d22443ab1802c8615d992469cf1fcf6}{Write\+\_\+\+Normal\+\_\+\+Route}} (const std\+::string \&file\+\_\+name, const std\+::string \&mode, const int \&source, const int \&destination)
+\item 
+void \mbox{\hyperlink{Menu__Input__Handler_8h_a06443977f6971133f545da72e1476e35}{Write\+\_\+\+Avoidable\+\_\+\+Route}} (const std\+::string \&file\+\_\+name, const std\+::string \&mode, const int \&source, const int \&destination, const std\+::vector$<$ int $>$ \&avoid\+\_\+nodes, const \mbox{\hyperlink{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}{Pair\+Vector}} \&avoid\+\_\+segments, const int \&include\+\_\+node)
+\item 
+void \mbox{\hyperlink{Menu__Input__Handler_8h_a5040f7b01556905b7c67d509cdf6d1e6}{Write\+\_\+\+Avoidable\+\_\+\+Max\+Walk\+\_\+\+Route}} (const std\+::string \&file\+\_\+name, const std\+::string \&mode, const int \&source, const int \&destination, const int \&Max\+Walk, const std\+::vector$<$ int $>$ \&avoid\+\_\+nodes, const \mbox{\hyperlink{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}{Pair\+Vector}} \&avoid\+\_\+segments)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{Menu__Input__Handler_8h_abebb93bf5a5eefb41906b3c034d19e20}\label{Menu__Input__Handler_8h_abebb93bf5a5eefb41906b3c034d19e20} 
+\index{Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}!MENU\_INPUT\_HANDLER\_H@{MENU\_INPUT\_HANDLER\_H}}
+\index{MENU\_INPUT\_HANDLER\_H@{MENU\_INPUT\_HANDLER\_H}!Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}}
+\doxysubsubsection{\texorpdfstring{MENU\_INPUT\_HANDLER\_H}{MENU\_INPUT\_HANDLER\_H}}
+{\footnotesize\ttfamily \#define MENU\+\_\+\+INPUT\+\_\+\+HANDLER\+\_\+H}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}\label{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0} 
+\index{Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}!PairVector@{PairVector}}
+\index{PairVector@{PairVector}!Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}}
+\doxysubsubsection{\texorpdfstring{PairVector}{PairVector}}
+{\footnotesize\ttfamily typedef std\+::vector$<$pair$<$int, int$>$ $>$ \mbox{\hyperlink{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}{Pair\+Vector}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Menu__Input__Handler_8h_a5040f7b01556905b7c67d509cdf6d1e6}\label{Menu__Input__Handler_8h_a5040f7b01556905b7c67d509cdf6d1e6} 
+\index{Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}!Write\_Avoidable\_MaxWalk\_Route@{Write\_Avoidable\_MaxWalk\_Route}}
+\index{Write\_Avoidable\_MaxWalk\_Route@{Write\_Avoidable\_MaxWalk\_Route}!Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}}
+\doxysubsubsection{\texorpdfstring{Write\_Avoidable\_MaxWalk\_Route()}{Write\_Avoidable\_MaxWalk\_Route()}}
+{\footnotesize\ttfamily void Write\+\_\+\+Avoidable\+\_\+\+Max\+Walk\+\_\+\+Route (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name,  }\item[{const std\+::string \&}]{mode,  }\item[{const int \&}]{source,  }\item[{const int \&}]{destination,  }\item[{const int \&}]{Max\+Walk,  }\item[{const std\+::vector$<$ int $>$ \&}]{avoid\+\_\+nodes,  }\item[{const \mbox{\hyperlink{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}{Pair\+Vector}} \&}]{avoid\+\_\+segments }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{Menu__Input__Handler_8h_a06443977f6971133f545da72e1476e35}\label{Menu__Input__Handler_8h_a06443977f6971133f545da72e1476e35} 
+\index{Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}!Write\_Avoidable\_Route@{Write\_Avoidable\_Route}}
+\index{Write\_Avoidable\_Route@{Write\_Avoidable\_Route}!Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}}
+\doxysubsubsection{\texorpdfstring{Write\_Avoidable\_Route()}{Write\_Avoidable\_Route()}}
+{\footnotesize\ttfamily void Write\+\_\+\+Avoidable\+\_\+\+Route (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name,  }\item[{const std\+::string \&}]{mode,  }\item[{const int \&}]{source,  }\item[{const int \&}]{destination,  }\item[{const std\+::vector$<$ int $>$ \&}]{avoid\+\_\+nodes,  }\item[{const \mbox{\hyperlink{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}{Pair\+Vector}} \&}]{avoid\+\_\+segments,  }\item[{const int \&}]{include\+\_\+node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{Menu__Input__Handler_8h_a9d22443ab1802c8615d992469cf1fcf6}\label{Menu__Input__Handler_8h_a9d22443ab1802c8615d992469cf1fcf6} 
+\index{Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}!Write\_Normal\_Route@{Write\_Normal\_Route}}
+\index{Write\_Normal\_Route@{Write\_Normal\_Route}!Menu\_Input\_Handler.h@{Menu\_Input\_Handler.h}}
+\doxysubsubsection{\texorpdfstring{Write\_Normal\_Route()}{Write\_Normal\_Route()}}
+{\footnotesize\ttfamily void Write\+\_\+\+Normal\+\_\+\+Route (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name,  }\item[{const std\+::string \&}]{mode,  }\item[{const int \&}]{source,  }\item[{const int \&}]{destination }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

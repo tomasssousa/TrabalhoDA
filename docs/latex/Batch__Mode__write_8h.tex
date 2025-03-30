@@ -1,0 +1,197 @@
+\doxysection{Code/\+Batch\+\_\+\+Mode\+\_\+write.h File Reference}
+\hypertarget{Batch__Mode__write_8h}{}\label{Batch__Mode__write_8h}\index{Code/Batch\_Mode\_write.h@{Code/Batch\_Mode\_write.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for Batch\+\_\+\+Mode\+\_\+write.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{Batch__Mode__write_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{Batch__Mode__write_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{Batch__Mode__write_8h_afaa81f71b8d03253d969c60e85b2ec51}{BATCH\+\_\+\+MODE\+\_\+\+WRITE\+\_\+H}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Batch__Mode__write_8h_abdd74b73cba0a2f483d1819b4b037ad8}{write\+Batch\+Mode\+Normal}} (const std\+::string \&filename, const int source, const int dest, const std\+::vector$<$ int $>$ \&Best\+Driving\+Route, const std\+::vector$<$ int $>$ \&Alternative\+Driving\+Route, const int best\+\_\+time, const int alternative\+\_\+time)
+\begin{DoxyCompactList}\small\item\em This function will write the output from the Driving\+\_\+only file to the output.\+txt, in this case only the source, destination, best driving route and alternative route. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}{write\+Batch\+Mode\+Normal\+Restricted}} (const std\+::string \&filename, const int source, const int dest, const std\+::vector$<$ int $>$ \&Restricted\+Driving\+Route, const int restricted\+\_\+time)
+\begin{DoxyCompactList}\small\item\em This function will write the output from the Driving\+\_\+only file to the output.\+txt, in this case we will have a restricted path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Batch__Mode__write_8h_a77f0dee7b4b90c7e45ce0a453fcb1807}{write\+Batch\+Mode\+Driving\+Walking}} (const std\+::string \&filename, const int source, const int dest, const std\+::vector$<$ int $>$ \&Driving\+Route, const int driving\+\_\+time, const int Parking\+Node, const std\+::vector$<$ int $>$ \&Walking\+Route, const int walking\+\_\+time, const int Total\+Time)
+\begin{DoxyCompactList}\small\item\em This function will write the output from the Driving\+\_\+\+And\+\_\+\+Walking file to the output.\+txt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Batch__Mode__write_8h_a5d63282af0fd284eb152e9bf7a9733ce}{write\+Batch\+Mode\+Driving\+Walking\+Impossible}} (const std\+::string \&filename, const int source, const int dest, const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em This function will write the output from the Driving\+\_\+\+And\+\_\+\+Walking file to the output.\+txt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Batch__Mode__write_8h_a8ddd3140d2fa75cbb8aa452b2cd9a03c}{write\+Batch\+Mode\+Driving\+Walking\+Approximate}} (const std\+::string \&filename, const int source, const int dest, const std\+::vector$<$ int $>$ \&Driving\+Route1, const int driving\+\_\+time1, const int Parking\+Node1, const std\+::vector$<$ int $>$ \&Walking\+Route1, const int walking\+\_\+time\+\_\+1, int Total\+Time1, const std\+::vector$<$ int $>$ \&Driving\+Route2, const int driving\+\_\+time2, const int Parking\+Node2, const std\+::vector$<$ int $>$ \&Walking\+Route2, const int walking\+\_\+time\+\_\+2, const int Total\+Time2)
+\begin{DoxyCompactList}\small\item\em This function will write the output from the Driving\+\_\+\+And\+\_\+\+Walking file to the output.\+txt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{Batch__Mode__write_8h_afaa81f71b8d03253d969c60e85b2ec51}\label{Batch__Mode__write_8h_afaa81f71b8d03253d969c60e85b2ec51} 
+\index{Batch\_Mode\_write.h@{Batch\_Mode\_write.h}!BATCH\_MODE\_WRITE\_H@{BATCH\_MODE\_WRITE\_H}}
+\index{BATCH\_MODE\_WRITE\_H@{BATCH\_MODE\_WRITE\_H}!Batch\_Mode\_write.h@{Batch\_Mode\_write.h}}
+\doxysubsubsection{\texorpdfstring{BATCH\_MODE\_WRITE\_H}{BATCH\_MODE\_WRITE\_H}}
+{\footnotesize\ttfamily \#define BATCH\+\_\+\+MODE\+\_\+\+WRITE\+\_\+H}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Batch__Mode__write_8h_a77f0dee7b4b90c7e45ce0a453fcb1807}\label{Batch__Mode__write_8h_a77f0dee7b4b90c7e45ce0a453fcb1807} 
+\index{Batch\_Mode\_write.h@{Batch\_Mode\_write.h}!writeBatchModeDrivingWalking@{writeBatchModeDrivingWalking}}
+\index{writeBatchModeDrivingWalking@{writeBatchModeDrivingWalking}!Batch\_Mode\_write.h@{Batch\_Mode\_write.h}}
+\doxysubsubsection{\texorpdfstring{writeBatchModeDrivingWalking()}{writeBatchModeDrivingWalking()}}
+{\footnotesize\ttfamily void write\+Batch\+Mode\+Driving\+Walking (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const int}]{source,  }\item[{const int}]{dest,  }\item[{const std\+::vector$<$ int $>$ \&}]{Driving\+Route,  }\item[{const int}]{driving\+\_\+time,  }\item[{const int}]{Parking\+Node,  }\item[{const std\+::vector$<$ int $>$ \&}]{Walking\+Route,  }\item[{const int}]{walking\+\_\+time,  }\item[{const int}]{Total\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function will write the output from the Driving\+\_\+\+And\+\_\+\+Walking file to the output.\+txt. 
+
+driving-\/walking mode 
+\begin{DoxyParams}{Parameters}
+{\em filename} & the file which we want to write into \\
+\hline
+{\em source} & the source node \\
+\hline
+{\em dest} & the destination node \\
+\hline
+{\em Driving\+Route} & the driving route path \\
+\hline
+{\em driving\+\_\+time} & the driving route time \\
+\hline
+{\em Parking\+Node} & the parking node where we stopped \\
+\hline
+{\em Walking\+Route} & the walking route path \\
+\hline
+{\em walking\+\_\+time} & the walking route time \\
+\hline
+{\em Total\+Time} & the total time spent \\
+\hline
+\end{DoxyParams}
+\Hypertarget{Batch__Mode__write_8h_a8ddd3140d2fa75cbb8aa452b2cd9a03c}\label{Batch__Mode__write_8h_a8ddd3140d2fa75cbb8aa452b2cd9a03c} 
+\index{Batch\_Mode\_write.h@{Batch\_Mode\_write.h}!writeBatchModeDrivingWalkingApproximate@{writeBatchModeDrivingWalkingApproximate}}
+\index{writeBatchModeDrivingWalkingApproximate@{writeBatchModeDrivingWalkingApproximate}!Batch\_Mode\_write.h@{Batch\_Mode\_write.h}}
+\doxysubsubsection{\texorpdfstring{writeBatchModeDrivingWalkingApproximate()}{writeBatchModeDrivingWalkingApproximate()}}
+{\footnotesize\ttfamily void write\+Batch\+Mode\+Driving\+Walking\+Approximate (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const int}]{source,  }\item[{const int}]{dest,  }\item[{const std\+::vector$<$ int $>$ \&}]{Driving\+Route1,  }\item[{const int}]{driving\+\_\+time1,  }\item[{const int}]{Parking\+Node1,  }\item[{const std\+::vector$<$ int $>$ \&}]{Walking\+Route1,  }\item[{const int}]{walking\+\_\+time\+\_\+1,  }\item[{int}]{Total\+Time1,  }\item[{const std\+::vector$<$ int $>$ \&}]{Driving\+Route2,  }\item[{const int}]{driving\+\_\+time2,  }\item[{const int}]{Parking\+Node2,  }\item[{const std\+::vector$<$ int $>$ \&}]{Walking\+Route2,  }\item[{const int}]{walking\+\_\+time\+\_\+2,  }\item[{const int}]{Total\+Time2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function will write the output from the Driving\+\_\+\+And\+\_\+\+Walking file to the output.\+txt. 
+
+driving-\/walking mode alternatives routes case 
+\begin{DoxyParams}{Parameters}
+{\em filename} & the file which we want to write into \\
+\hline
+{\em source} & the source node \\
+\hline
+{\em dest} & the destination node \\
+\hline
+{\em Driving\+Route1} & the driving route 1 \\
+\hline
+{\em driving\+\_\+time1} & the driving time 1 \\
+\hline
+{\em Parking\+Node1} & the parking node 1 \\
+\hline
+{\em Walking\+Route1} & the walking route 1 \\
+\hline
+{\em walking\+\_\+time\+\_\+1} & the walking time 1 \\
+\hline
+{\em Total\+Time1} & the total time 1 \\
+\hline
+{\em Driving\+Route2} & the driving route 2 \\
+\hline
+{\em driving\+\_\+time2} & the driving time 2 \\
+\hline
+{\em Parking\+Node2} & the parking node 2 \\
+\hline
+{\em Walking\+Route2} & the walking route 2 \\
+\hline
+{\em walking\+\_\+time\+\_\+2} & the walking time 2 \\
+\hline
+{\em Total\+Time2} & the total time 2 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{Batch__Mode__write_8h_a5d63282af0fd284eb152e9bf7a9733ce}\label{Batch__Mode__write_8h_a5d63282af0fd284eb152e9bf7a9733ce} 
+\index{Batch\_Mode\_write.h@{Batch\_Mode\_write.h}!writeBatchModeDrivingWalkingImpossible@{writeBatchModeDrivingWalkingImpossible}}
+\index{writeBatchModeDrivingWalkingImpossible@{writeBatchModeDrivingWalkingImpossible}!Batch\_Mode\_write.h@{Batch\_Mode\_write.h}}
+\doxysubsubsection{\texorpdfstring{writeBatchModeDrivingWalkingImpossible()}{writeBatchModeDrivingWalkingImpossible()}}
+{\footnotesize\ttfamily void write\+Batch\+Mode\+Driving\+Walking\+Impossible (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const int}]{source,  }\item[{const int}]{dest,  }\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function will write the output from the Driving\+\_\+\+And\+\_\+\+Walking file to the output.\+txt. 
+
+driving-\/walking mode, when the path is impossible 
+\begin{DoxyParams}{Parameters}
+{\em filename} & the file which we want to write into \\
+\hline
+{\em source} & the source node \\
+\hline
+{\em dest} & the destination node \\
+\hline
+{\em message} & the error message \\
+\hline
+\end{DoxyParams}
+\Hypertarget{Batch__Mode__write_8h_abdd74b73cba0a2f483d1819b4b037ad8}\label{Batch__Mode__write_8h_abdd74b73cba0a2f483d1819b4b037ad8} 
+\index{Batch\_Mode\_write.h@{Batch\_Mode\_write.h}!writeBatchModeNormal@{writeBatchModeNormal}}
+\index{writeBatchModeNormal@{writeBatchModeNormal}!Batch\_Mode\_write.h@{Batch\_Mode\_write.h}}
+\doxysubsubsection{\texorpdfstring{writeBatchModeNormal()}{writeBatchModeNormal()}}
+{\footnotesize\ttfamily void write\+Batch\+Mode\+Normal (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const int}]{source,  }\item[{const int}]{dest,  }\item[{const std\+::vector$<$ int $>$ \&}]{Best\+Driving\+Route,  }\item[{const std\+::vector$<$ int $>$ \&}]{Alternative\+Driving\+Route,  }\item[{const int}]{best\+\_\+time,  }\item[{const int}]{alternative\+\_\+time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function will write the output from the Driving\+\_\+only file to the output.\+txt, in this case only the source, destination, best driving route and alternative route. 
+
+driving only 
+\begin{DoxyParams}{Parameters}
+{\em filename} & the file which we want to write into \\
+\hline
+{\em source} & the source node \\
+\hline
+{\em dest} & the destination node \\
+\hline
+{\em Best\+Driving\+Route} & the best driving route \\
+\hline
+{\em Alternative\+Driving\+Route} & the alternative route This code can also handle the cases when the Alternative\+Driving\+Route is empty, or non-\/existent \\
+\hline
+{\em best\+\_\+time} & the time of the best driving route \\
+\hline
+{\em alternative\+\_\+time} & the time of alternative route \\
+\hline
+\end{DoxyParams}
+\Hypertarget{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec}\label{Batch__Mode__write_8h_a47ba00772d53841530fd072ecf7325ec} 
+\index{Batch\_Mode\_write.h@{Batch\_Mode\_write.h}!writeBatchModeNormalRestricted@{writeBatchModeNormalRestricted}}
+\index{writeBatchModeNormalRestricted@{writeBatchModeNormalRestricted}!Batch\_Mode\_write.h@{Batch\_Mode\_write.h}}
+\doxysubsubsection{\texorpdfstring{writeBatchModeNormalRestricted()}{writeBatchModeNormalRestricted()}}
+{\footnotesize\ttfamily void write\+Batch\+Mode\+Normal\+Restricted (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const int}]{source,  }\item[{const int}]{dest,  }\item[{const std\+::vector$<$ int $>$ \&}]{Restricted\+Driving\+Route,  }\item[{const int}]{restricted\+\_\+time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function will write the output from the Driving\+\_\+only file to the output.\+txt, in this case we will have a restricted path. 
+
+driving only 
+\begin{DoxyParams}{Parameters}
+{\em filename} & the file which we want to write into \\
+\hline
+{\em source} & the source node \\
+\hline
+{\em dest} & the destination node \\
+\hline
+{\em Restricted\+Driving\+Route} & the best driving route This code can also handle the cases when the Alternative\+Driving\+Route is empty, or non-\/existent \\
+\hline
+{\em restricted\+\_\+time} & \\
+\hline
+\end{DoxyParams}

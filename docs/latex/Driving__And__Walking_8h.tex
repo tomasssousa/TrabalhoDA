@@ -1,0 +1,155 @@
+\doxysection{Code/\+Driving\+\_\+\+And\+\_\+\+Walking.h File Reference}
+\hypertarget{Driving__And__Walking_8h}{}\label{Driving__And__Walking_8h}\index{Code/Driving\_And\_Walking.h@{Code/Driving\_And\_Walking.h}}
+{\ttfamily \#include "{}../data\+\_\+structures/\+Graph.\+h"{}}\newline
+{\ttfamily \#include "{}../data\+\_\+structures/\+Mutable\+Priority\+Queue.\+h"{}}\newline
+{\ttfamily \#include "{}Driving\+\_\+only.\+h"{}}\newline
+{\ttfamily \#include "{}Batch\+\_\+\+Mode\+\_\+write.\+h"{}}\newline
+Include dependency graph for Driving\+\_\+\+And\+\_\+\+Walking.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Driving__And__Walking_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{Driving__And__Walking_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\bool \mbox{\hyperlink{Driving__And__Walking_8h_a887f69bd55377fcca42f960ec1009852}{walkingrelax}} (Edge$<$ T $>$ \texorpdfstring{$\ast$}{*}edge)
+\begin{DoxyCompactList}\small\item\em This function is responsible for the edge relaxation that takes place during the Dijkstra algorithm. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{Driving__And__Walking_8h_aa070df90e751732b1ef1f27198321971}{walkingdijkstra}} (Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}g, const int \&origin, vector$<$ int $>$ \texorpdfstring{$\ast$}{*}rn, vector$<$ pair$<$ int, int $>$ $>$ \texorpdfstring{$\ast$}{*}re)
+\begin{DoxyCompactList}\small\item\em Implementation of custom Dijkstra algorithm. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\vector$<$ int $>$ \mbox{\hyperlink{Driving__And__Walking_8h_a80b3731b3168a56e2f23bc25f727b636}{find\+Valid\+Parking\+Nodes}} (Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}g, int origin, int destination, int max\+Walk\+Time)
+\begin{DoxyCompactList}\small\item\em Finds valid parking nodes that allow walking to the destination within the max walking time. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\vector$<$ vector$<$ T $>$ $>$ \mbox{\hyperlink{Driving__And__Walking_8h_a7e1cd63c4e73343e8c94f7f7dac1f9f4}{Driving\+Walking}} (Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}g, int \&origin, int \&destination, int \&max\+Walk\+Time, vector$<$ int $>$ avoid\+Nodes, vector$<$ pair$<$ int, int $>$ $>$ avoid\+Edges)
+\begin{DoxyCompactList}\small\item\em Computes the best driving-\/walking route based on user constraints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Driving__And__Walking_8h_a7e1cd63c4e73343e8c94f7f7dac1f9f4}\label{Driving__And__Walking_8h_a7e1cd63c4e73343e8c94f7f7dac1f9f4} 
+\index{Driving\_And\_Walking.h@{Driving\_And\_Walking.h}!DrivingWalking@{DrivingWalking}}
+\index{DrivingWalking@{DrivingWalking}!Driving\_And\_Walking.h@{Driving\_And\_Walking.h}}
+\doxysubsubsection{\texorpdfstring{DrivingWalking()}{DrivingWalking()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+vector$<$ vector$<$ T $>$ $>$ Driving\+Walking (\begin{DoxyParamCaption}\item[{Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g,  }\item[{int \&}]{origin,  }\item[{int \&}]{destination,  }\item[{int \&}]{max\+Walk\+Time,  }\item[{vector$<$ int $>$}]{avoid\+Nodes,  }\item[{vector$<$ pair$<$ int, int $>$ $>$}]{avoid\+Edges }\end{DoxyParamCaption})}
+
+
+
+Computes the best driving-\/walking route based on user constraints. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the graph nodes. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to the graph structure. \\
+\hline
+{\em origin} & Starting node ID. \\
+\hline
+{\em destination} & Target node ID. \\
+\hline
+{\em max\+Walk\+Time} & Maximum allowed walking time. \\
+\hline
+{\em avoid\+Nodes} & List of node IDs to avoid. \\
+\hline
+{\em avoid\+Edges} & List of edges (pairs of node IDs) to avoid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of vectors containing\+:
+\begin{DoxyItemize}
+\item Best driving route as a sequence of node IDs.
+\item Chosen parking node.
+\item Best walking route as a sequence of node IDs.
+\item Total travel time as a string. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\Hypertarget{Driving__And__Walking_8h_a80b3731b3168a56e2f23bc25f727b636}\label{Driving__And__Walking_8h_a80b3731b3168a56e2f23bc25f727b636} 
+\index{Driving\_And\_Walking.h@{Driving\_And\_Walking.h}!findValidParkingNodes@{findValidParkingNodes}}
+\index{findValidParkingNodes@{findValidParkingNodes}!Driving\_And\_Walking.h@{Driving\_And\_Walking.h}}
+\doxysubsubsection{\texorpdfstring{findValidParkingNodes()}{findValidParkingNodes()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+vector$<$ int $>$ find\+Valid\+Parking\+Nodes (\begin{DoxyParamCaption}\item[{Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g,  }\item[{int}]{origin,  }\item[{int}]{destination,  }\item[{int}]{max\+Walk\+Time }\end{DoxyParamCaption})}
+
+
+
+Finds valid parking nodes that allow walking to the destination within the max walking time. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the graph nodes. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to the graph structure. \\
+\hline
+{\em origin} & Starting node ID. \\
+\hline
+{\em destination} & Target node ID. \\
+\hline
+{\em max\+Walk\+Time} & Maximum allowed walking time. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector containing IDs of valid parking nodes. 
+\end{DoxyReturn}
+\Hypertarget{Driving__And__Walking_8h_aa070df90e751732b1ef1f27198321971}\label{Driving__And__Walking_8h_aa070df90e751732b1ef1f27198321971} 
+\index{Driving\_And\_Walking.h@{Driving\_And\_Walking.h}!walkingdijkstra@{walkingdijkstra}}
+\index{walkingdijkstra@{walkingdijkstra}!Driving\_And\_Walking.h@{Driving\_And\_Walking.h}}
+\doxysubsubsection{\texorpdfstring{walkingdijkstra()}{walkingdijkstra()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void walkingdijkstra (\begin{DoxyParamCaption}\item[{Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g,  }\item[{const int \&}]{origin,  }\item[{vector$<$ int $>$ \texorpdfstring{$\ast$}{*}}]{rn,  }\item[{vector$<$ pair$<$ int, int $>$ $>$ \texorpdfstring{$\ast$}{*}}]{re }\end{DoxyParamCaption})}
+
+
+
+Implementation of custom Dijkstra algorithm. 
+
+Custom Dijkstra that takes two additional vectors and is able to avoid specific nodes and edges. 
+\begin{DoxyParams}{Parameters}
+{\em g} & The graph to be explored. \\
+\hline
+{\em origin} & The id of the node from which the algorithm will start. \\
+\hline
+{\em rn} & The id of the nodes to be ignored. \\
+\hline
+{\em re} & The ids of the starting and destination vertices that define an edge to be ignored. \\
+\hline
+\end{DoxyParams}
+Initialize the vertices
+
+remove nodes from the iteration. If the vector is empty it does nothing.
+
+remove edges from the iteration. If the vector is empty it does nothing.
+
+\texorpdfstring{$<$}{<} The node from which to start the algorithm.
+
+\texorpdfstring{$<$}{<} Priority\+Queue to be used during the algorithm.\Hypertarget{Driving__And__Walking_8h_a887f69bd55377fcca42f960ec1009852}\label{Driving__And__Walking_8h_a887f69bd55377fcca42f960ec1009852} 
+\index{Driving\_And\_Walking.h@{Driving\_And\_Walking.h}!walkingrelax@{walkingrelax}}
+\index{walkingrelax@{walkingrelax}!Driving\_And\_Walking.h@{Driving\_And\_Walking.h}}
+\doxysubsubsection{\texorpdfstring{walkingrelax()}{walkingrelax()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool walkingrelax (\begin{DoxyParamCaption}\item[{Edge$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{edge }\end{DoxyParamCaption})}
+
+
+
+This function is responsible for the edge relaxation that takes place during the Dijkstra algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edge} & The edge to be either crossed or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The boolean saying if the Driving\+Dist got changed or not. 
+\end{DoxyReturn}

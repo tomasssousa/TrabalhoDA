@@ -1,0 +1,99 @@
+\doxysection{Code/\+Menu.h File Reference}
+\hypertarget{Menu_8h}{}\label{Menu_8h}\index{Code/Menu.h@{Code/Menu.h}}
+{\ttfamily \#include "{}../data\+\_\+structures/\+Graph.\+h"{}}\newline
+Include dependency graph for Menu.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{Menu_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{Menu_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Menu_8h_a811acbca263e815b861d9c1e65177cad}{display\+Intro\+Menu}} ()
+\item 
+void \mbox{\hyperlink{Menu_8h_a8500b83883310d415dbe266e1515cb85}{display\+About\+Menu}} ()
+\item 
+void \mbox{\hyperlink{Menu_8h_a2d3f6987db389cb72baf4285f53d7530}{display\+Route\+Menu}} ()
+\item 
+void \mbox{\hyperlink{Menu_8h_a8f71696a3004227d4a3e9245bf60a438}{display\+Menu\+Input}} ()
+\item 
+void \mbox{\hyperlink{Menu_8h_accbc3004f58aba9b3097fde94a3cf2f2}{display\+Batch\+Menu}} ()
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{Menu_8h_affd23e813c5f489c5305150139a2140b}{display\+Urban\+Info}} (Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}})
+\item 
+void \mbox{\hyperlink{Menu_8h_a8533c2f62802cbc2a98effc7db097805}{handle\+Main\+Menu\+Choice}} (int choice)
+\item 
+void \mbox{\hyperlink{Menu_8h_a679bc51a0eb7c3325b50b13ef70e8895}{get\+Avoid\+Nodes}} (std\+::vector$<$ int $>$ \&avoid\+\_\+nodes)
+\item 
+void \mbox{\hyperlink{Menu_8h_a4fd2b722311a5b34b6ecc2342a8879f2}{get\+Avoid\+Segments}} (std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+\_\+segments)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Menu_8h_a8500b83883310d415dbe266e1515cb85}\label{Menu_8h_a8500b83883310d415dbe266e1515cb85} 
+\index{Menu.h@{Menu.h}!displayAboutMenu@{displayAboutMenu}}
+\index{displayAboutMenu@{displayAboutMenu}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayAboutMenu()}{displayAboutMenu()}}
+{\footnotesize\ttfamily void display\+About\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_accbc3004f58aba9b3097fde94a3cf2f2}\label{Menu_8h_accbc3004f58aba9b3097fde94a3cf2f2} 
+\index{Menu.h@{Menu.h}!displayBatchMenu@{displayBatchMenu}}
+\index{displayBatchMenu@{displayBatchMenu}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayBatchMenu()}{displayBatchMenu()}}
+{\footnotesize\ttfamily void display\+Batch\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_a811acbca263e815b861d9c1e65177cad}\label{Menu_8h_a811acbca263e815b861d9c1e65177cad} 
+\index{Menu.h@{Menu.h}!displayIntroMenu@{displayIntroMenu}}
+\index{displayIntroMenu@{displayIntroMenu}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayIntroMenu()}{displayIntroMenu()}}
+{\footnotesize\ttfamily void display\+Intro\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_a8f71696a3004227d4a3e9245bf60a438}\label{Menu_8h_a8f71696a3004227d4a3e9245bf60a438} 
+\index{Menu.h@{Menu.h}!displayMenuInput@{displayMenuInput}}
+\index{displayMenuInput@{displayMenuInput}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayMenuInput()}{displayMenuInput()}}
+{\footnotesize\ttfamily void display\+Menu\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_a2d3f6987db389cb72baf4285f53d7530}\label{Menu_8h_a2d3f6987db389cb72baf4285f53d7530} 
+\index{Menu.h@{Menu.h}!displayRouteMenu@{displayRouteMenu}}
+\index{displayRouteMenu@{displayRouteMenu}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayRouteMenu()}{displayRouteMenu()}}
+{\footnotesize\ttfamily void display\+Route\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_affd23e813c5f489c5305150139a2140b}\label{Menu_8h_affd23e813c5f489c5305150139a2140b} 
+\index{Menu.h@{Menu.h}!displayUrbanInfo@{displayUrbanInfo}}
+\index{displayUrbanInfo@{displayUrbanInfo}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayUrbanInfo()}{displayUrbanInfo()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void display\+Urban\+Info (\begin{DoxyParamCaption}\item[{Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{graph }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_a679bc51a0eb7c3325b50b13ef70e8895}\label{Menu_8h_a679bc51a0eb7c3325b50b13ef70e8895} 
+\index{Menu.h@{Menu.h}!getAvoidNodes@{getAvoidNodes}}
+\index{getAvoidNodes@{getAvoidNodes}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{getAvoidNodes()}{getAvoidNodes()}}
+{\footnotesize\ttfamily void get\+Avoid\+Nodes (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{avoid\+\_\+nodes }\end{DoxyParamCaption})}
+
+ignore any leftover newline characters\Hypertarget{Menu_8h_a4fd2b722311a5b34b6ecc2342a8879f2}\label{Menu_8h_a4fd2b722311a5b34b6ecc2342a8879f2} 
+\index{Menu.h@{Menu.h}!getAvoidSegments@{getAvoidSegments}}
+\index{getAvoidSegments@{getAvoidSegments}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{getAvoidSegments()}{getAvoidSegments()}}
+{\footnotesize\ttfamily void get\+Avoid\+Segments (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+\_\+segments }\end{DoxyParamCaption})}
+
+if it finds the character position\Hypertarget{Menu_8h_a8533c2f62802cbc2a98effc7db097805}\label{Menu_8h_a8533c2f62802cbc2a98effc7db097805} 
+\index{Menu.h@{Menu.h}!handleMainMenuChoice@{handleMainMenuChoice}}
+\index{handleMainMenuChoice@{handleMainMenuChoice}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{handleMainMenuChoice()}{handleMainMenuChoice()}}
+{\footnotesize\ttfamily void handle\+Main\+Menu\+Choice (\begin{DoxyParamCaption}\item[{int}]{choice }\end{DoxyParamCaption})}
+
+driving only without restrictions

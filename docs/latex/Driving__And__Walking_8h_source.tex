@@ -1,0 +1,181 @@
+\doxysection{Driving\+\_\+\+And\+\_\+\+Walking.\+h}
+\hypertarget{Driving__And__Walking_8h_source}{}\label{Driving__And__Walking_8h_source}\index{Code/Driving\_And\_Walking.h@{Code/Driving\_And\_Walking.h}}
+\mbox{\hyperlink{Driving__And__Walking_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DRIVING\_AND\_WALKING\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DRIVING\_AND\_WALKING\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../data\_structures/Graph.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../data\_structures/MutablePriorityQueue.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Driving__only_8h}{Driving\_only.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Batch__Mode__write_8h}{Batch\_Mode\_write.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{Driving__And__Walking_8h_a887f69bd55377fcca42f960ec1009852}{walkingrelax}}(Edge<T>\ *edge)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ d[u]\ +\ w(u,v)\ <\ d[v]}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{if}\ (edge-\/>getOrig()-\/>getWalkingDist()\ +\ edge-\/>getWalkingWeight()\ <\ edge-\/>getDest()-\/>getWalkingDist())\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ have\ found\ a\ better\ way\ to\ reach\ v}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ edge-\/>getDest()-\/>setWalkingDist(edge-\/>getOrig()-\/>getWalkingDist()\ +\ edge-\/>getWalkingWeight());}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ d[v]\ =\ d[u]\ +\ w(u,v)}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ edge-\/>getDest()-\/>setPath(edge);\ \textcolor{comment}{//\ set\ the\ predecessor\ of\ v\ to\ u;\ in\ this\ case\ the\ edge\ from\ u\ to\ v}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Driving__And__Walking_8h_aa070df90e751732b1ef1f27198321971}{walkingdijkstra}}(Graph<T>\ *g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&origin,\ vector<int>\ *rn,\ vector<pair<int,\ int>\ >\ *re)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ g-\/>getVertexSet())\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ v-\/>setWalkingDist(INF);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ v-\/>setPath(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ v-\/>setVisited(\textcolor{keyword}{false});}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (rn\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ n:\ *rn)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ g-\/>findVertex(n);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v-\/>setVisited(\textcolor{keyword}{true});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (re\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (pair<int,\ int>\ en:\ *re)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ g-\/>findVertex(en.first);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ e:\ v-\/>getAdj())\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e-\/>getDest()\ ==\ g-\/>findVertex(en.second))\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>setWalkingWeight(INF);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{auto}\ s\ =\ g-\/>findVertex(origin);\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (s\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ s-\/>setWalkingDist(0);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ MutablePriorityQueue<Vertex<T>\ >\ q;\ }
+\DoxyCodeLine{00075\ \ \ \ \ q.insert(s);}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{while}\ (!q.empty())\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ q.extractMin();}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ v-\/>setVisited(\textcolor{keyword}{true});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ e:\ v-\/>getAdj())\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ oldDist\ =\ e-\/>getDest()-\/>getWalkingDist();}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{Dijkstra_8cpp_a24fffa37658bb0541fa3bf02d207321d}{relax}}(e)\ \&\&\ e-\/>getDest()-\/>isVisited()\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oldDist\ ==\ INF)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q.insert(e-\/>getDest());}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q.decreaseKey(e-\/>getDest());}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00100\ \textcolor{keyword}{static}\ std::vector<T>\ getWalkingPath(Graph<T>\ *g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&origin,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&dest)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ std::vector<T>\ res;\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ g-\/>findVertex(dest);}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ ==\ \textcolor{keyword}{nullptr}\ ||\ v-\/>getWalkingDist()\ ==\ INF)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ missing\ or\ disconnected}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ res.push\_back(v-\/>getId());}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{while}\ (v-\/>getPath()\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ v\ =\ v-\/>getPath()-\/>getOrig();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ res.push\_back(v-\/>getId());}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ reverse(res.begin(),\ res.end());}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (res.empty()\ ||\ res[0]\ !=\ origin)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::cout\ <<\ "{}Origin\ not\ found!!"{}\ <<\ std::endl;}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//return\ empty\ vector}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ std::vector<T>\ empty;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ empty;}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00133\ vector<int>\ \mbox{\hyperlink{Driving__And__Walking_8h_a80b3731b3168a56e2f23bc25f727b636}{findValidParkingNodes}}(Graph<T>\ *g,\ \textcolor{keywordtype}{int}\ origin,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keywordtype}{int}\ maxWalkTime)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ vector<int>\ parkingNodes;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ g-\/>getVertexSet())\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v-\/>getParking()\ ==\ 1\ \&\&\ v-\/>getId()\ !=\ origin\ \&\&\ v-\/>getId()\ !=\ destination)\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Driving__And__Walking_8h_aa070df90e751732b1ef1f27198321971}{walkingdijkstra}}(g,\ v-\/>getId(),\ \{\},\ \{\});}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (g-\/>findVertex(destination)-\/>getWalkingDist()\ <=\ maxWalkTime)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parkingNodes.push\_back(v-\/>getId());}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ parkingNodes;}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00163\ vector<vector<T>\ >\ \mbox{\hyperlink{Driving__And__Walking_8h_a7e1cd63c4e73343e8c94f7f7dac1f9f4}{DrivingWalking}}(Graph<T>\ *g,\ \textcolor{keywordtype}{int}\ \&origin,\ \textcolor{keywordtype}{int}\ \&destination,\ \textcolor{keywordtype}{int}\ \&maxWalkTime,\ vector<int>\ avoidNodes,}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vector<pair<int,\ int>\ >\ avoidEdges)\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ vector<vector<T>\ >\ bestRoute;}
+\DoxyCodeLine{00166\ \ \ \ \ vector<int>\ parkingNodes\ =\ \mbox{\hyperlink{Driving__And__Walking_8h_a80b3731b3168a56e2f23bc25f727b636}{findValidParkingNodes}}(g,\ origin,\ destination,\ maxWalkTime);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{if}\ (parkingNodes.empty())\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a5d63282af0fd284eb152e9bf7a9733ce}{writeBatchModeDrivingWalkingImpossible}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}There\ aren't\ any\ parkingNodes\ or\ the\ maxWalkTime\ was\ exceeded"{}});}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ \ \ \ \ \ \ \ return\ \{}}
+\DoxyCodeLine{00174\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{"{}none"{}\},\ \{"{}none"{}\},\ \{"{}none"{}\},\ \{"{}Message:\ There\ aren't\ any\ parkingNodes\ or\ the\ maxWalkTime\ was\ exceeded."{}\}}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ \ \ \ \ \ \ \ \};}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{int}\ bestDrivingTime\ =\ INT\_INF;}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{int}\ bestWalkingTime\ =\ INT\_INF;}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{int}\ bestTotalTime\ =\ INT\_INF;}
+\DoxyCodeLine{00182\ \ \ \ \ vector<T>\ bestDrivingRoute,\ bestWalkingRoute;}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{int}\ bestParkingNode\ =\ -\/1;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ parkingNode:\ parkingNodes)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ drivingRoutes\ =\ \mbox{\hyperlink{Driving__only_8h_a36096226cdcba8e2ef07a7b72305e537}{Driving\_only}}(g,\ origin,\ parkingNode,\ \&avoidNodes,\ \&avoidEdges,\ \{\});}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (drivingRoutes[0].empty())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Driving__And__Walking_8h_aa070df90e751732b1ef1f27198321971}{walkingdijkstra}}(g,\ parkingNode,\ \{\},\ \{\});}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ vector<T>\ walkingRoute\ =\ getWalkingPath<T>(g,\ parkingNode,\ destination);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (walkingRoute.empty()\ ||\ g-\/>findVertex(destination)-\/>getWalkingDist()\ >\ maxWalkTime)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ drivingTime\ =\ g-\/>findVertex(parkingNode)-\/>getDrivingDist();}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ walkingTime\ =\ g-\/>findVertex(destination)-\/>getWalkingDist();}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ totalTime\ =\ drivingTime\ +\ walkingTime;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (totalTime\ <\ bestTotalTime\ ||\ (totalTime\ ==\ bestTotalTime\ \&\&\ walkingRoute.size()\ <\ bestWalkingRoute.}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ size()))\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ bestDrivingTime\ =\ drivingTime;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ bestWalkingTime\ =\ walkingTime;}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ bestTotalTime\ =\ totalTime;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ bestDrivingRoute\ =\ drivingRoutes[0];}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ bestWalkingRoute\ =\ walkingRoute;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ bestParkingNode\ =\ parkingNode;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordflow}{if}\ (bestParkingNode\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a5d63282af0fd284eb152e9bf7a9733ce}{writeBatchModeDrivingWalkingImpossible}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}There\ isn't\ any\ available\ route."{}});}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00213\ \textcolor{comment}{\ \ \ \ \ \ \ \ return\ \{\{"{}none"{}\},\ \{"{}none"{}\},\ \{"{}none"{}\},\ \{"{}Message:\ There\ isn't\ any\ available\ route."{}\}\};}}
+\DoxyCodeLine{00214\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \mbox{\hyperlink{Batch__Mode__write_8h_a77f0dee7b4b90c7e45ce0a453fcb1807}{writeBatchModeDrivingWalking}}(\textcolor{stringliteral}{"{}../Files/output.txt"{}},\ origin,\ destination,\ bestDrivingRoute,\ bestDrivingTime,}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bestParkingNode,\ bestWalkingRoute,\ bestWalkingTime,\ bestTotalTime);}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00221\ \textcolor{comment}{\ \ \ \ return\ \{bestDrivingRoute,\ \{bestParkingNode\},\ bestWalkingRoute,\ \{to\_string(bestTotalTime)\}\};}}
+\DoxyCodeLine{00222\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00223\ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DRIVING\_AND\_WALKING\_H}}
+
+\end{DoxyCode}

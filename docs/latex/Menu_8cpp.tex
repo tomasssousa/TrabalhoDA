@@ -1,0 +1,279 @@
+\doxysection{Code/\+Menu.cpp File Reference}
+\hypertarget{Menu_8cpp}{}\label{Menu_8cpp}\index{Code/Menu.cpp@{Code/Menu.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include "{}Menu.\+h"{}}\newline
+{\ttfamily \#include "{}Batch\+\_\+\+Mode\+\_\+read.\+h"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}../data\+\_\+structures/\+Graph.\+h"{}}\newline
+{\ttfamily \#include "{}read\+CSV.\+h"{}}\newline
+{\ttfamily \#include "{}Driving\+\_\+only.\+h"{}}\newline
+{\ttfamily \#include "{}Driving\+\_\+\+And\+\_\+\+Walking.\+h"{}}\newline
+{\ttfamily \#include "{}Menu\+\_\+\+Input\+\_\+\+Handler.\+h"{}}\newline
+Include dependency graph for Menu.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Menu_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4e}{Main\+Menu\+Choices}} \{ \newline
+\mbox{\hyperlink{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea163a21acb32460f085fc8cd5cf283c4a}{LOAD\+\_\+\+AND\+\_\+\+PARSE}} = 1
+, \mbox{\hyperlink{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea4f9a3af974bd87ba23e9dfae80719724}{DISPLAY\+\_\+\+INFO}}
+, \mbox{\hyperlink{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea1b02c2902cb5a65564dd4f8653999d9f}{PLAN\+\_\+\+ROUTE}}
+, \mbox{\hyperlink{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ead4339690746f7812ee25d74ee93a89c5}{MENU\+\_\+\+INPUT}}
+, \newline
+\mbox{\hyperlink{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea6b0ee3b09d2bf2b5cc91581dc315b751}{EXECUTE\+\_\+\+BATCH\+\_\+\+MODE}}
+, \mbox{\hyperlink{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4eaaef4dc1e4f450a4c9e61a3699d75af0a}{ABOUT}}
+, \mbox{\hyperlink{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea7a10b5d68d31711288e1fe0fa17dbf4f}{EXIT}}
+ \}
+\item 
+enum \mbox{\hyperlink{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033}{Route\+Menu\+Choices}} \{ \mbox{\hyperlink{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033af02f7ad4d95a5c27704319459ab03ddf}{DRIVING\+\_\+\+ONLY\+\_\+\+INDEPENDENT\+\_\+\+ROUTE}} = 1
+, \mbox{\hyperlink{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033a0fb88e44776a4296daf199ca0af01570}{DRIVING\+\_\+\+ONLY\+\_\+\+RESTRICTED\+\_\+\+ROUTE}}
+, \mbox{\hyperlink{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033a913685c6b4552cf2fbbbc837d9e5de04}{ENVIRONMENTALLY\+\_\+\+FRIENDLY\+\_\+\+ROUTE}}
+, \mbox{\hyperlink{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033a7b3dad753deede40ca7cb75ea1b4e001}{ROUTE\+\_\+\+BACK\+\_\+\+TO\+\_\+\+MAIN}}
+ \}
+\item 
+enum \mbox{\hyperlink{Menu_8cpp_a2eed62fed6941d66c548e532ce88fa92}{About\+Menu\+Choices}} \{ \mbox{\hyperlink{Menu_8cpp_a2eed62fed6941d66c548e532ce88fa92af81084af8e74aa51bf73a56a3de502c9}{ABOUT\+\_\+\+BACK\+\_\+\+TO\+\_\+\+MAIN}} = 1
+ \}
+\item 
+enum \mbox{\hyperlink{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715}{Menu\+Input\+Choices}} \{ \mbox{\hyperlink{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715a5955bed00651b3c6f0d918a6eb019004}{INPUT\+\_\+\+READ\+\_\+\+NORMAL}} = 1
+, \mbox{\hyperlink{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715ace7fb9dd34a4d11a91a0eb74f9c6112c}{INPUT\+\_\+\+READ\+\_\+\+RESTRICTED}}
+, \mbox{\hyperlink{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715a68bac75ecb485c55a1f7ede8d1b5b777}{INPUT\+\_\+\+READ\+\_\+\+RESTRICTED\+\_\+\+MAX\+\_\+\+WALK}}
+, \mbox{\hyperlink{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715a448050e69f4b581c6eab9d746d11c34a}{INPUT\+\_\+\+BATCH\+\_\+\+BACK\+\_\+\+TO\+\_\+\+MAIN}}
+ \}
+\item 
+enum \mbox{\hyperlink{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835}{Batch\+Menu\+Choices}} \{ \mbox{\hyperlink{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835a601fe0c20143c184daa3a5d95e4a104b}{READ\+\_\+\+NORMAL}} = 1
+, \mbox{\hyperlink{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835a9137d72bc432d02729e1da140b1bfd7f}{READ\+\_\+\+RESTRICTED}}
+, \mbox{\hyperlink{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835a578536d09c5fb078693f0e3e9f122617}{READ\+\_\+\+RESTRICTED\+\_\+\+MAX\+\_\+\+WALK}}
+, \mbox{\hyperlink{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835ac2a76607d3b4205803d57bb97e584b0b}{BATCH\+\_\+\+BACK\+\_\+\+TO\+\_\+\+MAIN}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Menu_8cpp_a811acbca263e815b861d9c1e65177cad}{display\+Intro\+Menu}} ()
+\item 
+void \mbox{\hyperlink{Menu_8cpp_a2d3f6987db389cb72baf4285f53d7530}{display\+Route\+Menu}} ()
+\item 
+void \mbox{\hyperlink{Menu_8cpp_a8500b83883310d415dbe266e1515cb85}{display\+About\+Menu}} ()
+\item 
+void \mbox{\hyperlink{Menu_8cpp_a8f71696a3004227d4a3e9245bf60a438}{display\+Menu\+Input}} ()
+\item 
+void \mbox{\hyperlink{Menu_8cpp_accbc3004f58aba9b3097fde94a3cf2f2}{display\+Batch\+Menu}} ()
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{Menu_8cpp_affd23e813c5f489c5305150139a2140b}{display\+Urban\+Info}} (Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}})
+\item 
+void \mbox{\hyperlink{Menu_8cpp_ab347d1cbeb81090d57a60bc7c275f56a}{handle\+\_\+csv}} ()
+\item 
+void \mbox{\hyperlink{Menu_8cpp_a679bc51a0eb7c3325b50b13ef70e8895}{get\+Avoid\+Nodes}} (std\+::vector$<$ int $>$ \&avoid\+\_\+nodes)
+\item 
+void \mbox{\hyperlink{Menu_8cpp_a4fd2b722311a5b34b6ecc2342a8879f2}{get\+Avoid\+Segments}} (std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+\_\+segments)
+\item 
+void \mbox{\hyperlink{Menu_8cpp_ad270cc069391fbbac1f87d1888d10fe7}{handle\+Main\+Menu\+Choice}} (const int choice)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+auto \mbox{\hyperlink{Menu_8cpp_ae79c812e6854fd940ccc3959c8c10578}{graph}} = new Graph$<$int$>$()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{Menu_8cpp_a2eed62fed6941d66c548e532ce88fa92}\label{Menu_8cpp_a2eed62fed6941d66c548e532ce88fa92} 
+\index{Menu.cpp@{Menu.cpp}!AboutMenuChoices@{AboutMenuChoices}}
+\index{AboutMenuChoices@{AboutMenuChoices}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{AboutMenuChoices}{AboutMenuChoices}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Menu_8cpp_a2eed62fed6941d66c548e532ce88fa92}{About\+Menu\+Choices}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ABOUT\_BACK\_TO\_MAIN@{ABOUT\_BACK\_TO\_MAIN}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!ABOUT\_BACK\_TO\_MAIN@{ABOUT\_BACK\_TO\_MAIN}}}\Hypertarget{Menu_8cpp_a2eed62fed6941d66c548e532ce88fa92af81084af8e74aa51bf73a56a3de502c9}\label{Menu_8cpp_a2eed62fed6941d66c548e532ce88fa92af81084af8e74aa51bf73a56a3de502c9} 
+ABOUT\+\_\+\+BACK\+\_\+\+TO\+\_\+\+MAIN&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835}\label{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835} 
+\index{Menu.cpp@{Menu.cpp}!BatchMenuChoices@{BatchMenuChoices}}
+\index{BatchMenuChoices@{BatchMenuChoices}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{BatchMenuChoices}{BatchMenuChoices}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835}{Batch\+Menu\+Choices}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{READ\_NORMAL@{READ\_NORMAL}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!READ\_NORMAL@{READ\_NORMAL}}}\Hypertarget{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835a601fe0c20143c184daa3a5d95e4a104b}\label{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835a601fe0c20143c184daa3a5d95e4a104b} 
+READ\+\_\+\+NORMAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{READ\_RESTRICTED@{READ\_RESTRICTED}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!READ\_RESTRICTED@{READ\_RESTRICTED}}}\Hypertarget{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835a9137d72bc432d02729e1da140b1bfd7f}\label{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835a9137d72bc432d02729e1da140b1bfd7f} 
+READ\+\_\+\+RESTRICTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{READ\_RESTRICTED\_MAX\_WALK@{READ\_RESTRICTED\_MAX\_WALK}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!READ\_RESTRICTED\_MAX\_WALK@{READ\_RESTRICTED\_MAX\_WALK}}}\Hypertarget{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835a578536d09c5fb078693f0e3e9f122617}\label{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835a578536d09c5fb078693f0e3e9f122617} 
+READ\+\_\+\+RESTRICTED\+\_\+\+MAX\+\_\+\+WALK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BATCH\_BACK\_TO\_MAIN@{BATCH\_BACK\_TO\_MAIN}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!BATCH\_BACK\_TO\_MAIN@{BATCH\_BACK\_TO\_MAIN}}}\Hypertarget{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835ac2a76607d3b4205803d57bb97e584b0b}\label{Menu_8cpp_aca866c31eeb2c4ebc16f3db5bbcf7835ac2a76607d3b4205803d57bb97e584b0b} 
+BATCH\+\_\+\+BACK\+\_\+\+TO\+\_\+\+MAIN&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4e}\label{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4e} 
+\index{Menu.cpp@{Menu.cpp}!MainMenuChoices@{MainMenuChoices}}
+\index{MainMenuChoices@{MainMenuChoices}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{MainMenuChoices}{MainMenuChoices}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4e}{Main\+Menu\+Choices}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOAD\_AND\_PARSE@{LOAD\_AND\_PARSE}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!LOAD\_AND\_PARSE@{LOAD\_AND\_PARSE}}}\Hypertarget{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea163a21acb32460f085fc8cd5cf283c4a}\label{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea163a21acb32460f085fc8cd5cf283c4a} 
+LOAD\+\_\+\+AND\+\_\+\+PARSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DISPLAY\_INFO@{DISPLAY\_INFO}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!DISPLAY\_INFO@{DISPLAY\_INFO}}}\Hypertarget{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea4f9a3af974bd87ba23e9dfae80719724}\label{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea4f9a3af974bd87ba23e9dfae80719724} 
+DISPLAY\+\_\+\+INFO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAN\_ROUTE@{PLAN\_ROUTE}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!PLAN\_ROUTE@{PLAN\_ROUTE}}}\Hypertarget{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea1b02c2902cb5a65564dd4f8653999d9f}\label{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea1b02c2902cb5a65564dd4f8653999d9f} 
+PLAN\+\_\+\+ROUTE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MENU\_INPUT@{MENU\_INPUT}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!MENU\_INPUT@{MENU\_INPUT}}}\Hypertarget{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ead4339690746f7812ee25d74ee93a89c5}\label{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ead4339690746f7812ee25d74ee93a89c5} 
+MENU\+\_\+\+INPUT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXECUTE\_BATCH\_MODE@{EXECUTE\_BATCH\_MODE}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!EXECUTE\_BATCH\_MODE@{EXECUTE\_BATCH\_MODE}}}\Hypertarget{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea6b0ee3b09d2bf2b5cc91581dc315b751}\label{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea6b0ee3b09d2bf2b5cc91581dc315b751} 
+EXECUTE\+\_\+\+BATCH\+\_\+\+MODE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ABOUT@{ABOUT}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!ABOUT@{ABOUT}}}\Hypertarget{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4eaaef4dc1e4f450a4c9e61a3699d75af0a}\label{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4eaaef4dc1e4f450a4c9e61a3699d75af0a} 
+ABOUT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXIT@{EXIT}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!EXIT@{EXIT}}}\Hypertarget{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea7a10b5d68d31711288e1fe0fa17dbf4f}\label{Menu_8cpp_adc7681ea83ff1b8c16e7027ad603ee4ea7a10b5d68d31711288e1fe0fa17dbf4f} 
+EXIT&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715}\label{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715} 
+\index{Menu.cpp@{Menu.cpp}!MenuInputChoices@{MenuInputChoices}}
+\index{MenuInputChoices@{MenuInputChoices}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{MenuInputChoices}{MenuInputChoices}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715}{Menu\+Input\+Choices}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INPUT\_READ\_NORMAL@{INPUT\_READ\_NORMAL}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!INPUT\_READ\_NORMAL@{INPUT\_READ\_NORMAL}}}\Hypertarget{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715a5955bed00651b3c6f0d918a6eb019004}\label{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715a5955bed00651b3c6f0d918a6eb019004} 
+INPUT\+\_\+\+READ\+\_\+\+NORMAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INPUT\_READ\_RESTRICTED@{INPUT\_READ\_RESTRICTED}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!INPUT\_READ\_RESTRICTED@{INPUT\_READ\_RESTRICTED}}}\Hypertarget{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715ace7fb9dd34a4d11a91a0eb74f9c6112c}\label{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715ace7fb9dd34a4d11a91a0eb74f9c6112c} 
+INPUT\+\_\+\+READ\+\_\+\+RESTRICTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INPUT\_READ\_RESTRICTED\_MAX\_WALK@{INPUT\_READ\_RESTRICTED\_MAX\_WALK}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!INPUT\_READ\_RESTRICTED\_MAX\_WALK@{INPUT\_READ\_RESTRICTED\_MAX\_WALK}}}\Hypertarget{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715a68bac75ecb485c55a1f7ede8d1b5b777}\label{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715a68bac75ecb485c55a1f7ede8d1b5b777} 
+INPUT\+\_\+\+READ\+\_\+\+RESTRICTED\+\_\+\+MAX\+\_\+\+WALK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INPUT\_BATCH\_BACK\_TO\_MAIN@{INPUT\_BATCH\_BACK\_TO\_MAIN}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!INPUT\_BATCH\_BACK\_TO\_MAIN@{INPUT\_BATCH\_BACK\_TO\_MAIN}}}\Hypertarget{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715a448050e69f4b581c6eab9d746d11c34a}\label{Menu_8cpp_afb2b7002bee3b4383f4de4052a62c715a448050e69f4b581c6eab9d746d11c34a} 
+INPUT\+\_\+\+BATCH\+\_\+\+BACK\+\_\+\+TO\+\_\+\+MAIN&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033}\label{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033} 
+\index{Menu.cpp@{Menu.cpp}!RouteMenuChoices@{RouteMenuChoices}}
+\index{RouteMenuChoices@{RouteMenuChoices}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{RouteMenuChoices}{RouteMenuChoices}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033}{Route\+Menu\+Choices}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DRIVING\_ONLY\_INDEPENDENT\_ROUTE@{DRIVING\_ONLY\_INDEPENDENT\_ROUTE}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!DRIVING\_ONLY\_INDEPENDENT\_ROUTE@{DRIVING\_ONLY\_INDEPENDENT\_ROUTE}}}\Hypertarget{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033af02f7ad4d95a5c27704319459ab03ddf}\label{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033af02f7ad4d95a5c27704319459ab03ddf} 
+DRIVING\+\_\+\+ONLY\+\_\+\+INDEPENDENT\+\_\+\+ROUTE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DRIVING\_ONLY\_RESTRICTED\_ROUTE@{DRIVING\_ONLY\_RESTRICTED\_ROUTE}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!DRIVING\_ONLY\_RESTRICTED\_ROUTE@{DRIVING\_ONLY\_RESTRICTED\_ROUTE}}}\Hypertarget{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033a0fb88e44776a4296daf199ca0af01570}\label{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033a0fb88e44776a4296daf199ca0af01570} 
+DRIVING\+\_\+\+ONLY\+\_\+\+RESTRICTED\+\_\+\+ROUTE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENVIRONMENTALLY\_FRIENDLY\_ROUTE@{ENVIRONMENTALLY\_FRIENDLY\_ROUTE}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!ENVIRONMENTALLY\_FRIENDLY\_ROUTE@{ENVIRONMENTALLY\_FRIENDLY\_ROUTE}}}\Hypertarget{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033a913685c6b4552cf2fbbbc837d9e5de04}\label{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033a913685c6b4552cf2fbbbc837d9e5de04} 
+ENVIRONMENTALLY\+\_\+\+FRIENDLY\+\_\+\+ROUTE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ROUTE\_BACK\_TO\_MAIN@{ROUTE\_BACK\_TO\_MAIN}!Menu.cpp@{Menu.cpp}}\index{Menu.cpp@{Menu.cpp}!ROUTE\_BACK\_TO\_MAIN@{ROUTE\_BACK\_TO\_MAIN}}}\Hypertarget{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033a7b3dad753deede40ca7cb75ea1b4e001}\label{Menu_8cpp_ae8c4d2fa49e7deb167c1e7993f52d033a7b3dad753deede40ca7cb75ea1b4e001} 
+ROUTE\+\_\+\+BACK\+\_\+\+TO\+\_\+\+MAIN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Menu_8cpp_a8500b83883310d415dbe266e1515cb85}\label{Menu_8cpp_a8500b83883310d415dbe266e1515cb85} 
+\index{Menu.cpp@{Menu.cpp}!displayAboutMenu@{displayAboutMenu}}
+\index{displayAboutMenu@{displayAboutMenu}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{displayAboutMenu()}{displayAboutMenu()}}
+{\footnotesize\ttfamily void display\+About\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8cpp_accbc3004f58aba9b3097fde94a3cf2f2}\label{Menu_8cpp_accbc3004f58aba9b3097fde94a3cf2f2} 
+\index{Menu.cpp@{Menu.cpp}!displayBatchMenu@{displayBatchMenu}}
+\index{displayBatchMenu@{displayBatchMenu}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{displayBatchMenu()}{displayBatchMenu()}}
+{\footnotesize\ttfamily void display\+Batch\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8cpp_a811acbca263e815b861d9c1e65177cad}\label{Menu_8cpp_a811acbca263e815b861d9c1e65177cad} 
+\index{Menu.cpp@{Menu.cpp}!displayIntroMenu@{displayIntroMenu}}
+\index{displayIntroMenu@{displayIntroMenu}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{displayIntroMenu()}{displayIntroMenu()}}
+{\footnotesize\ttfamily void display\+Intro\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8cpp_a8f71696a3004227d4a3e9245bf60a438}\label{Menu_8cpp_a8f71696a3004227d4a3e9245bf60a438} 
+\index{Menu.cpp@{Menu.cpp}!displayMenuInput@{displayMenuInput}}
+\index{displayMenuInput@{displayMenuInput}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{displayMenuInput()}{displayMenuInput()}}
+{\footnotesize\ttfamily void display\+Menu\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8cpp_a2d3f6987db389cb72baf4285f53d7530}\label{Menu_8cpp_a2d3f6987db389cb72baf4285f53d7530} 
+\index{Menu.cpp@{Menu.cpp}!displayRouteMenu@{displayRouteMenu}}
+\index{displayRouteMenu@{displayRouteMenu}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{displayRouteMenu()}{displayRouteMenu()}}
+{\footnotesize\ttfamily void display\+Route\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8cpp_affd23e813c5f489c5305150139a2140b}\label{Menu_8cpp_affd23e813c5f489c5305150139a2140b} 
+\index{Menu.cpp@{Menu.cpp}!displayUrbanInfo@{displayUrbanInfo}}
+\index{displayUrbanInfo@{displayUrbanInfo}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{displayUrbanInfo()}{displayUrbanInfo()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void display\+Urban\+Info (\begin{DoxyParamCaption}\item[{Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{graph }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8cpp_a679bc51a0eb7c3325b50b13ef70e8895}\label{Menu_8cpp_a679bc51a0eb7c3325b50b13ef70e8895} 
+\index{Menu.cpp@{Menu.cpp}!getAvoidNodes@{getAvoidNodes}}
+\index{getAvoidNodes@{getAvoidNodes}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{getAvoidNodes()}{getAvoidNodes()}}
+{\footnotesize\ttfamily void get\+Avoid\+Nodes (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{avoid\+\_\+nodes }\end{DoxyParamCaption})}
+
+ignore any leftover newline characters\Hypertarget{Menu_8cpp_a4fd2b722311a5b34b6ecc2342a8879f2}\label{Menu_8cpp_a4fd2b722311a5b34b6ecc2342a8879f2} 
+\index{Menu.cpp@{Menu.cpp}!getAvoidSegments@{getAvoidSegments}}
+\index{getAvoidSegments@{getAvoidSegments}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{getAvoidSegments()}{getAvoidSegments()}}
+{\footnotesize\ttfamily void get\+Avoid\+Segments (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+\_\+segments }\end{DoxyParamCaption})}
+
+if it finds the character position\Hypertarget{Menu_8cpp_ab347d1cbeb81090d57a60bc7c275f56a}\label{Menu_8cpp_ab347d1cbeb81090d57a60bc7c275f56a} 
+\index{Menu.cpp@{Menu.cpp}!handle\_csv@{handle\_csv}}
+\index{handle\_csv@{handle\_csv}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{handle\_csv()}{handle\_csv()}}
+{\footnotesize\ttfamily void handle\+\_\+csv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+method to build the argument graph\Hypertarget{Menu_8cpp_ad270cc069391fbbac1f87d1888d10fe7}\label{Menu_8cpp_ad270cc069391fbbac1f87d1888d10fe7} 
+\index{Menu.cpp@{Menu.cpp}!handleMainMenuChoice@{handleMainMenuChoice}}
+\index{handleMainMenuChoice@{handleMainMenuChoice}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{handleMainMenuChoice()}{handleMainMenuChoice()}}
+{\footnotesize\ttfamily void handle\+Main\+Menu\+Choice (\begin{DoxyParamCaption}\item[{const int}]{choice }\end{DoxyParamCaption})}
+
+driving only without restrictions
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{Menu_8cpp_ae79c812e6854fd940ccc3959c8c10578}\label{Menu_8cpp_ae79c812e6854fd940ccc3959c8c10578} 
+\index{Menu.cpp@{Menu.cpp}!graph@{graph}}
+\index{graph@{graph}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily auto graph = new Graph$<$int$>$()}
+

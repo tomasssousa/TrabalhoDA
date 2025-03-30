@@ -1,0 +1,92 @@
+\doxysection{Menu\+\_\+\+Input\+\_\+\+Handler.\+h}
+\hypertarget{Menu__Input__Handler_8h_source}{}\label{Menu__Input__Handler_8h_source}\index{Code/Menu\_Input\_Handler.h@{Code/Menu\_Input\_Handler.h}}
+\mbox{\hyperlink{Menu__Input__Handler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ MENU\_INPUT\_HANDLER\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ MENU\_INPUT\_HANDLER\_H}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Menu__Input__Handler_8h_a9d22443ab1802c8615d992469cf1fcf6}{Write\_Normal\_Route}}(\textcolor{keyword}{const}\ std::string\ \&file\_name,\ \textcolor{keyword}{const}\ std::string\ \&mode,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&source,}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&destination)\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ std::ofstream\ file(file\_name);}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open()\ ||\ file.fail())\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ the\ file!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00017\ \ \ \ \ \}}
+\DoxyCodeLine{00018\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Mode:"{}}\ <<\ mode\ <<\ std::endl;}
+\DoxyCodeLine{00019\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{00020\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ destination\ <<\ std::endl;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ file.close();}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ std::vector<pair<int,\ int>\ >\ \mbox{\hyperlink{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}{PairVector}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Menu__Input__Handler_8h_a06443977f6971133f545da72e1476e35}{Write\_Avoidable\_Route}}(\textcolor{keyword}{const}\ std::string\ \&file\_name,\ \textcolor{keyword}{const}\ std::string\ \&mode,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&source,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&destination,\ \textcolor{keyword}{const}\ std::vector<int>\ \&avoid\_nodes,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}{PairVector}}\ \&avoid\_segments,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&include\_node)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ std::ofstream\ file(file\_name);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open()\ ||\ file.fail())\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ the\ file!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Mode:"{}}\ <<\ mode\ <<\ std::endl;}
+\DoxyCodeLine{00036\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{00037\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ destination\ <<\ std::endl;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}AvoidNodes:"{}}\ <<\ avoid\_nodes[0];}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ avoid\_nodes.size();\ i++)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ avoid\_nodes[i];}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}AvoidSegments:"{}}\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ avoid\_segments[0].first\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ avoid\_segments[0].second\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ avoid\_segments.size();\ i++)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ avoid\_segments[i].first\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ avoid\_segments[i].second\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}IncludeNode:"{}}\ <<\ include\_node\ <<\ std::endl;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ file.close();}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Menu__Input__Handler_8h_a5040f7b01556905b7c67d509cdf6d1e6}{Write\_Avoidable\_MaxWalk\_Route}}(\textcolor{keyword}{const}\ std::string\ \&file\_name,\ \textcolor{keyword}{const}\ std::string\ \&mode,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&source,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&destination,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&MaxWalk,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ \&avoid\_nodes,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{Menu__Input__Handler_8h_ae34f0e21759d5438e59c58f8ba53cfb0}{PairVector}}\ \&avoid\_segments)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ std::ofstream\ file(file\_name);}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open()\ ||\ file.fail())\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ the\ file!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Mode:"{}}\ <<\ mode\ <<\ std::endl;}
+\DoxyCodeLine{00067\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{00068\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ destination\ <<\ std::endl;}
+\DoxyCodeLine{00069\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}MaxWalkTime:"{}}\ <<\ MaxWalk\ <<\ std::endl;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}AvoidNodes:"{}}\ <<\ avoid\_nodes[0];}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ avoid\_nodes.size();\ i++)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ avoid\_nodes[i];}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}AvoidSegments:"{}}\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ avoid\_segments[0].first\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ avoid\_segments[0].second\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ avoid\_segments.size();\ i++)\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ avoid\_segments[i].first\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ avoid\_segments[i].second\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ file\ <<\ std::endl;}
+\DoxyCodeLine{00082\ \ \ \ \ file.close();}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//MENU\_INPUT\_HANDLER\_H}}
+
+\end{DoxyCode}

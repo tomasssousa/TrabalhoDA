@@ -1,0 +1,184 @@
+\doxysection{Driving\+\_\+only.\+h}
+\hypertarget{Driving__only_8h_source}{}\label{Driving__only_8h_source}\index{Code/Driving\_only.h@{Code/Driving\_only.h}}
+\mbox{\hyperlink{Driving__only_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ DRIVING\_ONLY\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ DRIVING\_ONLY\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../data\_structures/Graph.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../data\_structures/MutablePriorityQueue.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Batch__Mode__write_8h}{Batch\_Mode\_write.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{Driving__only_8h_a24fffa37658bb0541fa3bf02d207321d}{relax}}(Edge<T>\ *edge)\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ d[u]\ +\ w(u,v)\ <\ d[v]}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (edge-\/>getOrig()-\/>getDrivingDist()\ +\ edge-\/>getDrivingWeight()\ <\ edge-\/>getDest()-\/>getDrivingDist())\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ have\ found\ a\ better\ way\ to\ reach\ v}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ edge-\/>getDest()-\/>setDrivingDist(edge-\/>getOrig()-\/>getDrivingDist()\ +\ edge-\/>getDrivingWeight());}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ d[v]\ =\ d[u]\ +\ w(u,v)}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ edge-\/>getDest()-\/>setPath(edge);\ \textcolor{comment}{//\ set\ the\ predecessor\ of\ v\ to\ u;\ in\ this\ case\ the\ edge\ from\ u\ to\ v}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(Graph<T>\ *g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&origin,\ vector<int>\ *rn,\ vector<pair<int,\ int>\ >\ *re)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ g-\/>getVertexSet())\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ v-\/>setDrivingDist(INF);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ v-\/>setPath(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ v-\/>setVisited(\textcolor{keyword}{false});}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (rn\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ n:\ *rn)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ g-\/>findVertex(n);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v-\/>setVisited(\textcolor{keyword}{true});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (re\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (pair<int,\ int>\ en:\ *re)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ g-\/>findVertex(en.first);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ e:\ v-\/>getAdj())\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e-\/>getDest()\ ==\ g-\/>findVertex(en.second))\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>setDrivingWeight(INF);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{auto}\ s\ =\ g-\/>findVertex(origin);\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{if}\ (s\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ s-\/>setDrivingDist(0);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ MutablePriorityQueue<Vertex<T>\ >\ q;\ }
+\DoxyCodeLine{00074\ \ \ \ \ q.insert(s);}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{while}\ (!q.empty())\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ q.extractMin();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ v-\/>setVisited(\textcolor{keyword}{true});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ e:\ v-\/>getAdj())\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ oldDist\ =\ e-\/>getDest()-\/>getDrivingDist();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{Driving__only_8h_a24fffa37658bb0541fa3bf02d207321d}{relax}}(e)\ \&\&\ e-\/>getDest()-\/>isVisited()\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oldDist\ ==\ INF)\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q.insert(e-\/>getDest());}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q.decreaseKey(e-\/>getDest());}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00099\ \textcolor{keyword}{static}\ std::vector<T>\ getPath(Graph<T>\ *g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&origin,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&dest)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ std::vector<T>\ res;\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ g-\/>findVertex(dest);}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ ==\ \textcolor{keyword}{nullptr}\ ||\ v-\/>getDrivingDist()\ ==\ INF)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ missing\ or\ disconnected}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ res.push\_back(v-\/>getId());}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{while}\ (v-\/>getPath()\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ v\ =\ v-\/>getPath()-\/>getOrig();}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ res.push\_back(v-\/>getId());}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ reverse(res.begin(),\ res.end());}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{if}\ (res.empty()\ ||\ res[0]\ !=\ origin)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::cout\ <<\ "{}Origin\ not\ found!!"{}\ <<\ std::endl;}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//return\ empty\ vector}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ std::vector<T>\ empty;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ empty;}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00119\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00134\ std::vector<vector<T>\ >\ \mbox{\hyperlink{Driving__only_8h_a36096226cdcba8e2ef07a7b72305e537}{Driving\_only}}(Graph<T>\ *g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&origin,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&destination,\ vector<int>\ *rn\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vector<pair<int,\ int>\ >\ *re\ =\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&stop\ =\ 0)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ vector<vector<T>\ >\ res;\ }
+\DoxyCodeLine{00137\ \ \ \ \ vector<T>\ Optimal\_route;}
+\DoxyCodeLine{00138\ \ \ \ \ vector<T>\ Alternate\_route;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{int}\ i;\ }
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ origin,\ rn,\ re);}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{if}\ (stop\ ==\ 0)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ Optimal\_route\ =\ getPath<T>(g,\ origin,\ destination);\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Optimal\_route.empty())\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ Optimal\_route\ =\ getPath<T>(g,\ origin,\ stop);\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Optimal\_route.empty())\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Optimal\_route);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ stop,\ rn,\ re);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ vector<T>\ fpath\ =\ getPath<T>(g,\ stop,\ destination);\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fpath.empty())\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(fpath);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(fpath);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ i\ =\ 0;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ fpath)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ =\ 1;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Optimal\_route.push\_back(v);\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ res.push\_back(Optimal\_route);\ }
+\DoxyCodeLine{00175\ \ \ \ \ i\ =\ Optimal\_route.size()\ -\/\ 1;}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ Optimal\_route)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0\ ||\ i\ ==\ Optimal\_route.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ rn-\/>push\_back(v);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ i-\/-\/;}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ origin,\ rn,\ re);}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{if}\ (stop\ ==\ 0)\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ Alternate\_route\ =\ getPath<T>(g,\ origin,\ destination);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Alternate\_route.empty())\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Alternate\_route);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ Alternate\_route\ =\ getPath<T>(g,\ origin,\ stop);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Alternate\_route.empty())\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(Alternate\_route);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}}(g,\ stop,\ rn,\ re);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ vector<T>\ spath\ =\ getPath<T>(g,\ stop,\ destination);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (spath.empty())\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ res.push\_back(spath);}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ i\ =\ 0;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v:\ spath)\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0)\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ =\ 1;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Alternate\_route.push\_back(v);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ res.push\_back(Alternate\_route);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00216\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DRIVING\_ONLY\_H}}
+
+\end{DoxyCode}

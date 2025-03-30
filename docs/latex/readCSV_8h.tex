@@ -1,0 +1,75 @@
+\doxysection{Code/read\+CSV.h File Reference}
+\hypertarget{readCSV_8h}{}\label{readCSV_8h}\index{Code/readCSV.h@{Code/readCSV.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+Include dependency graph for read\+CSV.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{readCSV_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{readCSV_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{readCSV_8h_a3101bc0142a49d9d11ad3f8cac766a2d}{trim}} (const string \&str)
+\begin{DoxyCompactList}\small\item\em Function to load Locations from a Locations.\+csv file! \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{readCSV_8h_aa854ccbf26fba4d17fc162ad620d617e}{load\+Locations}} (Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}}, const std\+::string \&filename)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{readCSV_8h_ac2ae2ac8326f95fdd3482b429efe6b6d}{load\+Distances}} (Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{Main_8cpp_a9647b52a82c13a3dad2105feb3efc8d8}{graph}}, const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Function to load Distances from a Distances.\+csv file! \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{readCSV_8h_ac2ae2ac8326f95fdd3482b429efe6b6d}\label{readCSV_8h_ac2ae2ac8326f95fdd3482b429efe6b6d} 
+\index{readCSV.h@{readCSV.h}!loadDistances@{loadDistances}}
+\index{loadDistances@{loadDistances}!readCSV.h@{readCSV.h}}
+\doxysubsubsection{\texorpdfstring{loadDistances()}{loadDistances()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void load\+Distances (\begin{DoxyParamCaption}\item[{Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{graph,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to load Distances from a Distances.\+csv file! 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph,the} & graph which will be used to save the edges \\
+\hline
+{\em filename,the} & file which we will fetch the data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{readCSV_8h_aa854ccbf26fba4d17fc162ad620d617e}\label{readCSV_8h_aa854ccbf26fba4d17fc162ad620d617e} 
+\index{readCSV.h@{readCSV.h}!loadLocations@{loadLocations}}
+\index{loadLocations@{loadLocations}!readCSV.h@{readCSV.h}}
+\doxysubsubsection{\texorpdfstring{loadLocations()}{loadLocations()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void load\+Locations (\begin{DoxyParamCaption}\item[{Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{graph,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{readCSV_8h_a3101bc0142a49d9d11ad3f8cac766a2d}\label{readCSV_8h_a3101bc0142a49d9d11ad3f8cac766a2d} 
+\index{readCSV.h@{readCSV.h}!trim@{trim}}
+\index{trim@{trim}!readCSV.h@{readCSV.h}}
+\doxysubsubsection{\texorpdfstring{trim()}{trim()}}
+{\footnotesize\ttfamily string trim (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to load Locations from a Locations.\+csv file! 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph,the} & graph which will be used to save the vertexes \\
+\hline
+{\em filename,the} & file which we will fetch the data \\
+\hline
+\end{DoxyParams}

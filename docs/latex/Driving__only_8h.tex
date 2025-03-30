@@ -1,0 +1,133 @@
+\doxysection{Code/\+Driving\+\_\+only.h File Reference}
+\hypertarget{Driving__only_8h}{}\label{Driving__only_8h}\index{Code/Driving\_only.h@{Code/Driving\_only.h}}
+{\ttfamily \#include "{}../data\+\_\+structures/\+Graph.\+h"{}}\newline
+{\ttfamily \#include "{}../data\+\_\+structures/\+Mutable\+Priority\+Queue.\+h"{}}\newline
+{\ttfamily \#include "{}Batch\+\_\+\+Mode\+\_\+write.\+h"{}}\newline
+Include dependency graph for Driving\+\_\+only.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Driving__only_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{Driving__only_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\bool \mbox{\hyperlink{Driving__only_8h_a24fffa37658bb0541fa3bf02d207321d}{relax}} (Edge$<$ T $>$ \texorpdfstring{$\ast$}{*}edge)
+\begin{DoxyCompactList}\small\item\em This function is responsible for the edge relaxation that takes place during the Dijkstra algorithm. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}{dijkstra}} (Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}g, const int \&origin, vector$<$ int $>$ \texorpdfstring{$\ast$}{*}rn, vector$<$ pair$<$ int, int $>$ $>$ \texorpdfstring{$\ast$}{*}re)
+\begin{DoxyCompactList}\small\item\em Implementation of custom Dijkstra algorithm. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ vector$<$ T $>$ $>$ \mbox{\hyperlink{Driving__only_8h_a36096226cdcba8e2ef07a7b72305e537}{Driving\+\_\+only}} (Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}g, const int \&origin, const int \&destination, vector$<$ int $>$ \texorpdfstring{$\ast$}{*}rn=nullptr, vector$<$ pair$<$ int, int $>$ $>$ \texorpdfstring{$\ast$}{*}re=nullptr, const int \&stop=0)
+\begin{DoxyCompactList}\small\item\em Main function when using the driving only method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3}\label{Driving__only_8h_a5c435e709be84f4c42326ec2acc009e3} 
+\index{Driving\_only.h@{Driving\_only.h}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!Driving\_only.h@{Driving\_only.h}}
+\doxysubsubsection{\texorpdfstring{dijkstra()}{dijkstra()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void dijkstra (\begin{DoxyParamCaption}\item[{Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g,  }\item[{const int \&}]{origin,  }\item[{vector$<$ int $>$ \texorpdfstring{$\ast$}{*}}]{rn,  }\item[{vector$<$ pair$<$ int, int $>$ $>$ \texorpdfstring{$\ast$}{*}}]{re }\end{DoxyParamCaption})}
+
+
+
+Implementation of custom Dijkstra algorithm. 
+
+Custom Dijkstra that takes two additional vectors and is able to avoid specific nodes and edges. 
+\begin{DoxyParams}{Parameters}
+{\em g} & The graph to be explored. \\
+\hline
+{\em origin} & The id of the node from which the algorithm will start. \\
+\hline
+{\em rn} & The id of the nodes to be ignored. \\
+\hline
+{\em re} & The ids of the starting and destination vertices that define an edge to be ignored. \\
+\hline
+\end{DoxyParams}
+Initialize the vertices
+
+remove nodes from the iteration. If the vector is empty it does nothing.
+
+remove edges from the iteration. If the vector is empty it does nothing.
+
+\texorpdfstring{$<$}{<} The node from which to start the algorithm.
+
+\texorpdfstring{$<$}{<} Priority\+Queue to be used during the algorithm.\Hypertarget{Driving__only_8h_a36096226cdcba8e2ef07a7b72305e537}\label{Driving__only_8h_a36096226cdcba8e2ef07a7b72305e537} 
+\index{Driving\_only.h@{Driving\_only.h}!Driving\_only@{Driving\_only}}
+\index{Driving\_only@{Driving\_only}!Driving\_only.h@{Driving\_only.h}}
+\doxysubsubsection{\texorpdfstring{Driving\_only()}{Driving\_only()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ vector$<$ T $>$ $>$ Driving\+\_\+only (\begin{DoxyParamCaption}\item[{Graph$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g,  }\item[{const int \&}]{origin,  }\item[{const int \&}]{destination,  }\item[{vector$<$ int $>$ \texorpdfstring{$\ast$}{*}}]{rn = {\ttfamily nullptr},  }\item[{vector$<$ pair$<$ int, int $>$ $>$ \texorpdfstring{$\ast$}{*}}]{re = {\ttfamily nullptr},  }\item[{const int \&}]{stop = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Main function when using the driving only method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & The graph to use. \\
+\hline
+{\em origin} & The id of the starting node. \\
+\hline
+{\em destination} & The id of the destination node. \\
+\hline
+{\em rn} & The id of the nodes to be ignored. \\
+\hline
+{\em re} & The ids of the starting and destination vertices that define an edge to be ignored. \\
+\hline
+{\em stop} & The id of the node to include in the path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Vectors with the Optimal path and the alterante route, respectively. If a vector is returned empty, it means there is no possible path for that . In the case where both avoid\+Nodes and avoid\+Segments and stop are not provided, they will have default values 
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<} Vector that will have the Optimal and Alternate routes.
+
+\texorpdfstring{$<$}{<} Value to be used for counting.
+
+Optimal\+\_\+driving path.
+
+Verify if there is a stop to be made.
+
+Get the full path.
+
+Get the path to the stop.
+
+Get the path from the stop to the destination.
+
+Add the two parts of the path.
+
+Store the path.
+
+Alternate\+\_\+route preparation.
+
+Prepare the alternate route adding the used nodes grom the optimal route to the vector of nodes to ignore.
+
+Alternate\+\_\+route path. The process will be identical the the Optimal\+\_\+driving path, simply with more nodes to ignore.\Hypertarget{Driving__only_8h_a24fffa37658bb0541fa3bf02d207321d}\label{Driving__only_8h_a24fffa37658bb0541fa3bf02d207321d} 
+\index{Driving\_only.h@{Driving\_only.h}!relax@{relax}}
+\index{relax@{relax}!Driving\_only.h@{Driving\_only.h}}
+\doxysubsubsection{\texorpdfstring{relax()}{relax()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool relax (\begin{DoxyParamCaption}\item[{Edge$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{edge }\end{DoxyParamCaption})}
+
+
+
+This function is responsible for the edge relaxation that takes place during the Dijkstra algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edge} & The edge to be either crossed or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The boolean saying if the Driving\+Dist got changed or not. 
+\end{DoxyReturn}
