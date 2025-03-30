@@ -25,6 +25,7 @@ add_executable(Project
         Code/readCSV.h
         Code/Menu_Input_Handler.h
         Code/Driving_And_Walking.h
+        Code/Driving_And_Walking_Alternate.h
 )
 
 #add_executable(Main
