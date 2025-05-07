@@ -26,6 +26,9 @@ add_executable(Project
         Code/Menu_Input_Handler.h
         Code/Driving_And_Walking.h
         Code/Driving_And_Walking_Alternate.h
+        Code/Pallet.h
+        Code/Brute_Force.h
+        Code/Dynamic_Programming.h
 )
 
 #add_executable(Main
