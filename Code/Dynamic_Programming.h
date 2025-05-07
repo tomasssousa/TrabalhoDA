@@ -16,7 +16,7 @@
 * @return The integer with the optimal value.
 */
 unsigned int knapsackDP(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
-    unsigned int maxValue[maxWeight+1][n+1];
+    unsigned int maxValue[n][maxWeight+1];
 
     // Step 1: Initialize the DP matrix with the values for the base cases
     for(unsigned int k = 0; k <= maxWeight; k++) {
